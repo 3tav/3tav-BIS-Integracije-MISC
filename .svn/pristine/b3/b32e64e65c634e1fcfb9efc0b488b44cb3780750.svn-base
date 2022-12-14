@@ -1,0 +1,86 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Komunikator3TavASP", "..\Komunikator3TavASP\Komunikator3TavASP\Komunikator3TavASP.csproj", "{76989853-0103-41D0-AF23-329C142BF461}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Komunikator3TavLib", "Komunikator3TavLib\Komunikator3TavLib.csproj", "{DC4141D1-81BC-4B5B-8177-AFC623BC7FDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perun3WsLib", "..\Perun3WsLib\Perun3WsLib.csproj", "{18ED36E2-5F31-46D4-866D-0C2D6A8FE11C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EppsClientLib", "..\EppsClient\EppsClientLib.csproj", "{731906F8-0F89-445E-9FA2-9DDBD68D382D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EppsProxyASP", "EppsProxyASP\EppsProxyASP.csproj", "{0A4DF8C1-DB07-49B3-97BA-E7270A659CE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceBase", "ServiceBase\ServiceBase.csproj", "{0479614B-0DA9-4760-A1FF-8CB1051D9038}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KroProxyASP", "KroProxyASP\KroProxyASP.csproj", "{39337C98-3F3D-4CEE-B5CF-B6391AA65C1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KroClientLib", "KroClientLib\KroClientLib.csproj", "{27FBD9BA-A5D0-40A2-819F-41787E0F3A32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZZIEStoritveLib", "ZZIEStoritveLib\ZZIEStoritveLib.csproj", "{36E331C4-15CF-440A-8951-B4386CF2041C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoteamClientLib", "InfoteamClientLib\InfoteamClientLib.csproj", "{4C867A04-D50B-45B9-B31D-950F5935FCCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoteamClient", "InfoteamClient\InfoteamClient.csproj", "{C231AA97-CD1D-4566-845C-D3C85159BA63}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76989853-0103-41D0-AF23-329C142BF461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76989853-0103-41D0-AF23-329C142BF461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76989853-0103-41D0-AF23-329C142BF461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76989853-0103-41D0-AF23-329C142BF461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC4141D1-81BC-4B5B-8177-AFC623BC7FDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC4141D1-81BC-4B5B-8177-AFC623BC7FDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC4141D1-81BC-4B5B-8177-AFC623BC7FDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC4141D1-81BC-4B5B-8177-AFC623BC7FDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18ED36E2-5F31-46D4-866D-0C2D6A8FE11C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18ED36E2-5F31-46D4-866D-0C2D6A8FE11C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18ED36E2-5F31-46D4-866D-0C2D6A8FE11C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18ED36E2-5F31-46D4-866D-0C2D6A8FE11C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{731906F8-0F89-445E-9FA2-9DDBD68D382D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{731906F8-0F89-445E-9FA2-9DDBD68D382D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{731906F8-0F89-445E-9FA2-9DDBD68D382D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{731906F8-0F89-445E-9FA2-9DDBD68D382D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A4DF8C1-DB07-49B3-97BA-E7270A659CE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A4DF8C1-DB07-49B3-97BA-E7270A659CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A4DF8C1-DB07-49B3-97BA-E7270A659CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A4DF8C1-DB07-49B3-97BA-E7270A659CE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0479614B-0DA9-4760-A1FF-8CB1051D9038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0479614B-0DA9-4760-A1FF-8CB1051D9038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0479614B-0DA9-4760-A1FF-8CB1051D9038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0479614B-0DA9-4760-A1FF-8CB1051D9038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39337C98-3F3D-4CEE-B5CF-B6391AA65C1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39337C98-3F3D-4CEE-B5CF-B6391AA65C1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39337C98-3F3D-4CEE-B5CF-B6391AA65C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39337C98-3F3D-4CEE-B5CF-B6391AA65C1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27FBD9BA-A5D0-40A2-819F-41787E0F3A32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27FBD9BA-A5D0-40A2-819F-41787E0F3A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27FBD9BA-A5D0-40A2-819F-41787E0F3A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27FBD9BA-A5D0-40A2-819F-41787E0F3A32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36E331C4-15CF-440A-8951-B4386CF2041C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36E331C4-15CF-440A-8951-B4386CF2041C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36E331C4-15CF-440A-8951-B4386CF2041C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36E331C4-15CF-440A-8951-B4386CF2041C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C867A04-D50B-45B9-B31D-950F5935FCCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C867A04-D50B-45B9-B31D-950F5935FCCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C867A04-D50B-45B9-B31D-950F5935FCCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C867A04-D50B-45B9-B31D-950F5935FCCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C231AA97-CD1D-4566-845C-D3C85159BA63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C231AA97-CD1D-4566-845C-D3C85159BA63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C231AA97-CD1D-4566-845C-D3C85159BA63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C231AA97-CD1D-4566-845C-D3C85159BA63}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

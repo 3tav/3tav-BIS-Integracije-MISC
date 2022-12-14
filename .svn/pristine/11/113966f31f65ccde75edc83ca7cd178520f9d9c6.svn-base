@@ -1,0 +1,637 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Net;
+using System.Runtime.Serialization;
+
+namespace Komunikator3TavLib
+{
+
+    public class dcPerunOdcitek
+    {
+        [DataMember]
+        public Int32? OdcitekID { get; set; }
+        [DataMember]
+        public Int32? SMM { get; set; }
+        [DataMember]
+        public DateTime? DatumStanja { get; set; }
+        [DataMember]
+        public String StanjeET { get; set; }
+        [DataMember]
+        public String StanjeVT { get; set; }
+        [DataMember]
+        public String StanjeMT { get; set; }
+        [DataMember]
+        public String Status { get; set; }
+        [DataMember]
+        public Int32? VrstaOdcitka { get; set; } //1...Perun, 2...SODO
+        [DataMember]
+        public String Vir { get; set; }
+        [DataMember]
+        public Int32? JobStatus { get; set; }
+        [DataMember]
+        public String JobMessage { get; set; }
+
+    }
+
+    [DataContract]
+    public class dcPovprecnaPoraba
+    {
+        [DataMember]
+        public Int32? SMM { get; set; }
+        [DataMember]
+        public double? PorabaET { get; set; }
+        [DataMember]
+        public double? PorabaVT { get; set; }
+        [DataMember]
+        public double? PorabaMT { get; set; }
+    }
+
+    [DataContract]
+    public class dcPovprecnaPorabaPerun3
+    {
+        [DataMember]
+        public string SMM { get; set; }
+        [DataMember]
+        public int idMM { get; set; }
+        [DataMember]
+        public int idPodjetje { get; set; }
+        [DataMember]
+        public string ObdobjeOd { get; set; }
+        [DataMember]
+        public string ObdobjeDo { get; set; }
+        [DataMember]
+        public int IdRazlPovpPor { get; set; }
+        [DataMember]
+        public string NazivRazloga { get; set; }
+        [DataMember]
+        public double? PorabaET { get; set; }
+        [DataMember]
+        public double? PorabaVT { get; set; }
+        [DataMember]
+        public double? PorabaMT { get; set; }
+    }
+
+
+    [DataContract]
+    public class dcFakturiranaRealizacija
+    {
+        public int Leto;
+        public int Mesec;
+        public List<dcFakturiranaRealizacijaPos> Postavke;
+    }
+
+    [DataContract]
+    public class dcFakturiranaRealizacijaPos
+    {
+        public int idZaracunljiviElement;
+        public string zaracunljiviElementNaziv;
+        public decimal kolicina;
+    }
+
+    [DataContract]
+    public class dcParametriPrilogeA
+    {
+        [DataMember]
+        public Int32? PrilogaA_ID { get; set; }
+        [DataMember]
+        public Int32? SMM { get; set; }
+        [DataMember]
+        public DateTime? DatumFakture { get; set; }
+        [DataMember]
+        public Int32? StevilkaFakture { get; set; }
+        [DataMember]
+        public Int32? LetoFakture { get; set; }
+        [DataMember]
+        public Int32? ObdobjeRealizacije { get; set; }
+        [DataMember]
+        public String VrstaFakture { get; set; }
+        [DataMember]
+        public Boolean? LocenRacun { get; set; }
+        [DataMember]
+        public Boolean? PoslanaDobavitelju { get; set; }
+        [DataMember]
+        public DateTime? FakturaObdobjeOd { get; set; }
+        [DataMember]
+        public DateTime? FakturaObdobjeDo { get; set; }
+        [DataMember]
+        public Int32 StornoFaktura { get; set; }
+    }
+
+    [DataContract]
+    public class dcParametriPrilogeAList
+    {
+        [DataMember]
+        public List<dcParametriPrilogeA> Data { get; set; }
+        [DataMember]
+        public int SteviloPrilogA { get; set; }
+    }
+
+    [DataContract]
+    public class dcPodatkiMM
+    {
+        [DataMember]
+        public Int32? OdcitekID { get; set; }
+        [DataMember]
+        public Int32? SMM { get; set; }
+        [DataMember]
+        public DateTime? DatumStanja { get; set; }
+        [DataMember]
+        public String StanjeET { get; set; }
+        [DataMember]
+        public String StanjeVT { get; set; }
+        [DataMember]
+        public String StanjeMT { get; set; }
+        [DataMember]
+        public String Status { get; set; }
+        [DataMember]
+        public Int32? VrstaOdcitka { get; set; } //1...Perun, 2...SODO
+    }
+
+    [DataContract]
+    public class dcMenjavaDobZahteva
+    {
+        [DataMember]
+        public string Smm { get; set; }
+        [DataMember]
+        public DateTime DatumKonca { get; set; }        
+        [DataMember]
+        public DateTime DatumZacetka { get; set; }
+        [DataMember]        
+        public string DavcnaSt { get; set; }
+        [DataMember]
+        public int Dis { get; set; }
+        [DataMember]
+        public string ImePriloge { get; set; }
+        [DataMember]
+        public long KonicnaObremenitev { get; set; }
+        [DataMember]
+        public Boolean PlacevanjeUporabeOmrezja { get; set; }
+        [DataMember]
+        public long PrenosEnergije { get; set; }
+        [DataMember]
+        public byte[] Priloga { get; set; }        
+        [DataMember]
+        public string TipPriloge{ get; set; }
+        [DataMember]
+        public Boolean PodatkiMM { get; set; }
+        [DataMember]
+        public string Bremenitev { get; set; }
+        /* nova polja */
+        [DataMember]
+        public string PlacnikNaziv { get; set; }
+        [DataMember]
+        public string PlacnikUlica { get; set; }
+        [DataMember]
+        public string PlacnikHisnaStevilka { get; set; }
+        [DataMember]
+        public string PlacnikPostnaStevilka { get; set; }
+        [DataMember]
+        public string PlacnikPosta { get; set; }
+        [DataMember]
+        public string PlacnikDavcniZavezanec { get; set; }
+         
+    }
+
+    [DataContract]
+    public class dcMenjavaDobVloga
+    {
+        [DataMember]
+        public string IdOpravila { get; set; }
+        [DataMember]
+        public string Smm { get; set; }
+        [DataMember]
+        public DateTime DatumVloge { get; set; }
+        [DataMember]
+        public DateTime DatumMenjave { get; set; }
+        [DataMember]
+        public string Status { get; set; }
+        /*Nova polja CEEPS*/
+        [DataMember]
+        public int IdZahteve { get; set; }
+        [DataMember]
+        public string VrstaRacuna { get; set; }
+        [DataMember]
+        public string ZahtevaniPodatkiMM { get; set; }
+        [DataMember]
+        public string PlacnikNaziv { get; set; }
+        [DataMember]
+        public string GsrnMM { get; set; }        
+        [DataMember]
+        public string RokZaMenjavo { get; set; }         
+        [DataMember]
+        public string DatumOdobritve { get; set; }
+        [DataMember]
+        public string NacinPridobitveOdbirka { get; set; }
+        [DataMember]
+        public string VezalnaShema { get; set; }       
+    }
+
+    [DataContract]
+    public class dcEvidencaZahtevZahteva
+    {
+        [DataMember]
+        public string IdZahteva;
+        [DataMember]
+        public string OznakaDistributerja;
+        [DataMember]
+        public string NazivDistributerja;
+        [DataMember]
+        public string OznakaDobavitelja;
+        [DataMember]
+        public string NazivDobavitelja;
+        [DataMember]
+        public string IdVrstaZahteve;
+        [DataMember]
+        public string VrstaZahteve;
+        [DataMember]
+        public string IdStatusZahteve;
+        [DataMember]
+        public string StatusZahteve;
+        [DataMember]
+        public string IdMM;
+        [DataMember]
+        public string EnotniIdentMM;
+        [DataMember]
+        public DateTime DatumZahteve;
+        [DataMember]
+        public string KontaktnaOseba;
+        [DataMember]
+        public string Opomba;
+        [DataMember]
+        public string XmlZahteve;
+        //[DataMember]
+        //public EvidencaZahtevPriloga[] priloga;
+        [DataMember]
+        public DateTime? DatumOdgovora;
+        [DataMember]
+        public bool DatumOdgovoraFieldSpecified;
+        [DataMember]
+        public string OpombaDistributerja;
+        //[DataMember]
+        //public EvidencaZahtevXmlOdgovor xmlOdgovora;
+        [DataMember]
+        public bool Nadstandard;
+        [DataMember]
+        public bool NadstandardFieldSpecified;
+        [DataMember]
+        public string UporabnikDob;
+        [DataMember]
+        public string UporabnikDis;
+        [DataMember]
+        public DateTime? DatumPredvideneIzvedbe;
+        [DataMember]
+        public bool DatumPredvideneIzvedbeFieldSpecified;
+        [DataMember]
+        public DateTime? CasZahteve;
+        [DataMember]
+        public bool CasZahteveFieldSpecified;
+        [DataMember]
+        public DateTime? CasIzvedbe;
+        [DataMember]
+        public bool CasIzvedbeFieldSpecified;
+    }
+
+    [DataContract]
+    public class dcNovaPoD
+    {
+        [DataMember]
+        public string Smm { get; set; }
+        [DataMember]
+        public DateTime DatumSpremembe { get; set; }
+        [DataMember]
+        public DateTime DatumVloge { get; set; }
+        [DataMember]
+        public string Opomba { get; set; }
+        [DataMember]
+        public string ImePogodbe { get; set; }
+        [DataMember]
+        public string ImePriloge { get; set; }     
+        [DataMember]
+        public byte[] PogodbaODobavi { get; set; }       
+        [DataMember]
+        public byte[] Priloga { get; set; }
+        [DataMember]
+        public string TipPriloge { get; set; }
+        [DataMember]
+        public Boolean SpremembaLastnika{ get; set; }
+        [DataMember]
+        public Boolean SpremembaPlacnika { get; set; }
+        [DataMember]
+        public Boolean SpremembaNaslovnika { get; set; }
+        [DataMember]
+        public int SpremembaObracMoci { get; set; }
+        [DataMember]
+        public string OdbirekEt { get; set; }
+        [DataMember]
+        public string OdbirekVt { get; set; }
+        [DataMember]
+        public string OdbirekMt { get; set; }
+        [DataMember]
+        public string Bremenitev { get; set; }
+        [DataMember]
+        public string VrstaObracuna { get; set; }
+        [DataMember]
+        public int PrekinitevPostopka { get; set; }
+        [DataMember]
+        public string IdOpravila { get; set; }
+        [DataMember]
+        public string TipZahteve { get; set; }
+        [DataMember]
+        public string SifraDobavitelja { get; set; }        
+    }
+    public class cInf_StenjaStevca
+    {
+        public cInf_StenjaStevca()
+        {
+
+        }
+
+        public sFunctionResult Send_StanjeNaPerun(Int32 _Dobavitelj, short _Distribucija, Int32 _MerilnoMesto, DateTime _DatumOdbirka, String _StanjeET, String _StanjeVT, String _StanjeMT, out Int32? PerunOdcitekID)
+        {
+            sFunctionResult fr = cFunctionResult.Init();
+            PerunOdcitekID = null;
+
+            KomunikatorEGP.ws_Inf_StanjeStevca.StanjeStevcaClient StanjaStevca = new KomunikatorEGP.ws_Inf_StanjeStevca.StanjeStevcaClient();
+            try
+            {
+                StanjaStevca.ClientCredentials.UserName.UserName = "DGWS01";
+                StanjaStevca.ClientCredentials.UserName.Password = "Gor2012";
+                StanjaStevca.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = System.ServiceModel.Security.X509CertificateValidationMode.None;
+                ServicePointManager.Expect100Continue = true;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+                KomunikatorEGP.ws_Inf_StanjeStevca.vnosStanjaRequest StanjeReq = new KomunikatorEGP.ws_Inf_StanjeStevca.vnosStanjaRequest();
+                KomunikatorEGP.ws_Inf_StanjeStevca.vnosStanjaResponse StanjeRes = new KomunikatorEGP.ws_Inf_StanjeStevca.vnosStanjaResponse();
+                StanjeReq.dobavitelj = _Dobavitelj;
+                StanjeReq.dis = _Distribucija;
+                StanjeReq.smm = _MerilnoMesto;
+                StanjeReq.datumNovegaOdbirka = _DatumOdbirka;
+                StanjeReq.datumNovegaOdbirkaSpecified = true;
+                StanjeReq.noviET = _StanjeET;
+                StanjeReq.noviVT = _StanjeVT;
+                StanjeReq.noviMT = _StanjeMT;
+                StanjeRes = StanjaStevca.vnesiNovoStanje(StanjeReq);
+                if ((StanjeRes.rc != 0) && (DateTime.Now.Day < 5))
+                    StanjeRes.rc = 0;
+                try
+                {
+                    StanjaStevca.Close();
+                    StanjaStevca = null;
+                }
+                catch (Exception)
+                {
+                    StanjaStevca.Abort();
+                    StanjaStevca = null;
+                }
+                if (StanjeRes.idSpecified)
+                {
+                    PerunOdcitekID = StanjeRes.id;
+                }
+                if (StanjeRes.rc != 0)
+                {
+                    if (StanjeRes.rc < (Int32)efrErrorCodes.NoDataFound)
+                    {
+                        fr = cFunctionResult.Set(true, StanjeRes.rc, "Send_StanjeNaPerun", StanjeRes.sporocilo, "");
+                    }
+                    else
+                    {
+                        fr = cFunctionResult.Set(true, (Int32)efrErrorCodes.WebServiceError, "Send_StanjeNaPerun", StanjeRes.sporocilo, "");
+                    }
+                    return fr;
+                }
+                else
+                {
+                    fr = cFunctionResult.Set(true, 0, "", "", "");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                StanjaStevca.Abort();
+                fr = cFunctionResult.Set(false, 1, "Napaka: cInf_StenjaStevca.Send_StanjeNaPerun ", ex.Message.ToString(), "");
+            }
+            return fr;
+        }
+
+        public sFunctionResult Send_OpomboNaStanjaNaPerun(Int32 _PerunOdcitekID, String _Komentar)
+        {
+            sFunctionResult fr = cFunctionResult.Init();
+            KomunikatorEGP.ws_Inf_StanjeStevca.StanjeStevcaClient StanjaStevca = new KomunikatorEGP.ws_Inf_StanjeStevca.StanjeStevcaClient();
+            try
+            {
+                StanjaStevca.ClientCredentials.UserName.UserName = "DGWS01";
+                StanjaStevca.ClientCredentials.UserName.Password = "Gor2012";
+                StanjaStevca.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = System.ServiceModel.Security.X509CertificateValidationMode.None;
+                ServicePointManager.Expect100Continue = true;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+                KomunikatorEGP.ws_Inf_StanjeStevca.vnosStanjaResponse StanjeRes = new KomunikatorEGP.ws_Inf_StanjeStevca.vnosStanjaResponse();
+
+                StanjeRes = StanjaStevca.dodajKomentar(_PerunOdcitekID, _Komentar);
+                try
+                {
+                    StanjaStevca.Close();
+                    StanjaStevca = null;
+                }
+                catch (Exception)
+                {
+                    StanjaStevca.Abort();
+                    StanjaStevca = null;
+                }
+                if (StanjeRes.rc != 0)
+                {
+                    if (StanjeRes.rc < (Int32)efrErrorCodes.NoDataFound)
+                    {
+                        fr = cFunctionResult.Set(true, StanjeRes.rc, "Send_OpomboNaStanjaNaPerun", StanjeRes.sporocilo, "");
+                    }
+                    else
+                    {
+                        fr = cFunctionResult.Set(true, (Int32)efrErrorCodes.WebServiceError, "Send_OpomboNaStanjaNaPerun", StanjeRes.sporocilo, "");
+                    }
+                    return fr;
+                }
+                else
+                {
+                    fr = cFunctionResult.Set(true, 0, "", "", "");
+                }
+            }
+            catch (Exception ex)
+            {
+                StanjaStevca.Abort();
+                fr = cFunctionResult.Set(false, 1, "Napaka: cInf_StenjaStevca.Send_OpomboNaStanjaNaPerun ", ex.Message.ToString(), "");
+            }
+            return fr;
+        }
+
+        public sFunctionResult Get_ZadnjiOdbirekZaMerilnoMesto(short _Distribucija, Int32 _MerilnoMesto, out dcPerunOdcitek _PerunOdcitek)
+        {
+            sFunctionResult fr = cFunctionResult.Init();
+            _PerunOdcitek = new dcPerunOdcitek();
+            KomunikatorEGP.ws_Inf_StanjeStevca.StanjeStevcaClient StanjaStevca = new KomunikatorEGP.ws_Inf_StanjeStevca.StanjeStevcaClient();
+            try
+            {
+                StanjaStevca.ClientCredentials.UserName.UserName = "DGWS01";
+                StanjaStevca.ClientCredentials.UserName.Password = "Gor2012";
+                StanjaStevca.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = System.ServiceModel.Security.X509CertificateValidationMode.None;
+                ServicePointManager.Expect100Continue = true;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+                KomunikatorEGP.ws_Inf_StanjeStevca.odbirekResponse StanjeRes = new KomunikatorEGP.ws_Inf_StanjeStevca.odbirekResponse();
+
+                StanjeRes = StanjaStevca.najdiZadnjiOdbirek(_Distribucija, _MerilnoMesto);
+                try
+                {
+                    StanjaStevca.Close();
+                    StanjaStevca = null;
+                }
+                catch (Exception)
+                {
+                    StanjaStevca.Abort();
+                    StanjaStevca = null;
+                }
+                if ((StanjeRes.rc == 0) && (StanjeRes.datumOdbirka > Convert.ToDateTime("1.1.1950")))
+                {
+                    _PerunOdcitek.OdcitekID = StanjeRes.id;
+                    _PerunOdcitek.SMM = StanjeRes.smm;
+                    _PerunOdcitek.DatumStanja = StanjeRes.datumOdbirka;
+                    if (StanjeRes.ET.Trim() != "")
+                    {
+                        _PerunOdcitek.StanjeET = StanjeRes.ET.Trim();
+                    }
+                    else
+                    {
+                        _PerunOdcitek.StanjeET = null;
+                    }
+                    if (StanjeRes.VT.Trim() != "")
+                    {
+                        _PerunOdcitek.StanjeVT = StanjeRes.VT.Trim();
+                    }
+                    else
+                    {
+                        _PerunOdcitek.StanjeVT = null;
+                    }
+                    if (StanjeRes.MT.Trim() != "")
+                    {
+                        _PerunOdcitek.StanjeMT = StanjeRes.MT.Trim();
+                    }
+                    else
+                    {
+                        _PerunOdcitek.StanjeMT = null;
+                    }
+                    _PerunOdcitek.Status = StanjeRes.status;
+                    _PerunOdcitek.VrstaOdcitka = 1;
+                }
+                if (StanjeRes.rc != 0)
+                {
+                    if (StanjeRes.rc < (Int32)efrErrorCodes.NoDataFound)
+                    {
+                        fr = cFunctionResult.Set(true, StanjeRes.rc, "Get_ZadnjiOdbirekZaMerilnoMesto", StanjeRes.sporocilo, "");
+                    }
+                    else
+                    {
+                        fr = cFunctionResult.Set(true, (Int32)efrErrorCodes.WebServiceError, "Get_ZadnjiOdbirekZaMerilnoMesto", StanjeRes.sporocilo, "");
+                    }
+                    return fr;
+                }
+                else
+                {
+                    fr = cFunctionResult.Set(true, 0, "", "", "");
+                }
+            }
+            catch (Exception ex)
+            {
+                StanjaStevca.Abort();
+                fr = cFunctionResult.Set(false, 1, "Napaka: cInf_StenjaStevca.Get_ZadnjiOdbirekZaMerilnoMesto ", ex.Message.ToString(), "");
+            }
+            return fr;
+        }
+
+        public sFunctionResult Get_OdbirekZaMerilnoMestoInDatum(short _Distribucija, Int32 _MerilnoMesto, DateTime _DatumStanja, out dcPerunOdcitek _PerunOdcitek)
+        {
+            sFunctionResult fr = cFunctionResult.Init();
+            _PerunOdcitek = new dcPerunOdcitek();
+            KomunikatorEGP.ws_Inf_StanjeStevca.StanjeStevcaClient StanjaStevca = new KomunikatorEGP.ws_Inf_StanjeStevca.StanjeStevcaClient();
+            try
+            {
+                StanjaStevca.ClientCredentials.UserName.UserName = "DGWS01";
+                StanjaStevca.ClientCredentials.UserName.Password = "Gor2012";
+                StanjaStevca.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = System.ServiceModel.Security.X509CertificateValidationMode.None;
+                ServicePointManager.Expect100Continue = true;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+                KomunikatorEGP.ws_Inf_StanjeStevca.odbirekResponse StanjeRes = new KomunikatorEGP.ws_Inf_StanjeStevca.odbirekResponse();
+
+                StanjeRes = StanjaStevca.najdiOdbirek(_Distribucija, _MerilnoMesto, _DatumStanja);
+                try
+                {
+                    StanjaStevca.Close();
+                    StanjaStevca = null;
+                }
+                catch (Exception)
+                {
+                    StanjaStevca.Abort();
+                    StanjaStevca = null;
+                }
+                if ((StanjeRes.rc == 0) && (StanjeRes.datumOdbirka > Convert.ToDateTime("1.1.1950")))
+                {
+                    _PerunOdcitek.OdcitekID = StanjeRes.id;
+                    _PerunOdcitek.DatumStanja = StanjeRes.datumOdbirka;
+                    if (StanjeRes.ET.Trim() != "")
+                    {
+                        _PerunOdcitek.StanjeET = StanjeRes.ET.Trim();
+                    }
+                    else
+                    {
+                        _PerunOdcitek.StanjeET = null;
+                    }
+                    if (StanjeRes.VT.Trim() != "")
+                    {
+                        _PerunOdcitek.StanjeVT = StanjeRes.VT.Trim();
+                    }
+                    else
+                    {
+                        _PerunOdcitek.StanjeVT = null;
+                    }
+                    if (StanjeRes.MT.Trim() != "")
+                    {
+                        _PerunOdcitek.StanjeMT = StanjeRes.MT.Trim();
+                    }
+                    else
+                    {
+                        _PerunOdcitek.StanjeMT = null;
+                    }
+                    _PerunOdcitek.Status = StanjeRes.status;
+                }
+                if (StanjeRes.rc != 0)
+                {
+                    if (StanjeRes.rc < (Int32)efrErrorCodes.NoDataFound)
+                    {
+                        fr = cFunctionResult.Set(true, StanjeRes.rc, "Get_OdbirekZaMerilnoMestoInDatum", StanjeRes.sporocilo, "");
+                    }
+                    else
+                    {
+                        fr = cFunctionResult.Set(true, (Int32)efrErrorCodes.WebServiceError, "Get_OdbirekZaMerilnoMestoInDatum", StanjeRes.sporocilo, "");
+                    }
+                    return fr;
+                }
+                else
+                {
+                    fr = cFunctionResult.Set(true, 0, "", "", "");
+                }
+            }
+            catch (Exception ex)
+            {
+                StanjaStevca.Abort();
+                fr = cFunctionResult.Set(false, 1, "Napaka: cInf_StenjaStevca.Get_OdbirekZaMerilnoMestoInDatum ", ex.Message.ToString(), "");
+            }
+            return fr;
+        }
+
+    }
+}

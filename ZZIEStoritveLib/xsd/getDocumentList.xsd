@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" >
+	<xsd:element name="DOCUMENTS">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="DOCUMENT" minOccurs="1" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="DOCUMENT">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ID" type="xsd:int"  minOccurs="0"/>
+				<xsd:element name="EXTERNAL_ID" type="xsd:string"  minOccurs="0"/>
+				<xsd:element name="TITLE" type="xsd:string"  minOccurs="0"/>
+				<xsd:element name="CREATION_TIME" type="xsd:dateTime"  minOccurs="0"/>
+				<xsd:element name="CREATION_LOCATION" type="xsd:string"  minOccurs="0"/>
+				<xsd:element name="FILENAME" type="xsd:string"  minOccurs="0"/>
+				<xsd:element name="MIMETYPE" type="xsd:string"  minOccurs="0"/>
+				<xsd:element name="ORGANIZATION" type="xsd:string"  minOccurs="0"/>
+				<xsd:element name="INSERT_DATE" type="xsd:dateTime"  minOccurs="0"/>
+				<xsd:element name="CLASSIFICATION_NAME" type="xsd:string"  minOccurs="0"/>
+				<xsd:element name="ACCOUNT_NAME" type="xsd:string"  minOccurs="0"/>
+				<xsd:element name="USR_ID" type="xsd:string"  minOccurs="0"/>
+				<xsd:element name="STATUS" type="xsd:string"  minOccurs="0"/>
+				<xsd:element name="USR_ID_UPORABNIK" type="xsd:string"  minOccurs="0"/>
+				<xsd:element name="SIZE" type="xsd:int"  minOccurs="0"/>
+				<xsd:element name="TYPE" type="xsd:string"  minOccurs="0"/>
+				<xsd:element name="ACC_ID" type="xsd:int"  minOccurs="0"/>
+				<xsd:element name="VER_DESCRIPTION" type="xsd:string"  minOccurs="0"/>
+				<xsd:element name="DOC_ID" type="xsd:int"  minOccurs="0"/>
+				<xsd:element name="DATA_REFERENCE" type="xsd:string" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

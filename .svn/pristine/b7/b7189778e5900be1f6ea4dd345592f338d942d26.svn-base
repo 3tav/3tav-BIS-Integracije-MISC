@@ -1,0 +1,175 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using InfoteamClientLib;
+using System.Configuration;
+
+using System.IO;
+
+namespace InfoteamClient
+{
+    public partial class Form1 : Form
+    {
+
+        private InfoteamService _svc = null;
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        public bool Init(string server, string database, string user, string pass, string exportId, string exportArgs, string xmlPath)
+        {           
+            _svc = new InfoteamService();
+            _svc.Init(server, database, user, pass, exportId, exportArgs, xmlPath);
+            inputDatoteka.Text = _svc.ConnString;
+            return true;
+        }
+
+        public void DispatchMethod(string method, string arg)
+        {
+            _svc.DispatchMethod(method, arg);
+        }
+
+
+        public void PostMeterData()
+        {
+            try
+            {                
+                _svc.PostMeterReadData();
+            }
+            catch (Exception ex)
+            {
+                Obvestilo(ex.Message);
+                return;
+            }
+        }
+
+        private void btnPostMeterReadData_Click(object sender, EventArgs e)
+        {
+            int obdobjeOd = 0, obdobjeDo = 0;
+
+            int.TryParse(inputObdobjeOd.Text, out obdobjeOd);
+            int.TryParse(inputObdobjeDo.Text, out obdobjeDo);
+
+            if (obdobjeOd > obdobjeDo)
+            {
+                Obvestilo("Obdobje OD je večje od DO!");
+                return;
+            }
+
+            try
+            {
+                _svc.PostMeterReadData(obdobjeOd, obdobjeDo);
+            }
+            catch (Exception ex)
+            {
+                Obvestilo(ex.Message);
+                return;
+            }
+
+            Obvestilo("Prenos uspešno zaključen.");
+        }
+
+        private void Obvestilo(string text)
+        {
+            MessageBox.Show(text, "Obvestilo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnGetMeterReadData_Click(object sender, EventArgs e)
+        {
+            string period, all, dateFrom, dateTo;
+
+            period = inputPeriod.Text.Trim();
+            all = inputAll.Text.Trim();
+            dateFrom = inputDateFrom.Text.Trim();
+            dateTo = inputDateTo.Text.Trim();
+
+            string r = string.Empty;
+
+            try
+            {
+               var response = _svc.GetMeterReadData(period, all, dateFrom, dateTo);
+               r = string.Format("Prenešenih: {0} zapisov", response);//(response.Meter == null ? "0" : response.Meter.Length.ToString()));
+            }
+            catch (Exception ex)
+            {
+                Obvestilo(ex.Message);
+                return;
+            }
+
+            Obvestilo(r);
+        }
+
+        private void btnUvozRocni_Click(object sender, EventArgs e)
+        {
+            var filename = inputDatoteka.Text;
+
+            if (!File.Exists(filename))
+            {
+                Obvestilo(string.Format("Datoteka {0} ne obstaja!", filename));
+                return;
+            }
+
+            var xml = File.ReadAllText(filename);
+           
+            try
+            {
+                _svc.ImportMeterData(xml);
+            }
+            catch (Exception ex)
+            {
+                Obvestilo(ex.Message);
+                return;
+            }
+
+
+        }
+
+        private void btnUvozRocniMenjave_Click(object sender, EventArgs e)
+        {
+            var filename = inputDatoteka.Text;
+
+            if (!File.Exists(filename))
+            {
+                Obvestilo(string.Format("Datoteka {0} ne obstaja!", filename));
+                return;
+            }
+
+            var xml = File.ReadAllText(filename);
+           
+            try
+            {
+                _svc.ImportMeterChangeData(xml);
+            }
+            catch (Exception ex)
+            {
+                Obvestilo(ex.Message);
+                return;
+            }
+
+            
+        }
+
+        private void btnWarehouse_Click(object sender, EventArgs e)
+        {
+                                
+            try
+            {
+                _svc.PostWarehouseData();
+            }
+            catch (Exception ex)
+            {
+                Obvestilo(ex.Message);
+                return;
+            }
+
+            Obvestilo("Prenos uspešno zaključen.");
+        }
+    }
+}

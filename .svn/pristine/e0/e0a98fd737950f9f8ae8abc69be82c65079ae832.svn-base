@@ -1,0 +1,1 @@
+﻿<%@ WebService Language="C#" CodeBehind="KroProxyService.asmx.cs" Class="KroProxyASP.KroProxyService" %>

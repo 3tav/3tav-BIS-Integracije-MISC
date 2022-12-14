@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://schemas.plinovodi.si/2017/09" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.plinovodi.si/2017/09" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://schemas.plinovodi.si/2017/09/Imports">
+      <xsd:import schemaLocation="https://pp.plinovodi.si/ws/PPService.svc?xsd=xsd0" namespace="http://schemas.plinovodi.si/2017/09" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="AddCityGatesAllocationDistributionRequest">
+    <wsdl:part name="parameters" element="tns:AddCityGatesAllocationDistributionRequest" />
+  </wsdl:message>
+  <wsdl:message name="AddCityGatesAllocationDistributionRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="AddCityGatesAllocationDistributionResponse">
+    <wsdl:part name="parameters" element="tns:AddCityGatesAllocationDistributionResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddCityGatesForecastDistributionRequest">
+    <wsdl:part name="parameters" element="tns:AddCityGatesForecastDistributionRequest" />
+  </wsdl:message>
+  <wsdl:message name="AddCityGatesForecastDistributionRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="AddCityGatesForecastDistributionResponse">
+    <wsdl:part name="parameters" element="tns:AddCityGatesForecastDistributionResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddCityGatesOfftakeDistributionRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="AddCityGatesQuantitiesRequest">
+    <wsdl:part name="parameters" element="tns:AddCityGatesQuantitiesRequest" />
+  </wsdl:message>
+  <wsdl:message name="AddCityGatesQuantitiesRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="AddCityGatesQuantitiesResponse">
+    <wsdl:part name="parameters" element="tns:AddCityGatesQuantitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddOfftakePointsRequest">
+    <wsdl:part name="parameters" element="tns:AddOfftakePointsRequest" />
+  </wsdl:message>
+  <wsdl:message name="AddOfftakePointsRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="AddOfftakePointsResponse">
+    <wsdl:part name="parameters" element="tns:AddOfftakePointsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddOfftakePointsMeasurmentsRequest">
+    <wsdl:part name="parameters" element="tns:AddOfftakePointsMeasurmentsRequest" />
+  </wsdl:message>
+  <wsdl:message name="AddOfftakePointsMeasurmentsRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="AddOfftakePointsMeasurmentsResponse">
+    <wsdl:part name="parameters" element="tns:AddOfftakePointsMeasurmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddOfftakePointsReadingsRequest">
+    <wsdl:part name="parameters" element="tns:AddOfftakePointsReadingsRequest" />
+  </wsdl:message>
+  <wsdl:message name="AddOfftakePointsReadingsRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="AddOfftakePointsReadingsResponse">
+    <wsdl:part name="parameters" element="tns:AddOfftakePointsReadingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdjustOfftakePointsMeasurementsRequest">
+    <wsdl:part name="parameters" element="tns:AdjustOfftakePointsMeasurementsRequest" />
+  </wsdl:message>
+  <wsdl:message name="AdjustOfftakePointsMeasurementsRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="AdjustOfftakePointsMeasurementsResponse">
+    <wsdl:part name="parameters" element="tns:AdjustOfftakePointsMeasurementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AnnullOfftakePointsReadingsRequest">
+    <wsdl:part name="parameters" element="tns:AnnullOfftakePointsReadingsRequest" />
+  </wsdl:message>
+  <wsdl:message name="AnnullOfftakePointsReadingsRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="AnnullOfftakePointsReadingsResponse">
+    <wsdl:part name="parameters" element="tns:AnnullOfftakePointsReadingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeOfftakePointsSupplierRequest">
+    <wsdl:part name="parameters" element="tns:ChangeOfftakePointsSupplierRequest" />
+  </wsdl:message>
+  <wsdl:message name="ChangeOfftakePointsSupplierRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="ChangeOfftakePointsSupplierResponse">
+    <wsdl:part name="parameters" element="tns:ChangeOfftakePointsSupplierResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCityGateAllocationsRequest">
+    <wsdl:part name="parameters" element="tns:GetCityGateAllocationsRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetCityGateAllocationsRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="GetCityGateAllocationsResponse">
+    <wsdl:part name="parameters" element="tns:GetCityGateAllocationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCityGateForecastsRequest">
+    <wsdl:part name="parameters" element="tns:GetCityGateForecastsRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetCityGateForecastsRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="GetCityGateForecastsResponse">
+    <wsdl:part name="parameters" element="tns:GetCityGateForecastsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCityGatesBalanceRequest">
+    <wsdl:part name="parameters" element="tns:GetCityGatesBalanceRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetCityGatesBalanceRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="GetCityGatesBalanceResponse">
+    <wsdl:part name="parameters" element="tns:GetCityGatesBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCityGatesQuantitiesRequest">
+    <wsdl:part name="parameters" element="tns:GetCityGatesQuantitiesRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetCityGatesQuantitiesRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="GetCityGatesQuantitiesResponse">
+    <wsdl:part name="parameters" element="tns:GetCityGatesQuantitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMeasuredOfftakeHourlyMismatchesRequest">
+    <wsdl:part name="parameters" element="tns:GetMeasuredOfftakeHourlyMismatchesRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetMeasuredOfftakeHourlyMismatchesRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="GetMeasuredOfftakeHourlyMismatchesResponse">
+    <wsdl:part name="parameters" element="tns:GetMeasuredOfftakeHourlyMismatchesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOfftakePointsRequest">
+    <wsdl:part name="parameters" element="tns:GetOfftakePointsRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetOfftakePointsRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="GetOfftakePointsResponse">
+    <wsdl:part name="parameters" element="tns:GetOfftakePointsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOfftakePointsAllocationsRequest">
+    <wsdl:part name="parameters" element="tns:GetOfftakePointsAllocationsRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetOfftakePointsAllocationsRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="GetOfftakePointsAllocationsResponse">
+    <wsdl:part name="parameters" element="tns:GetOfftakePointsAllocationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOfftakePointsMeasurementsRequest">
+    <wsdl:part name="parameters" element="tns:GetOfftakePointsMeasurementsRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetOfftakePointsMeasurementsRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="GetOfftakePointsMeasurementsResponse">
+    <wsdl:part name="parameters" element="tns:GetOfftakePointsMeasurementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOfftakePointsReadingsRequest">
+    <wsdl:part name="parameters" element="tns:GetOfftakePointsReadingsRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetOfftakePointsReadingsRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="GetOfftakePointsReadingsResponse">
+    <wsdl:part name="parameters" element="tns:GetOfftakePointsReadingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTemperaturesRequest">
+    <wsdl:part name="parameters" element="tns:GetTemperaturesRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetTemperaturesRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="GetTemperaturesResponse">
+    <wsdl:part name="parameters" element="tns:GetTemperaturesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModifyOfftakePointsRequest">
+    <wsdl:part name="parameters" element="tns:ModifyOfftakePointsRequest" />
+  </wsdl:message>
+  <wsdl:message name="ModifyOfftakePointsRequest_Headers">
+    <wsdl:part name="Version" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="ModifyOfftakePointsResponse">
+    <wsdl:part name="parameters" element="tns:ModifyOfftakePointsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PPService">
+    <wsdl:operation name="AddCityGatesAllocationDistribution">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/AddCityGatesAllocationDistribution" name="AddCityGatesAllocationDistributionRequest" message="tns:AddCityGatesAllocationDistributionRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/AddCityGatesAllocationDistributionResponse" name="AddCityGatesAllocationDistributionResponse" message="tns:AddCityGatesAllocationDistributionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCityGatesForecastDistribution">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/AddCityGatesForecastDistribution" name="AddCityGatesForecastDistributionRequest" message="tns:AddCityGatesForecastDistributionRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/AddCityGatesForecastDistributionResponse" name="AddCityGatesForecastDistributionResponse" message="tns:AddCityGatesForecastDistributionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCityGatesQuantities">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/AddCityGatesQuantities" name="AddCityGatesQuantitiesRequest" message="tns:AddCityGatesQuantitiesRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/AddCityGatesQuantitiesResponse" name="AddCityGatesQuantitiesResponse" message="tns:AddCityGatesQuantitiesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="AddOfftakePoints">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/AddOfftakePoints" name="AddOfftakePointsRequest" message="tns:AddOfftakePointsRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/AddOfftakePointsResponse" name="AddOfftakePointsResponse" message="tns:AddOfftakePointsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="AddOfftakePointsMeasurments">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/AddOfftakePointsMeasurments" name="AddOfftakePointsMeasurmentsRequest" message="tns:AddOfftakePointsMeasurmentsRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/AddOfftakePointsMeasurmentsResponse" name="AddOfftakePointsMeasurmentsResponse" message="tns:AddOfftakePointsMeasurmentsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="AddOfftakePointsReadings">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/AddOfftakePointsReadings" name="AddOfftakePointsReadingsRequest" message="tns:AddOfftakePointsReadingsRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/AddOfftakePointsReadingsResponse" name="AddOfftakePointsReadingsResponse" message="tns:AddOfftakePointsReadingsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="AdjustOfftakePointsMeasurements">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/AdjustOfftakePointsMeasurements" name="AdjustOfftakePointsMeasurementsRequest" message="tns:AdjustOfftakePointsMeasurementsRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/AdjustOfftakePointsMeasurementsResponse" name="AdjustOfftakePointsMeasurementsResponse" message="tns:AdjustOfftakePointsMeasurementsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="AnnulOfftakePointsReadings">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/AnnulOfftakePointsReadings" name="AnnullOfftakePointsReadingsRequest" message="tns:AnnullOfftakePointsReadingsRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/AnnulOfftakePointsReadingsResponse" name="AnnullOfftakePointsReadingsResponse" message="tns:AnnullOfftakePointsReadingsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeOfftakePointsSupplier">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/ChangeOfftakePointsSupplier" name="ChangeOfftakePointsSupplierRequest" message="tns:ChangeOfftakePointsSupplierRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/ChangeOfftakePointsSupplierResponse" name="ChangeOfftakePointsSupplierResponse" message="tns:ChangeOfftakePointsSupplierResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityGateAllocations">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetCityGateAllocations" name="GetCityGateAllocationsRequest" message="tns:GetCityGateAllocationsRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetCityGateAllocationsResponse" name="GetCityGateAllocationsResponse" message="tns:GetCityGateAllocationsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityGateForecasts">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetCityGateForecasts" name="GetCityGateForecastsRequest" message="tns:GetCityGateForecastsRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetCityGateForecastsResponse" name="GetCityGateForecastsResponse" message="tns:GetCityGateForecastsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityGatesBalance">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetCityGatesBalance" name="GetCityGatesBalanceRequest" message="tns:GetCityGatesBalanceRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetCityGatesBalanceResponse" name="GetCityGatesBalanceResponse" message="tns:GetCityGatesBalanceResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityGatesQuantities">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetCityGatesQuantities" name="GetCityGatesQuantitiesRequest" message="tns:GetCityGatesQuantitiesRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetCityGatesQuantitiesResponse" name="GetCityGatesQuantitiesResponse" message="tns:GetCityGatesQuantitiesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMeasuredOfftakeHourlyMismatches">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetMeasuredOfftakeHourlyMismatches" name="GetMeasuredOfftakeHourlyMismatchesRequest" message="tns:GetMeasuredOfftakeHourlyMismatchesRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetMeasuredOfftakeHourlyMismatchesResponse" name="GetMeasuredOfftakeHourlyMismatchesResponse" message="tns:GetMeasuredOfftakeHourlyMismatchesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOfftakePoints">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetOfftakePoints" name="GetOfftakePointsRequest" message="tns:GetOfftakePointsRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetOfftakePointsResponse" name="GetOfftakePointsResponse" message="tns:GetOfftakePointsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOfftakePointsAllocations">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetOfftakePointsAllocations" name="GetOfftakePointsAllocationsRequest" message="tns:GetOfftakePointsAllocationsRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetOfftakePointsAllocationsResponse" name="GetOfftakePointsAllocationsResponse" message="tns:GetOfftakePointsAllocationsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOfftakePointsMeasurements">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetOfftakePointsMeasurements" name="GetOfftakePointsMeasurementsRequest" message="tns:GetOfftakePointsMeasurementsRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetOfftakePointsMeasurementsResponse" name="GetOfftakePointsMeasurementsResponse" message="tns:GetOfftakePointsMeasurementsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOfftakePointsReadings">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetOfftakePointsReadings" name="GetOfftakePointsReadingsRequest" message="tns:GetOfftakePointsReadingsRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetOfftakePointsReadingsResponse" name="GetOfftakePointsReadingsResponse" message="tns:GetOfftakePointsReadingsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemperatures">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetTemperatures" name="GetTemperaturesRequest" message="tns:GetTemperaturesRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/GetTemperaturesResponse" name="GetTemperaturesResponse" message="tns:GetTemperaturesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyOfftakePoints">
+      <wsdl:input wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/ModifyOfftakePoints" name="ModifyOfftakePointsRequest" message="tns:ModifyOfftakePointsRequest" />
+      <wsdl:output wsaw:Action="http://schemas.plinovodi.si/2017/09/PPService/ModifyOfftakePointsResponse" name="ModifyOfftakePointsResponse" message="tns:ModifyOfftakePointsResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

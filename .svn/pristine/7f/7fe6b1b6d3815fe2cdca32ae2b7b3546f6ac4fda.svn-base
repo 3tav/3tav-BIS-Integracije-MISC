@@ -1,0 +1,500 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace PripravljalecPrognozLib
+{
+    public class PripravljalecPrognozServiceClient
+    {
+        private PPServiceWCFClient.PPServiceClient _svc;
+        private PripravljalecPrognozDAL _dal;
+        private int _version = 1;
+        private string _url = "https://pp.plinovodi.si/ws/PPService.svc";
+        private bool _logErrorDetailed = true;
+        private bool _DebugMode = false;
+
+        public string GetConfigDescription()
+        {
+            return _dal.GetConfigDescription();
+        }
+
+        public void Init()
+        {          
+            _svc = new PPServiceWCFClient.PPServiceClient();
+            _url = _svc.Endpoint.Address.Uri.ToString();
+            _dal = new PripravljalecPrognozDAL();
+        }
+
+        private void OnBeginRequest()
+        {
+            //
+        }
+
+        private void OnEndRequest()
+        {
+            //
+        }
+
+        public void AddOfftakePoints()
+        {
+            var method = Methods.AddOfftakePoints;
+            var errorMsg = new StringBuilder();
+            var offTakePoints = Helpers.MapOfftakePoints(_dal.GetAddOfftakePoints(Methods.AddOfftakePoints));
+            if (offTakePoints.Count == 0)
+            {
+                _dal.Log(_url, method, null, null, 0, "Nothing to do", null, 0, 0, 0);
+                return;
+            }
+
+            int steviloVsi = offTakePoints.Count;
+            int steviloOk = steviloVsi;
+            int steviloNapak = 0;
+            var result = ServiceResult.OK;
+           
+            try
+            {
+                System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                var errors = _svc.AddOfftakePoints(_version, offTakePoints);
+                if (errors != null)
+                {
+                    steviloNapak = errors.Length;
+                    steviloOk = steviloVsi - steviloNapak;
+                    foreach (var e in errors)
+                    {
+                        errorMsg.Append(string.Format("{0}; ", e.Message));
+                        if (_logErrorDetailed)
+                            _dal.Log(_url, method, null, null, (int)ServiceResult.Error, e.Message, Helpers.GetErrorOznaka(e.Message), 0, 1, 0);
+                    }
+                }
+
+                if (steviloOk == 0)
+                    result = ServiceResult.Error;
+
+                _dal.Log(_url, method, null, null, (int)result, errorMsg.ToString(), null, steviloOk, steviloNapak, 0);
+                
+            }
+            catch (Exception ex)
+            {
+                _dal.Log(_url, method, null, null, (int)ServiceResult.Error, ex.Message, null, 0, steviloVsi, 0);
+            }            
+        }
+        public void ModifyOfftakePoints()
+        {
+            var method = Methods.ModifyOfftakePoints;
+            var errorMsg = new StringBuilder();
+            var offTakePoints = Helpers.MapOfftakePointsModify(_dal.GetAddOfftakePoints(Methods.ModifyOfftakePoints));
+            if (offTakePoints.Count == 0)
+            {
+                _dal.Log(_url, method, null, null, 0, "Nothing to do", null, 0, 0, 0);
+                return;
+            }
+
+            int steviloVsi = offTakePoints.Count;
+            int steviloOk = steviloVsi;
+            int steviloNapak = 0;
+            var result = ServiceResult.OK;
+
+            try
+            {
+                System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                var errors = _svc.ModifyOfftakePoints(_version, offTakePoints);
+                if (errors != null)
+                {
+                    steviloNapak = errors.Length;
+                    steviloOk = steviloVsi - steviloNapak;
+                    foreach (var e in errors)
+                    {
+                        errorMsg.Append(string.Format("{0}; ", e.Message));
+                        if (_logErrorDetailed)
+                            _dal.Log(_url, method, null, null, (int)ServiceResult.Error, e.Message, Helpers.GetErrorOznaka(e.Message), 0, 1, 0);
+                    }
+                }
+
+                if (steviloOk == 0)
+                    result = ServiceResult.Error;
+
+                _dal.Log(_url, method, null, null, (int)result, errorMsg.ToString(), null, steviloOk, steviloNapak, 0);
+
+            }
+            catch (Exception ex)
+            {
+                _dal.Log(_url, method, null, null, (int)ServiceResult.Error, ex.Message, null, 0, steviloVsi, 0);
+            }
+        }
+        public void ChangeOfftakePointsSupplier()
+        {
+            var method = Methods.ChangeOfftakePointsSupplier;
+            var errorMsg = new StringBuilder();
+            var offTakePoints = Helpers.MapOfftakePointsChangeSupplier(_dal.GetChangeSupplierOfftakePoints(Methods.ChangeOfftakePointsSupplier));
+            if (offTakePoints.Count == 0)
+            {
+                _dal.Log(_url, method, null, null, 0, "Nothing to do", null, 0, 0, 0);
+                return;
+            }
+
+            int steviloVsi = offTakePoints.Count;
+            int steviloOk = steviloVsi;
+            int steviloNapak = 0;
+            var result = ServiceResult.OK;
+            try
+            {
+//                System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                var errors = _svc.ChangeOfftakePointsSupplier(_version, offTakePoints);
+                if (errors != null)
+                {
+                    steviloNapak = errors.Length;
+                    steviloOk = steviloVsi - steviloNapak;
+                    foreach (var e in errors)
+                    {
+                        errorMsg.Append(string.Format("{0}; ", e.Message));
+                        if (_logErrorDetailed)
+                            _dal.Log(_url, method, null, null, (int)ServiceResult.Error, e.Message, Helpers.GetErrorOznaka(e.Message), 0, 1, 0);
+                    }
+                }
+
+                if (steviloOk == 0)
+                    result = ServiceResult.Error;
+
+                _dal.Log(_url, method, null, null, (int)result, errorMsg.ToString(), null, steviloOk, steviloNapak, 0);
+
+            }
+            catch (Exception ex)
+            {
+                _dal.Log(_url, method, null, null, (int)ServiceResult.Error, ex.Message, null, 0, steviloVsi, 0);
+            }
+
+        }
+
+
+        public void GetOfftakePoints()
+        {
+            int steviloVsi = 0;
+            var result = ServiceResult.OK;
+            var method = Methods.GetOfftakePoints;
+            var methodNapaka = Methods.GetOfftakePointsMeasurements;
+            try
+            {
+                var query = new PPServiceWCFClient.GetOfftakePointsQuery();
+                query.CityGateCodes = new PPServiceWCFClient.ArrayOfString();
+                if (this._DebugMode)
+                {
+                    _dal.Log(_url, method, null, null, (int)result, "Debug", null, steviloVsi, 0, 0);
+                    return;
+                };
+                
+                //System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                var otps = _svc.GetOfftakePoints(_version, query);
+                
+                steviloVsi = 0;
+                if (otps != null)
+                {
+                    steviloVsi = otps.Count;
+                }
+
+                methodNapaka = "GetOfftakePointsDataTable";
+                var dt = PripravljalecPrognozSchema.GetOfftakePointsDataTable();                
+                foreach (var o in otps)
+                {
+                    dt.Rows.Add(PripravljalecPrognozSchema.GetOfftakePointsDataRow(dt, o.OfftakePointCode, o.CityGateCode, o.MeasurementDeviceMultiplier, o.LoadType.ToString(), o.Status.ToString(), o.SupplierCode, o.YearlyOfftake));
+                }
+
+                methodNapaka = "GetOfftakePointsInsert";
+                _dal.GetOfftakePointsInsert(dt);
+                _dal.Log(_url, method, null, null, (int)result, null, null, steviloVsi, 0, 0);
+                methodNapaka = "GetOfftakePointsPotrdi";
+                _dal.Potrdi("dbo.PripPrognoz_PotrdiPrenos_OfftakePoints");
+
+
+            }
+            catch (Exception ex)
+            {                
+                _dal.Log(_url, methodNapaka, null, null, (int)ServiceResult.Error, ex.Message, null, 0, steviloVsi, 0);
+                throw new Exception(ex.Message);
+                
+            }            
+        }
+        public void GetOfftakePointsMeasurements()
+        {
+            int steviloVsi = 0;
+            var result = ServiceResult.OK;
+            var method = Methods.GetOfftakePointsMeasurements;
+            var methodNapaka = Methods.GetOfftakePointsMeasurements;
+            try
+            {
+
+                var query = new PPServiceWCFClient.GetOfftakePointsMeasurementsQuery();
+                query.ReadingTimeTo = System.DateTime.Today;
+                query.ReadingTimeTo = query.ReadingTimeTo.AddDays(1);
+                query.ReadingTimeFrom = query.ReadingTimeTo.AddDays(-46);
+
+                if (this._DebugMode)
+                {
+                    _dal.Log(_url, method, null, null, (int)result, "Debug", null, steviloVsi, 0, 0);
+                    return;
+                };
+                
+                //System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                var otps = _svc.GetOfftakePointsMeasurements(_version, query);
+
+                steviloVsi = 0;
+                if (otps != null)
+                {
+                    steviloVsi = otps.Count;
+                }
+
+                methodNapaka = "GetOfftakePointsMeasurmentsDataTable";
+                var dt = PripravljalecPrognozSchema.GetOfftakePointsMeasurmentsDataTable();
+               foreach (var o in otps)
+               {
+                   dt.Rows.Add(PripravljalecPrognozSchema.GetOfftakePointsMeasurmentsDataRow(dt, o.OfftakePointCode, o.CityGateCode, o.ReadingTime,o.EntryTime, o.ReadingValue, o.ConversionFactor, o.ConversionUnit.ToString(), o.ReadingDeviceChanged  ));
+               }
+
+                _dal.GetOfftakePointMeasurementsInsert(dt);
+                _dal.Log(_url, method, null, null, (int)result, null, null, steviloVsi, 0, 0);
+                _dal.Potrdi("dbo.PripPrognoz_PotrdiPrenos_OfftakePointMeasurements");
+                //dbo.PripPrognoz_PotrdiPrenos_OfftakePointMeasurements
+            }
+            catch (Exception ex)
+            {
+                _dal.Log(_url, methodNapaka, null, null, (int)ServiceResult.Error, ex.Message, null, 0, steviloVsi, 0);
+                throw new Exception(ex.Message);
+
+            }
+        }
+        public void GetOfftakePointsReadings()
+        {
+            int steviloVsi = 0;
+            var result = ServiceResult.OK;
+            var method = Methods.GetOfftakePointsReadings;
+            try
+            {
+
+                var query = new PPServiceWCFClient.GetOfftakePointsReadingsQuery();
+                query.ReadingDateTo = System.DateTime.Today;
+                query.ReadingDateFrom = query.ReadingDateTo.AddDays(-100);
+
+                if (this._DebugMode)
+                {
+                    _dal.Log(_url, method, null, null, (int)result, "Debug", null, steviloVsi, 0, 0);
+                    return;
+                };
+                
+               // System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                var otps = _svc.GetOfftakePointsReadings(_version, query);
+
+                steviloVsi = 0;
+                if (otps != null)
+                {
+                    steviloVsi = otps.Count;
+                }
+
+                method = "PripPrognoz_GetOfftakePointsReadingsDataTable";
+                var dt = PripravljalecPrognozSchema.GetOfftakePointsReadingsDataTable();
+                foreach (var o in otps)
+                {
+                    dt.Rows.Add(PripravljalecPrognozSchema.GetOfftakePointsReadingsDataRow(dt, o.OfftakePointCode, o.CityGateCode, o.ReadingDate, o.EntryDate, o.ReadingValue, o.ConversionFactor, o.ConversionUnit.ToString(), o.ReadingDeviceChanged));
+                }
+
+                method = "PripPrognoz_GetOfftakePointReadingsInsert";
+                _dal.GetOfftakePointReadingsInsert(dt);
+                method = "PripPrognoz_PotrdiPrenos_OfftakePointReadings";
+                _dal.Log(_url, method, null, null, (int)result, null, null, steviloVsi, 0, 0);
+                _dal.Potrdi("dbo.PripPrognoz_PotrdiPrenos_OfftakePointReadings");
+            }
+            catch (Exception ex)
+            {
+                _dal.Log(_url, method, null, null, (int)ServiceResult.Error, ex.Message, null, 0, steviloVsi, 0);
+                throw new Exception(ex.Message);
+
+            }
+        }
+        public void GetOfftakePointsAllocations()
+        {
+            int steviloVsi = 0;
+            var result = ServiceResult.OK;
+            var method = Methods.GetOfftakePointsAllocations;
+            try
+            {
+
+                var query = new PPServiceWCFClient.GetOfftakePointsAllocationsQuery();
+                        
+                     query.PeriodStart = System.DateTime.Now;
+                     query.PeriodStart = query.PeriodStart.AddMonths(-1);
+                //query.PeriodStart = (new DateTime(2018, 11, 01)); //System.DateTime(2018, 10, 01);
+                query.Options = PripravljalecPrognozLib.PPServiceWCFClient.AllocationQueryOptions.IncludeNotDailyMeasuredForecastsOnly;
+
+                if (this._DebugMode)
+                {
+                    _dal.Log(_url, method, null, null, (int)result, "Debug", null, steviloVsi, 0, 0);
+                    return;
+                };
+
+                //System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                var otps = _svc.GetOfftakePointsAllocations(_version, query);
+
+                steviloVsi = 0;
+                if (otps != null)
+                {
+                    steviloVsi = otps.Count;
+                }
+
+                method = "GetOfftakePointsAllocationsDataTable";
+                var dt = PripravljalecPrognozSchema.GetOfftakePointsAllocationsDataTable();
+                foreach (var o in otps)
+                {
+                    dt.Rows.Add(PripravljalecPrognozSchema.GetOfftakePointsAllocationsDataRow(dt, o.GasDay, o.OfftakePointCode, o.CityGateCode, o.Quantity, "m3"));
+                }
+
+                method = "GetOfftakePointAllocationsInsert";
+                _dal.GetOfftakePointAllocationsInsert(dt);
+                _dal.Log(_url, method, null, null, (int)result, null, null, steviloVsi, 0, 0);
+                _dal.Potrdi("dbo.PripPrognoz_PotrdiPrenos_OfftakePointAllocations");
+            }
+            catch (Exception ex)
+            {
+                _dal.Log(_url, method, null, null, (int)ServiceResult.Error, ex.Message, null, 0, steviloVsi, 0);
+                throw new Exception(ex.Message);
+
+            }
+        }
+
+        public void AddOfftakePointsReadings()
+        {           
+            var method = Methods.AddOfftakePointsReadings;
+            var errorMsg = new StringBuilder();
+            var offTakePointsReadings = Helpers.MapOfftakePointsReadings(_dal.GetAddOfftakePointsReadings(string.Empty));
+            if (offTakePointsReadings.Count == 0)
+                return;
+
+            int steviloVsi = offTakePointsReadings.Count;
+            int steviloOk = steviloVsi;
+            int steviloNapak = 0;
+            var result = ServiceResult.OK;
+            var options = PripravljalecPrognozLib.PPServiceWCFClient.AddOfftakePointsReadingsOptions.SkipOutOfBoundsCheck;
+
+            try
+            {
+                System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                var errors = _svc.AddOfftakePointsReadings(_version, offTakePointsReadings, options);
+                if (errors != null)
+                {
+                    steviloNapak = errors.Length;
+                    steviloOk = steviloVsi - steviloNapak;
+                    foreach (var e in errors)
+                    {
+                        errorMsg.Append(string.Format("{0}; ", e.Message));
+                        if (_logErrorDetailed)
+                            _dal.Log(_url, method, null, null, (int)ServiceResult.Error, e.Message, Helpers.GetErrorOznaka(e.Message), 0, 1, 0);
+                    }
+                }
+
+                if (steviloOk == 0)
+                    result = ServiceResult.Error;
+
+                _dal.Log(_url, method, null, null, (int)result, errorMsg.ToString(), null, steviloOk, steviloNapak, 0);
+
+            }
+            catch (Exception ex)
+            {
+                _dal.Log(_url, method, null, null, (int)ServiceResult.Error, ex.Message, null, 0, steviloVsi, 0);
+            }            
+        }
+        public void AnnulOfftakePointsReadings()
+        {
+            var method = Methods.AnnulOfftakePointsReadings;
+            var errorMsg = new StringBuilder();
+            var offTakePointsReadings = Helpers.MapOfftakePointsReadingsAnnul(_dal.GetAnnulOfftakePointsReadings("ANNUL"));
+            if (offTakePointsReadings.Count == 0)
+                return;
+
+            int steviloVsi = offTakePointsReadings.Count;
+            int steviloOk = steviloVsi;
+            int steviloNapak = 0;
+            var result = ServiceResult.OK;
+  
+            try
+            {
+                System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                var errors = _svc.AnnulOfftakePointsReadings(_version, offTakePointsReadings);
+                if (errors != null)
+                {
+                    steviloNapak = errors.Length;
+                    steviloOk = steviloVsi - steviloNapak;
+                    foreach (var e in errors)
+                    {
+                        errorMsg.Append(string.Format("{0}; ", e.Message));
+                        if (_logErrorDetailed)
+                            _dal.Log(_url, method, null, null, (int)ServiceResult.Error, e.Message, Helpers.GetErrorOznaka(e.Message), 0, 1, 0);
+                    }
+                }
+
+                if (steviloOk == 0)
+                    result = ServiceResult.Error;
+
+                _dal.Log(_url, method, null, null, (int)result, errorMsg.ToString(), null, steviloOk, steviloNapak, 0);
+
+            }
+            catch (Exception ex)
+            {
+                _dal.Log(_url, method, null, null, (int)ServiceResult.Error, ex.Message, null, 0, steviloVsi, 0);
+            }
+        }
+
+        public void AddOfftakePointsMeasurements()
+        {          
+            var method = Methods.AddOfftakePointsMeasurments;
+
+            try
+            {
+                _dal.Potrdi("dbo.PripPrognoz_PripravaUrnihOdcitkov");
+            }
+            catch (Exception ex)
+            {
+                _dal.Log(_url, method, null, null, (int)ServiceResult.Error, ex.Message, "PripPrognoz_PripravaUrnihOdcitkov", 0, 0, 0);
+                return;
+            }
+
+            var errorMsg = new StringBuilder();
+            var offTakePointsMeasurements = Helpers.MapOfftakePointsMeasurements(_dal.GetAddOfftakePointsMeasurements(string.Empty));
+            if (offTakePointsMeasurements.Count == 0)
+            {
+                _dal.Log(_url, method, null, null, (int)ServiceResult.OK, "Ni zapisov za prenos", string.Empty, 0, 0, 0);
+                return;
+            }
+                
+
+            int steviloVsi = offTakePointsMeasurements.Count;
+            int steviloOk = steviloVsi;
+            int steviloNapak = 0;
+            var result = ServiceResult.OK;
+
+            try
+            {
+                System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                var errors = _svc.AddOfftakePointsMeasurments(_version, offTakePointsMeasurements);
+                if (errors != null)
+                {
+                    steviloNapak = errors.Length;
+                    steviloOk = steviloVsi - steviloNapak;
+                    foreach (var e in errors)
+                    {
+                        errorMsg.Append(string.Format("{0}; ", e.Message));
+                        if (_logErrorDetailed)
+                            _dal.Log(_url, method, null, null, (int)ServiceResult.Error, e.Message, Helpers.GetErrorOznaka(e.Message), 0, 1, 0);
+                    }
+                }
+
+                if (steviloOk == 0)
+                    result = ServiceResult.Error;
+
+                _dal.Log(_url, method, null, null, (int)result, errorMsg.ToString(), null, steviloOk, steviloNapak, 0);
+
+            }
+            catch (Exception ex)
+            {
+                _dal.Log(_url, method, null, null, (int)ServiceResult.Error, ex.Message, null, 0, steviloVsi, 0);
+            }
+        } 
+    }   
+}

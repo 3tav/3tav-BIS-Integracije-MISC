@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+  </configSections>
+  <appSettings>
+    <add key="ZZIEndpoint" value="http://demo.zzi.si/zziestoritve/services/EStoritve" />
+    <add key="ZZIUsername" value="PLINARNA.MARIBOR" />
+    <add key="ZZIPassword" value="plinarna" />
+    <add key="DocumentPath" value="c:\\temp\\zzi\\" />
+    <add key="DeleteAfterTransfer" value="true" />
+    <add key="UseDbParm" value="true" />
+    <add key="ClientSettingsProvider.ServiceUri" value="" />
+    <add key ="TempFolderToWrite" value="R:/"/>
+  </appSettings>
+  <connectionStrings>
+    <add name="connString" connectionString="data source=3tav-sql2\Instance2;initial catalog=3tav_db_istrabenz_plini;persist security info=False;user id=rwe_web_prod;pwd=3tavWeb@rwe;packet size=4096" />
+  </connectionStrings>
+  <system.serviceModel>
+    <bindings />
+    <client />
+  </system.serviceModel>
+  <startup>
+    
+  <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.6" /></startup>
+  <applicationSettings>
+    <ZZIEStoritveLib.Properties.Settings>
+      <setting name="ZZIEStoritveLib_ZZIEStoritveProxy_EStoritveService" serializeAs="String">
+        <value>http://demo.zzi.si/zziestoritve/services/EStoritve/wsdl/EStoritve</value>
+      </setting>
+    </ZZIEStoritveLib.Properties.Settings>
+  </applicationSettings>
+  <system.web>
+    <membership defaultProvider="ClientAuthenticationMembershipProvider">
+      <providers>
+        <add name="ClientAuthenticationMembershipProvider" type="System.Web.ClientServices.Providers.ClientFormsAuthenticationMembershipProvider, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" />
+      </providers>
+    </membership>
+    <roleManager defaultProvider="ClientRoleProvider" enabled="true">
+      <providers>
+        <add name="ClientRoleProvider" type="System.Web.ClientServices.Providers.ClientRoleProvider, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" cacheTimeout="86400" />
+      </providers>
+    </roleManager>
+  </system.web>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="System.Net.Http" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.1.1.3" newVersion="4.1.1.3" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+</configuration>

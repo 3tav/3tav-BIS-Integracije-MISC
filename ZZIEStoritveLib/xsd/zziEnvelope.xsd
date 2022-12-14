@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:element name="envelope">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="header" minOccurs="1" maxOccurs="1"></xsd:element>
+				<xsd:element ref="document" minOccurs="1" maxOccurs="1"></xsd:element>
+				<xsd:element ref="attachments" minOccurs="0" maxOccurs="1"></xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="header">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="id" minOccurs="0" maxOccurs="1"></xsd:element>
+
+				<xsd:element name="from" type="location" minOccurs="0"
+					maxOccurs="1">
+				</xsd:element>
+				<xsd:element name="to" type="location" minOccurs="1"
+					maxOccurs="1">
+				</xsd:element>
+				<xsd:element ref="subject" minOccurs="0" maxOccurs="1">
+				</xsd:element>
+				<xsd:element ref="params" minOccurs="0" maxOccurs="1"></xsd:element>
+				<xsd:element ref="status" minOccurs="0" maxOccurs="1"></xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="location">
+		<xsd:sequence>
+			<xsd:element name="e_address" type="xsd:string"
+				minOccurs="0" maxOccurs="1"></xsd:element>
+			<xsd:element name="e_address1" type="xsd:string"
+				minOccurs="0" maxOccurs="1"></xsd:element>
+			<xsd:element name="e_location" type="xsd:string"
+				minOccurs="0" maxOccurs="1"></xsd:element>
+			<xsd:element name="physical-address" minOccurs="0"
+				maxOccurs="1">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="name" type="xsd:string" />
+						<xsd:element name="address" type="xsd:string" />
+						<xsd:element name="po_code" type="xsd:string"
+							minOccurs="0" maxOccurs="1" />
+						<xsd:element name="po" type="xsd:string" minOccurs="0"
+							maxOccurs="1" />
+						<xsd:element name="country" type="xsd:string"
+							minOccurs="0" maxOccurs="1" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="document">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="external_id" minOccurs="0" maxOccurs="1"></xsd:element>
+				<xsd:element ref="type" minOccurs="0" maxOccurs="1"></xsd:element>
+				<xsd:element ref="format" minOccurs="0" maxOccurs="1"></xsd:element>
+				<xsd:element ref="file_name" minOccurs="0" maxOccurs="1"></xsd:element>
+				<xsd:element ref="description" minOccurs="0" maxOccurs="1"></xsd:element>
+				<xsd:element ref="location" minOccurs="0" maxOccurs="1"></xsd:element>
+				<xsd:element ref="raw_data" minOccurs="0" maxOccurs="1"></xsd:element>				
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="attachments">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="document" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="id" type="xsd:int"></xsd:element>
+	<xsd:element name="subject" type="xsd:string"></xsd:element>
+	<xsd:element name="external_id" type="xsd:string"></xsd:element>
+	<xsd:element name="type" type="xsd:string"></xsd:element>
+	<xsd:element name="format" type="xsd:string"></xsd:element>
+	<xsd:element name="file_name" type="xsd:string"></xsd:element>
+	<xsd:element name="raw_data" type="xsd:base64Binary"></xsd:element>
+	<xsd:element name="status" type="xsd:string"></xsd:element>
+	<xsd:element name="description" type="xsd:string"></xsd:element>
+	<xsd:element name="location" type="xsd:string"></xsd:element>
+
+	<xsd:element name="params">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="param" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="param">
+		<xsd:complexType>
+			<xsd:attribute name="Name" type="xsd:string" use="required"></xsd:attribute>
+			<xsd:attribute name="Value" type="xsd:string" use="required"></xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+	
+	
+
+</xsd:schema>    

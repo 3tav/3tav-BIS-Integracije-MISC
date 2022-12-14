@@ -1,0 +1,1475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:include schemaLocation="LTAP-requestSub.xsd"></xsd:include>
+    <xsd:element name="ArchiveData">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="DataIdentification" minOccurs="0" maxOccurs="1" />
+                <xsd:element ref="Data" />
+                <xsd:element ref="MetaData" />
+                <xsd:element ref="DOCUMENT_INFO"  minOccurs="0"/>
+                <xsd:element ref="DOCUMENTS"  minOccurs="0"/>
+                <xsd:element ref="FOLDERS"  minOccurs="0"/>
+                <xsd:element ref="DOCUMENT_VERSIONS"  minOccurs="0"/>
+                <xsd:element ref="DOCUMENT_VERSION"  minOccurs="0"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="DOCUMENTS_FUNCTIONS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="DOCUMENT_FUNCTIONS" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="DOCUMENT_FUNCTIONS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="INSERT" type="intYN" />
+                <xsd:element name="EDIT" type="intYN" />
+                <xsd:element name="DELETE" type="intYN" />
+                <xsd:element name="VIEW" type="intYN" />
+                <xsd:element name="VERIFY" type="intYN" />
+                <xsd:element name="STATUS" type="intYN" />
+                <xsd:element name="EXPORT" type="intYN" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:simpleType name="intYN">
+        <xsd:restriction base="xsd:int">
+            <xsd:minExclusive value="0"></xsd:minExclusive>
+            <xsd:maxExclusive value="1"></xsd:maxExclusive>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:element name="DOCUMENT_INFO">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="INSERT_DATE" minOccurs="1" maxOccurs="1" type="xsd:dateTime" />
+                <xsd:element name="STATUS" minOccurs="1" maxOccurs="1" type="xsd:int" />
+                <xsd:element name="SIZE" minOccurs="1" maxOccurs="1" type="xsd:int" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="ACCOUNTS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ACCOUNT" minOccurs="1" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="ACCOUNT">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ID" />
+                <xsd:element ref="NAME"></xsd:element>
+                <xsd:element ref="DESCRIPTION" minOccurs="0" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="DELETE_DOCUMENTS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="DELETE_DOCUMENT" minOccurs="0" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="DELETE_DOCUMENT">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ID"></xsd:element>
+                <xsd:element name="USER">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="121"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="REASON">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="1024"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="TIME_CREATED" type="xsd:dateTime"></xsd:element>
+                <xsd:element name="TIME_RUN" type="xsd:dateTime"></xsd:element>
+                <xsd:element name="DOC_ID" type="xsd:int"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="DELETE_DOCUMENT_LISTS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="DELETE_DOCUMENT_LIST" minOccurs="0" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="DELETE_DOCUMENT_LIST">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ID" type="xsd:int"></xsd:element>
+                <xsd:element name="USER">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="121"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="TITLE">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="1024"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="DESCRIPTION">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="4096"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="STATUS">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="10"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="TIME_CREATED" type="xsd:dateTime"></xsd:element>
+                <xsd:element name="TIME_CONFIRMED" type="xsd:dateTime"></xsd:element>
+                <xsd:element name="TIME_RUN" type="xsd:dateTime"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="ACTION">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ID">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            enak 0 - dodajanje nove akcije večji od 0 -
+                            spreminjanje obstoječe akcije
+        		</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element ref="NAME" />
+                <xsd:element ref="DESCRIPTION" maxOccurs="1" minOccurs="0" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="ACTIONS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ACTION" minOccurs="1" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="DESCRIPTION" type="DescriptionType" />
+
+    <xsd:element name="ID" type="PrimaryIDType" />
+
+    <xsd:simpleType name="DescriptionType">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="0"></xsd:minLength>
+            <xsd:maxLength value="255"></xsd:maxLength>
+            <xsd:whiteSpace value="preserve"></xsd:whiteSpace>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="PasswordType">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="5"></xsd:minLength>
+            <xsd:maxLength value="50"></xsd:maxLength>
+            <xsd:whiteSpace value="preserve"></xsd:whiteSpace>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="IDType">
+        <xsd:restriction base="xsd:integer">
+            <xsd:minInclusive value="1"></xsd:minInclusive>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name="NAME" type="NameType" />
+
+    <xsd:simpleType name="NameType">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"></xsd:minLength>
+            <xsd:maxLength value="32"></xsd:maxLength>
+            <xsd:whiteSpace value="preserve"></xsd:whiteSpace>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:element name="FRM_ID" type="IDType"></xsd:element>
+
+    <xsd:simpleType name="PrimaryIDType">
+        <xsd:restriction base="xsd:integer">
+            <xsd:minInclusive value="0"></xsd:minInclusive>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:element name="ACT_ID" type="IDType"></xsd:element>
+
+    <xsd:element name="GRU_ID" type="IDType"></xsd:element>
+
+    <xsd:element name="ACTION_GROUP">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ID"></xsd:element>
+                <xsd:element ref="ACT_ID"></xsd:element>
+                <xsd:element ref="GRU_ID"></xsd:element>
+                <xsd:element ref="CHECKED"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="ACTIONS_GROUPS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ACTION_GROUP" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="CHECKED" type="BooleanType"></xsd:element>
+
+    <xsd:simpleType name="BooleanType">
+        <xsd:restriction>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string"></xsd:restriction>
+            </xsd:simpleType>
+            <xsd:pattern value="(1?)|(0?)|((True)?)|((False)?)|((true)?)|((false)?)|((TRUE)?)|((FALSE)?)">
+            </xsd:pattern>
+            <xsd:minLength value="1"></xsd:minLength>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:element name="ACC_ID" type="IDType"></xsd:element>
+
+    <xsd:element name="DOC_ID" type="IDType"></xsd:element>
+
+    <xsd:element name="CLA_ID" type="IDType"></xsd:element>
+
+    <xsd:element name="GROUPS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="GROUP" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="GROUP">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ID"></xsd:element>
+                <xsd:element ref="NAME"></xsd:element>
+                <xsd:element ref="DESCRIPTION"></xsd:element>
+                <xsd:element ref="DATE_TO" minOccurs="0"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="DATE_FROM" type="xsd:dateTime"></xsd:element>
+
+    <xsd:element name="DATE_TO" type="xsd:dateTime"></xsd:element>
+
+    <xsd:element name="GROUPS_USERS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="GROUP_USER" maxOccurs="1" minOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="GROUP_USER">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ID"></xsd:element>
+                <xsd:element ref="USR_ID"></xsd:element>
+                <xsd:element ref="GRU_ID"></xsd:element>
+                <xsd:element ref="CHECKED"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="USR_ID" type="IDType"></xsd:element>
+
+    <xsd:element name="CLASSIFICATIONS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="CLASSIFICATION" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="CLASSIFICATION">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ID"></xsd:element>
+                <xsd:element ref="NAME"></xsd:element>
+                <xsd:element ref="DESCRIPTION"></xsd:element>
+                <xsd:element name="DOCUMENTS">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:length value="1"></xsd:length>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="ARCHIVE_PERIOD">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="3"></xsd:maxLength>
+                            <xsd:minLength value="1"></xsd:minLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="ARCHIVE_DOC" type="BooleanType"></xsd:element>
+                <xsd:element name="EKEEPER" type="BooleanType"></xsd:element>
+                <xsd:element name="EKEEPER_NAME">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="50"></xsd:maxLength>
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:pattern value="(group)|(individual)"></xsd:pattern>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="USERS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="USER" maxOccurs="1" minOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="USER">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ID"></xsd:element>
+                <xsd:element ref="USERNAME"></xsd:element>
+                <xsd:element ref="DATE_TO" minOccurs="0"></xsd:element>
+                <xsd:element ref="MAIL" minOccurs="0"></xsd:element>
+                <xsd:element ref="FIRST_NAME" minOccurs="0"></xsd:element>
+                <xsd:element ref="LAST_NAME" minOccurs="0"></xsd:element>
+                <xsd:element ref="FUNCTION" minOccurs="0"></xsd:element>
+                <xsd:element ref="PHONE1" minOccurs="0"></xsd:element>
+                <xsd:element ref="PHONE2" minOccurs="0"></xsd:element>
+                <xsd:element ref="LANGUAGE"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="USERNAME">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="50"></xsd:maxLength>
+                <xsd:pattern value="[A-Za-z0-9\._]+"></xsd:pattern>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:element name="MAIL">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="255"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:element name="FIRST_NAME">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="60"></xsd:maxLength>
+                <xsd:whiteSpace value="preserve"></xsd:whiteSpace>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:element name="LAST_NAME">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="60"></xsd:maxLength>
+                <xsd:whiteSpace value="preserve"></xsd:whiteSpace>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:element name="PHONE1">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="40"></xsd:maxLength>
+                <xsd:whiteSpace value="preserve"></xsd:whiteSpace>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:element name="PHONE2">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="40"></xsd:maxLength>
+                <xsd:whiteSpace value="preserve"></xsd:whiteSpace>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:element name="LANGUAGE">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:length value="2"></xsd:length>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:element name="FUNCTION">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="40"></xsd:maxLength>
+                <xsd:whiteSpace value="preserve"></xsd:whiteSpace>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:element name="FIRMS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="FIRM" maxOccurs="1" minOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="FIRM">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ID"></xsd:element>
+                <xsd:element ref="NAME"></xsd:element>
+                <xsd:element ref="TIN"></xsd:element>
+                <xsd:element ref="ADDRESS" minOccurs="0"></xsd:element>
+                <xsd:element ref="ZIP" minOccurs="0"></xsd:element>
+                <xsd:element ref="CITY" minOccurs="0"></xsd:element>
+                <xsd:element ref="COUNTRY" minOccurs="0"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="ADDRESS">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="40"></xsd:maxLength>
+                <xsd:whiteSpace value="preserve"></xsd:whiteSpace>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:element name="TIN">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:pattern value="\d{8}"></xsd:pattern>
+                <xsd:length value="8"></xsd:length>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:element name="ZIP">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="9"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:element name="CITY">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="35"></xsd:maxLength>
+                <xsd:whiteSpace value="preserve"></xsd:whiteSpace>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:element name="COUNTRY">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="35"></xsd:maxLength>
+                <xsd:whiteSpace value="preserve"></xsd:whiteSpace>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:element name="CLASSIFICATIONS_FUNCTIONS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="CLASSIFICATION_FUNCTION" minOccurs="1" maxOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="CLASSIFICATION_FUNCTION">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="CLA_ID"></xsd:element>
+                <xsd:element ref="INSERT"></xsd:element>
+                <xsd:element ref="EDIT"></xsd:element>
+                <xsd:element ref="DELETE"></xsd:element>
+                <xsd:element ref="VIEW"></xsd:element>
+                <xsd:element ref="VERIFY"></xsd:element>
+                <xsd:element ref="STATUS"></xsd:element>
+                <xsd:element ref="EXPORT"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="CLASSIFICATIONS_GROUPS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="CLASSIFICATION_GROUP" minOccurs="1" maxOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="CLASSIFICATION_GROUP">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ID"></xsd:element>
+                <xsd:element ref="CLA_ID"></xsd:element>
+                <xsd:element ref="GRU_ID"></xsd:element>
+                <xsd:element ref="INSERT"></xsd:element>
+                <xsd:element ref="EDIT"></xsd:element>
+                <xsd:element ref="DELETE"></xsd:element>
+                <xsd:element ref="VIEW"></xsd:element>
+                <xsd:element ref="VERIFY"></xsd:element>
+                <xsd:element ref="STATUS"></xsd:element>
+                <xsd:element ref="EXPORT"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="INSERT" type="BooleanType"></xsd:element>
+
+    <xsd:element name="EDIT" type="BooleanType"></xsd:element>
+
+    <xsd:element name="DELETE" type="BooleanType"></xsd:element>
+
+    <xsd:element name="VIEW" type="BooleanType"></xsd:element>
+
+    <xsd:element name="VERIFY" type="BooleanType"></xsd:element>
+
+    <xsd:element name="EXPORT" type="BooleanType"></xsd:element>
+
+    <xsd:element name="STATUS" type="BooleanType"></xsd:element>
+
+    <xsd:element name="TRANSACTIONS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="TRANSACTION" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="TRANSACTION">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="DOC_ID" type="PrimaryIDType"></xsd:element>
+                <xsd:element ref="EXTERNAL_ID"></xsd:element>
+                <xsd:element ref="TIME"></xsd:element>
+                <xsd:element name="STATUS">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="10"></xsd:maxLength>
+                            <xsd:whiteSpace value="preserve"></xsd:whiteSpace>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element ref="NAME"></xsd:element>
+                <xsd:element ref="DESCRIPTION" minOccurs="0"></xsd:element>
+                <xsd:element ref="APPLICATION" minOccurs="0"></xsd:element>
+                <xsd:element ref="ENVIRONMENT" minOccurs="0"></xsd:element>
+                <xsd:element name="LEVEL" type="xsd:int"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="EXTERNAL_ID">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="35"></xsd:maxLength>
+                <xsd:whiteSpace value="preserve"></xsd:whiteSpace>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:element name="TIME" type="xsd:dateTime">
+    </xsd:element>
+
+    <xsd:element name="APPLICATION">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="32"></xsd:maxLength>
+                <xsd:minLength value="0"></xsd:minLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:element name="ENVIRONMENT">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="32"></xsd:maxLength>
+                <xsd:minLength value="0"></xsd:minLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:element name="FILTERS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="FILTER" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="FILTER">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="NAME" type="xsd:string" />
+                <xsd:element name="VALUE">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="30"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="OPERATOR">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:pattern value="(=?)|(&gt;?)|(&lt;?)|((LIKE)?)|((BETWEEN)?)|((&gt;=)?)|((&lt;=)?)|((&lt;&gt;)?)"></xsd:pattern>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="VALUE2" maxOccurs="1" minOccurs="0">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="30"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="FLD_ID" type="IDType"></xsd:element>
+
+    <xsd:element name="FOLDERS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="FOLDER" minOccurs="1" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="FOLDER">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ID"></xsd:element>
+                <xsd:element ref="EXTERNAL_ID"></xsd:element>
+                <xsd:element ref="NAME"></xsd:element>
+                <xsd:element ref="DESCRIPTION" minOccurs="0"></xsd:element>
+                <xsd:element name="F_STATUS" maxOccurs="1" minOccurs="0">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="50"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="GRU_NAME" maxOccurs="1" minOccurs="0">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="20"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="ORGANIZATION" maxOccurs="1" minOccurs="0">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="1024"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="CREATE_DATE" type="xsd:dateTime" maxOccurs="1" minOccurs="0" />
+                <xsd:element name="FOLDER_PARAMS" minOccurs="0">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="FOLDER_PARAM" minOccurs="1" maxOccurs="unbounded">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="NAME">
+                                            <xsd:simpleType>
+                                                <xsd:restriction base="xsd:string">
+                                                    <xsd:maxLength value="255"></xsd:maxLength>
+                                                    <xsd:minLength value="1"></xsd:minLength>
+                                                </xsd:restriction>
+                                            </xsd:simpleType>
+                                        </xsd:element>
+                                        <xsd:element name="VALUE">
+                                            <xsd:simpleType>
+                                                <xsd:restriction base="xsd:string">
+                                                    <xsd:maxLength value="4096"></xsd:maxLength>
+                                                    <xsd:minLength value="1"></xsd:minLength>
+                                                </xsd:restriction>
+                                            </xsd:simpleType>
+                                        </xsd:element>
+                                        <xsd:element name="DOC_DATA" type="BooleanType" />
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="FOLDERS_DOCUMENTS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="FOLDER_DOCUMENT" minOccurs="1" maxOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="FOLDER_DOCUMENT">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ID"></xsd:element>
+                <xsd:element ref="FLD_ID"></xsd:element>
+                <xsd:element ref="DOC_ID"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+    <xsd:element name="FOLDERS_FUNCTIONS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="FOLDER_FUNCTION" minOccurs="1" maxOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="FOLDER_FUNCTION">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="FLD_ID"></xsd:element>
+                <xsd:element ref="INSERT"></xsd:element>
+                <xsd:element ref="EDIT"></xsd:element>
+                <xsd:element ref="DELETE"></xsd:element>
+                <xsd:element ref="VIEW"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="FOLDERS_GROUPS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="FOLDER_GROUP" minOccurs="1" maxOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="FOLDER_GROUP">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ID"></xsd:element>
+                <xsd:element ref="FLD_ID"></xsd:element>
+                <xsd:element ref="GRU_ID"></xsd:element>
+                <xsd:element ref="INSERT"></xsd:element>
+                <xsd:element ref="EDIT"></xsd:element>
+                <xsd:element ref="DELETE"></xsd:element>
+                <xsd:element ref="VIEW"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="CODE_LIST_NAMES">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="CODE_LIST_NAME" minOccurs="1" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CODE_LIST_NAME">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ID" />
+                <xsd:element ref="NAME"></xsd:element>
+                <xsd:element ref="DESCRIPTION" minOccurs="0" />
+                <xsd:element name="TYPE" type="BooleanType">
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="CLN_ID" type="IDType"></xsd:element>
+
+    <xsd:element name="CODE_LIST_VALUES">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="CODE_LIST_VALUE" minOccurs="1" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CODE_LIST_VALUE">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ID" />
+                <xsd:element ref="CLN_ID" />
+                <xsd:element name="VALUE">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="4096"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="ID_P" type="PrimaryIDType"></xsd:element>
+
+    <xsd:element name="GROUPS_GROUPS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="GROUP_GROUP" minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GROUP_GROUP">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ID" />
+                <xsd:element ref="ID_P" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="DOC_ID1" type="IDType"></xsd:element>
+    <xsd:element name="DOC_ID2" type="IDType"></xsd:element>
+
+    <xsd:element name="DOCUMENT_REFERENCES">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="DOCUMENT_REFERENCE" minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="DOCUMENT_REFERENCE">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ID" />
+                <xsd:element ref="DOC_ID1" />
+                <xsd:element ref="DOC_ID2" />
+                <xsd:element name="TYPE" minOccurs="0">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:length value="1"></xsd:length>
+                            <xsd:pattern value="0|1|2"></xsd:pattern>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element ref="DESCRIPTION" maxOccurs="1" minOccurs="0" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="DOCUMENTS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="DOCUMENT" minOccurs="1" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="DOCUMENT">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ID" type="xsd:int" />
+                <xsd:element name="EXTERNAL_ID" type="xsd:string" />
+                <xsd:element name="TITLE" type="xsd:string" />
+                <xsd:element name="CREATION_TIME" type="xsd:dateTime" />
+                <xsd:element name="CREATION_LOCATION" type="xsd:string" />
+                <xsd:element name="FILENAME" type="xsd:string" />
+                <xsd:element name="MIMETYPE" type="xsd:string" />
+                <xsd:element name="ORGANIZATION" type="xsd:string" />
+                <xsd:element name="INSERT_DATE" type="xsd:dateTime" />
+                <xsd:element name="CLASSIFICATION_NAME" type="xsd:string" />
+                <xsd:element name="ACCOUNT_NAME" type="xsd:string" />
+                <xsd:element name="USR_ID" type="xsd:string" />
+                <xsd:element name="STATUS" type="xsd:string" />
+                <xsd:element name="USR_ID_UPORABNIK" type="xsd:string" />
+                <xsd:element name="SIZE" type="xsd:int" />
+                <xsd:element name="TYPE" type="xsd:string" />
+                <xsd:element name="ACC_ID" type="xsd:int" />
+                <xsd:element name="VER_DESCRIPTION" type="xsd:string" />
+                <xsd:element name="DOC_ID" type="xsd:int" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="DOCUMENT_PARAMS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="DOCUMENT_PARAM" minOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="DOCUMENT_PARAM">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="DOC_ID" />
+                <xsd:element name="NAME">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="255"></xsd:maxLength>
+                            <xsd:minLength value="1"></xsd:minLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="VALUE">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="4096"></xsd:maxLength>
+                            <xsd:minLength value="1"></xsd:minLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="DOCUMENT_VERSIONS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="DOCUMENT_VERSION" minOccurs="1" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="DOCUMENT_VERSION">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="VERSION" type="xsd:int" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="DESCRIPTION" minOccurs="1" maxOccurs="1">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="1024"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="TIME" type="xsd:dateTime" minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="FOLDER_PARAMS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="FOLDER_PARAM" minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="FOLDER_PARAM">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="FLD_ID" />
+                <xsd:element name="NAME">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="255"></xsd:maxLength>
+                            <xsd:minLength value="1"></xsd:minLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="VALUE">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="4096"></xsd:maxLength>
+                            <xsd:minLength value="1"></xsd:minLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="DOC_DATA" type="BooleanType" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="PASSWORD">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="OLD_PASSWORD" type="PasswordType" />
+                <xsd:element name="NEW_PASSWORD" type="PasswordType" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="PRE_DOC_PARAMS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="PRE_DOC_PARAM" minOccurs="1" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="PRE_DOC_PARAM">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ID" type="PrimaryIDType" />
+                <xsd:element name="NAME" minOccurs="1" maxOccurs="1">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="255"></xsd:maxLength>
+                            <xsd:minLength value="1"></xsd:minLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="STATIC" type="BooleanType" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="REQUIRED" type="BooleanType" minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+    <xsd:element name="PURGE_DOC">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ID" type="PrimaryIDType" />
+                <xsd:element name="PURGE_ID" type="PrimaryIDType" />
+                <xsd:element name="USER" type="xsd:int" />
+                <xsd:element name="REASON">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="1024"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="CREATED" type="xsd:dateTime" />
+                <xsd:element name="DELETED" type="xsd:dateTime" />
+                <xsd:element name="DOC_ID" type="PrimaryIDType" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="PURGE">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ID" type="PrimaryIDType" />
+                <xsd:element name="USR_ID_CREATED" type="xsd:int" />
+                <xsd:element name="TITLE">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="1024"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="DESCRIPTION">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="4096"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="STATUS">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="10"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="CREATED" type="xsd:dateTime" />
+                <xsd:element name="CONFIRMED" type="xsd:dateTime" />
+                <xsd:element name="SCHEDULED" type="xsd:dateTime" />
+                <xsd:element name="COMPLETED" type="xsd:dateTime" />
+                <xsd:element name="COUNT" type="xsd:int" />
+                <xsd:element ref="PURGE_DOC" minOccurs="0" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+
+    <xsd:element name="BATCH">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ID" type="PrimaryIDType" />
+                <xsd:element name="ACC_ID" type="PrimaryIDType" />
+                <xsd:element name="TIME_FROM" type="xsd:dateTime" />
+                <xsd:element name="TIME_TO" type="xsd:dateTime" />
+                <xsd:element name="STATUS">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="10"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+    <xsd:element name="BATCH_DOC">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ID" type="PrimaryIDType" />
+                <xsd:element name="DOC_EXT_ID">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="35"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="DOC_ID" type="PrimaryIDType" />
+                <xsd:element name="TIME" type="xsd:dateTime" />
+                <xsd:element name="STATUS">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="10"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="STATUS_DESC" minOccurs="0">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="1024"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+    <xsd:element name="DRAFT_DOCUMENT">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ID" type="PrimaryIDType" />
+                <xsd:element name="XML" type="xsd:string" />
+                <xsd:element name="FS_ID">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="255"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="CREATION_TIME" type="xsd:dateTime" />
+                <xsd:element name="USR_ID_CREATED" type="xsd:int" />
+                <xsd:element name="USR_ID_FOR" type="xsd:int" />
+                <xsd:element name="GRU_ID_FOR" type="xsd:int" />
+                <xsd:element name="EXTERNAL_ID">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="35"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="TITLE">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="1024"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="FILENAME">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="4096"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="MIMETYPE">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="64"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="SIZE" type="xsd:int" />
+                <xsd:element name="TYPE">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="50"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+    <xsd:element name="TEMPLATES">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="TEMPLATE" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="TEMPLATE">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ACCOUNT" type="xsd:string" minOccurs="0"></xsd:element>
+                <xsd:element name="TYPE1" type="xsd:string"></xsd:element>
+                <xsd:element name="TYPE2" type="xsd:string"></xsd:element>
+                <xsd:element name="DESCRIPTION" type="xsd:string" minOccurs="0"></xsd:element>
+                <xsd:element name="DEFAULT" minOccurs="0">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"></xsd:minLength>
+                            <xsd:maxLength value="1"></xsd:maxLength>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="TEMPLATE_FIELDS" type="TEMPLATE_FIELDSType" minOccurs="0" maxOccurs="1"></xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="tldId" type="xsd:int"></xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="TEMPLATE_FIELDSType">
+        <xsd:sequence>
+            <xsd:element name="TEMPLATE_FIELD" type="TEMPLATE_FIELDType" minOccurs="1" maxOccurs="unbounded">
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="TEMPLATE_FIELDType">
+        <xsd:sequence>
+            <xsd:element name="NAME">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"></xsd:minLength>
+                        <xsd:maxLength value="255"></xsd:maxLength>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="LABEL">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="0"></xsd:minLength>
+                        <xsd:maxLength value="255"></xsd:maxLength>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="TYPE">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"></xsd:minLength>
+                        <xsd:maxLength value="25"></xsd:maxLength>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="FORMAT">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="0"></xsd:minLength>
+                        <xsd:maxLength value="1024"></xsd:maxLength>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="MANDATORY">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:length value="1"></xsd:length>
+                        <xsd:enumeration value="0"></xsd:enumeration>
+                        <xsd:enumeration value="1"></xsd:enumeration>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="STATIC">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:length value="1"></xsd:length>
+                        <xsd:enumeration value="0"></xsd:enumeration>
+                        <xsd:enumeration value="1"></xsd:enumeration>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="ROW" type="xsd:int"></xsd:element>
+            <xsd:element name="COL" type="xsd:int"></xsd:element>
+            <xsd:element name="ITEM_POSITION" type="xsd:int"></xsd:element>
+            <xsd:element name="LEGEND">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="0"></xsd:minLength>
+                        <xsd:maxLength value="255"></xsd:maxLength>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="EX_ROWS" type="xsd:int"></xsd:element>
+            <xsd:element name="EX_COLS">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:length value="1"></xsd:length>
+                        <xsd:enumeration value="0"></xsd:enumeration>
+                        <xsd:enumeration value="1"></xsd:enumeration>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="CODE_LIST_DISPLAY" type="xsd:int"></xsd:element>
+            <xsd:element name="CODE_LIST_NAME">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="0"></xsd:minLength>
+                        <xsd:maxLength value="255"></xsd:maxLength>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="LABEL_EN" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="0"></xsd:minLength>
+                        <xsd:maxLength value="255"></xsd:maxLength>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="LABEL_SL" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="0"></xsd:minLength>
+                        <xsd:maxLength value="255"></xsd:maxLength>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="LABEL_SR" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="0"></xsd:minLength>
+                        <xsd:maxLength value="255"></xsd:maxLength>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="LABEL_DE" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="0"></xsd:minLength>
+                        <xsd:maxLength value="255"></xsd:maxLength>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="LABEL_MK" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="0"></xsd:minLength>
+                        <xsd:maxLength value="255"></xsd:maxLength>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="ERRORS">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="ERROR" minOccurs="1" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="ERROR">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="NAME" type="xsd:string" />
+                <xsd:element name="VALUE" type="xsd:string" />
+                <xsd:element name="DESCRIPTION" type="xsd:string" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+    <!-- loose documents - all fields are optional -->
+    <xsd:element name="ArchiveDataDraft">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="DraftID" type="xsd:int" />
+                <xsd:element name="UserCreated" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                <!--xsd:element name="UserCreatedDesc" type="xsd:string"/ -->
+                <xsd:element name="GroupFor" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                <!--xsd:element name="GroupForDesc" type="xsd:string"/ -->
+                <xsd:element name="UserFor" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                <!--xsd:element name="UserForDesc" type="xsd:string"/ -->
+                <xsd:element name="FolderName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                <!--xsd:element name="FolderDesc" type="xsd:string"/ -->
+                <!--xsd:element name="DocSize" type="xsd:int"/ -->
+                <!--xsd:element name="UserIdCreated" type="xsd:int"/> <xsd:element name="UserIdFor" type="xsd:int"/> <xsd:element name="GroupIdFor" type="xsd:int"/> <xsd:element name="FldId" type="xsd:int"/> <xsd:element name="FsId" type="xsd:string"/> 
+                    <xsd:element name="AccName" type="xsd:string"/> <xsd:element name="CreationTime" type="xsd:string"/> <xsd:element name="ExternalId" type="xsd:string"/> <xsd:element name="Title" type="xsd:string"/> <xsd:element name="Filename" type="xsd:string"/> <xsd:element 
+                    name="Mimetype" type="xsd:string"/> <xsd:element name="Type" type="xsd:string"/ -->
+                <xsd:element name="ArchiveData">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element ref="DataIdentification" minOccurs="0" maxOccurs="1" />
+                            <xsd:element name="Data">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element ref="RawData" minOccurs="0" maxOccurs="1" />
+                                        <xsd:element ref="MessageImprint" minOccurs="0" maxOccurs="unbounded" />
+                                        <xsd:element ref="DataReference" minOccurs="0" maxOccurs="1" />
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="MetaData">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element ref="Title" minOccurs="1" maxOccurs="1" />
+                                        <xsd:element ref="CreationTime" minOccurs="0" maxOccurs="1" />
+                                        <xsd:element ref="CreationLocation" minOccurs="0" maxOccurs="1" />
+                                        <xsd:element ref="FileName" minOccurs="0" maxOccurs="1" />
+                                        <xsd:element ref="MIMEType" minOccurs="0" maxOccurs="1" />
+                                        <xsd:element ref="Organization" minOccurs="0" maxOccurs="1" />
+                                        <xsd:element ref="Parameters" minOccurs="0" maxOccurs="1"></xsd:element>
+                                        <xsd:element ref="ClassificationName" minOccurs="0" maxOccurs="1"></xsd:element>
+                                        <xsd:element ref="Type" minOccurs="0" maxOccurs="1"></xsd:element>
+                                        <xsd:element ref="GroupName" minOccurs="0" maxOccurs="1"></xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

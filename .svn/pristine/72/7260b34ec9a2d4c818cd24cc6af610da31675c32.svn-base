@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Vhod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdTip" type="xs:int" />
+      <xs:element minOccurs="0" name="Ime_XML" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Posiljatelj" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Vsebina_XML" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Vhod" nillable="true" type="tns:Vhod" />
+  <xs:complexType name="Izhod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Datoteka_Byte" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="File_Size" type="xs:long" />
+      <xs:element minOccurs="0" name="IdTip" type="xs:int" />
+      <xs:element minOccurs="0" name="Ime_PDF" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Posiljatelj" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Stanje" nillable="true" type="tns:Stanje" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Izhod" nillable="true" type="tns:Izhod" />
+  <xs:complexType name="Stanje">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Opis" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Stanje" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Stanje" nillable="true" type="tns:Stanje" />
+  <xs:complexType name="Prevzeto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdTip" type="xs:int" />
+      <xs:element minOccurs="0" name="Ime_PDF" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Odgovor" type="xs:int" />
+      <xs:element minOccurs="0" name="Opis_Napake" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Posiljatelj" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Prevzeto" nillable="true" type="tns:Prevzeto" />
+</xs:schema>

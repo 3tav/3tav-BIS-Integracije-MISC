@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <appSettings>
+    <add key="StoredProcXML" value="p_infotim_meterreaddata_xml" />
+    <add key="StoredProcWarehouseXML" value="p_infotim_warehouse_xml" />
+    <add key="InfoteamUrlProd" value="https://192.168.101.99" />
+    <add key="InfoteamUrl" value="https://192.168.210.42/" />
+    <add key="InfoteamUsername" value="admin" />
+    <add key="InfoteamPassword" value="admin" />
+    <add key="FileDumpPath" value="" />
+    <add key="UploadSize" value="1000" />
+    <add key="UseConnString" value="Yes" />
+    <add key="ClientTimeout" value="1000" />
+  </appSettings>
+  <connectionStrings>
+    <add name="connString" connectionString="data source=IS01\SQL2017;initial catalog=demo_db_is_ivb;persist security info=false;Connection Timeout=600;Integrated Security=SSPI" />
+  </connectionStrings>
+  </configuration>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://generalynx.com/gema/webservice/bulkdataretriever" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="GemaDataRetrieverBulkService" targetNamespace="http://generalynx.com/gema/webservice/bulkdataretriever" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema xmlns="http://generalynx.com/gema/webservice/dataretriever" xmlns:ns1="http://generalynx.com/gema/webservice/bulkdataretriever" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://generalynx.com/gema/webservice/dataretriever" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://generalynx.com/gema/webservice/bulkdataretriever" />
+      <xs:complexType name="dataSource">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="externalIdent" type="xs:string" />
+          <xs:element minOccurs="0" name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="lastValue" type="ns1:tValue" />
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+          <xs:element minOccurs="0" name="productId" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ns1="http://generalynx.com/gema/webservice/dataretriever" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://generalynx.com/gema/webservice/bulkdataretriever" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://generalynx.com/gema/webservice/dataretriever" />
+      <xs:element name="getAllDataSourcesInGroup" type="tns:getAllDataSourcesInGroup" />
+      <xs:element name="getAllDataSourcesInGroupResponse" type="tns:getAllDataSourcesInGroupResponse" />
+      <xs:element name="getDataSourceInGroup" type="tns:getDataSourceInGroup" />
+      <xs:element name="getDataSourceInGroupResponse" type="tns:getDataSourceInGroupResponse" />
+      <xs:element name="readAggregatedDataList" type="tns:readAggregatedDataList" />
+      <xs:element name="readAggregatedDataListResponse" type="tns:readAggregatedDataListResponse" />
+      <xs:element name="readData" type="tns:readData" />
+      <xs:element name="readDataResponse" type="tns:readDataResponse" />
+      <xs:element name="readLastValue" type="tns:readLastValue" />
+      <xs:element name="readLastValueResponse" type="tns:readLastValueResponse" />
+      <xs:complexType name="getDataSourceInGroup">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:dataSourceQuery" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="dataSourceQuery">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dataSourceExternalIdent" type="xs:string" />
+          <xs:element minOccurs="0" name="dataSourceGroupExternalIdent" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getDataSourceInGroupResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="ns1:dataSource" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="tValue">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="result1" type="xs:anyType" />
+          <xs:element minOccurs="0" name="result2" type="xs:anyType" />
+          <xs:element minOccurs="0" name="result3" type="xs:anyType" />
+          <xs:element minOccurs="0" name="result4" type="xs:anyType" />
+          <xs:element minOccurs="0" name="result5" type="xs:anyType" />
+          <xs:element minOccurs="0" name="result6" type="xs:anyType" />
+          <xs:element minOccurs="0" name="result7" type="xs:anyType" />
+          <xs:element minOccurs="0" name="time" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="readData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:gQuery" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="gQuery">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dataSourceId" type="xs:long" />
+          <xs:element minOccurs="0" name="fromD" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="timeInterval" type="tns:timeInterval" />
+          <xs:element minOccurs="0" name="toD" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="readDataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:tValue" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="readAggregatedDataList">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:gListQuery" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="gListQuery">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="dataSourceIds" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="fromD" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="timeInterval" type="tns:timeInterval" />
+          <xs:element minOccurs="0" name="toD" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="readAggregatedDataListResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:mValueArray" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="mValue">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dataSourceId" type="xs:long" />
+          <xs:element minOccurs="0" name="result1" type="xs:anyType" />
+          <xs:element minOccurs="0" name="result2" type="xs:anyType" />
+          <xs:element minOccurs="0" name="result3" type="xs:anyType" />
+          <xs:element minOccurs="0" name="result4" type="xs:anyType" />
+          <xs:element minOccurs="0" name="result5" type="xs:anyType" />
+          <xs:element minOccurs="0" name="result6" type="xs:anyType" />
+          <xs:element minOccurs="0" name="result7" type="xs:anyType" />
+          <xs:element minOccurs="0" name="time" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getAllDataSourcesInGroup">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:dataSourceGroupQuery" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="dataSourceGroupQuery">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dataSourceGroupExternalIdent" type="xs:string" />
+          <xs:element minOccurs="0" name="dataSourceUsageType" type="tns:dataSourceGroupUsageType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getAllDataSourcesInGroupResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="ns1:dataSource" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="readLastValue">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:gListQuery" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="readLastValueResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:mValue" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="timeInterval">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="n" />
+          <xs:enumeration value="s" />
+          <xs:enumeration value="e" />
+          <xs:enumeration value="m" />
+          <xs:enumeration value="v" />
+          <xs:enumeration value="f" />
+          <xs:enumeration value="t" />
+          <xs:enumeration value="q" />
+          <xs:enumeration value="V" />
+          <xs:enumeration value="h" />
+          <xs:enumeration value="H" />
+          <xs:enumeration value="T" />
+          <xs:enumeration value="S" />
+          <xs:enumeration value="E" />
+          <xs:enumeration value="W" />
+          <xs:enumeration value="d" />
+          <xs:enumeration value="w" />
+          <xs:enumeration value="l" />
+          <xs:enumeration value="M" />
+          <xs:enumeration value="Q" />
+          <xs:enumeration value="y" />
+          <xs:enumeration value="X" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="dataSourceGroupUsageType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="common" />
+          <xs:enumeration value="XMLDP" />
+          <xs:enumeration value="Export" />
+          <xs:enumeration value="ElConsm" />
+          <xs:enumeration value="WS" />
+          <xs:enumeration value="GasNetC" />
+          <xs:enumeration value="BillDat" />
+          <xs:enumeration value="BalAcc" />
+          <xs:enumeration value="gasFor" />
+          <xs:enumeration value="GasInvI" />
+          <xs:enumeration value="FrcAlrm" />
+          <xs:enumeration value="WthWgh" />
+          <xs:enumeration value="NomAcc" />
+          <xs:enumeration value="HeatSea" />
+          <xs:enumeration value="LocGrp" />
+          <xs:enumeration value="Correct" />
+          <xs:enumeration value="GDAClnt" />
+          <xs:enumeration value="CGD" />
+          <xs:enumeration value="MapTrCC" />
+          <xs:enumeration value="eleInvM" />
+          <xs:enumeration value="aggEle" />
+          <xs:enumeration value="aggElTf" />
+          <xs:enumeration value="epop" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="mValueArray" final="#all">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="item" nillable="true" type="tns:mValue" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="readDataResponse">
+    <wsdl:part name="parameters" element="tns:readDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAllDataSourcesInGroup">
+    <wsdl:part name="parameters" element="tns:getAllDataSourcesInGroup" />
+  </wsdl:message>
+  <wsdl:message name="readAggregatedDataListResponse">
+    <wsdl:part name="parameters" element="tns:readAggregatedDataListResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAllDataSourcesInGroupResponse">
+    <wsdl:part name="parameters" element="tns:getAllDataSourcesInGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="readLastValueResponse">
+    <wsdl:part name="parameters" element="tns:readLastValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="getDataSourceInGroup">
+    <wsdl:part name="parameters" element="tns:getDataSourceInGroup" />
+  </wsdl:message>
+  <wsdl:message name="getDataSourceInGroupResponse">
+    <wsdl:part name="parameters" element="tns:getDataSourceInGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="readData">
+    <wsdl:part name="parameters" element="tns:readData" />
+  </wsdl:message>
+  <wsdl:message name="readAggregatedDataList">
+    <wsdl:part name="parameters" element="tns:readAggregatedDataList" />
+  </wsdl:message>
+  <wsdl:message name="readLastValue">
+    <wsdl:part name="parameters" element="tns:readLastValue" />
+  </wsdl:message>
+  <wsdl:portType name="DataRetrieverBulkEndpoint">
+    <wsdl:operation name="getDataSourceInGroup">
+      <wsdl:input name="getDataSourceInGroup" message="tns:getDataSourceInGroup" />
+      <wsdl:output name="getDataSourceInGroupResponse" message="tns:getDataSourceInGroupResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="readData">
+      <wsdl:input name="readData" message="tns:readData" />
+      <wsdl:output name="readDataResponse" message="tns:readDataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="readAggregatedDataList">
+      <wsdl:input name="readAggregatedDataList" message="tns:readAggregatedDataList" />
+      <wsdl:output name="readAggregatedDataListResponse" message="tns:readAggregatedDataListResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllDataSourcesInGroup">
+      <wsdl:input name="getAllDataSourcesInGroup" message="tns:getAllDataSourcesInGroup" />
+      <wsdl:output name="getAllDataSourcesInGroupResponse" message="tns:getAllDataSourcesInGroupResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="readLastValue">
+      <wsdl:input name="readLastValue" message="tns:readLastValue" />
+      <wsdl:output name="readLastValueResponse" message="tns:readLastValueResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GemaDataRetrieverBulkServiceSoapBinding" type="tns:DataRetrieverBulkEndpoint">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getDataSourceInGroup">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDataSourceInGroup">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDataSourceInGroupResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="readData">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="readData">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="readDataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="readAggregatedDataList">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="readAggregatedDataList">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="readAggregatedDataListResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllDataSourcesInGroup">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getAllDataSourcesInGroup">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAllDataSourcesInGroupResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="readLastValue">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="readLastValue">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="readLastValueResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GemaDataRetrieverBulkService">
+    <wsdl:port name="DataRetrieverBulkEndpointPort" binding="tns:GemaDataRetrieverBulkServiceSoapBinding">
+      <soap:address location="http://www.gemalogic.eu:80/gema/bulkdataretrieverservice" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

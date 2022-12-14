@@ -1,0 +1,1154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.plinovodi.si/2017/09" elementFormDefault="qualified" targetNamespace="http://schemas.plinovodi.si/2017/09" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ChangeHeatingSeasonsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="HeatingSeasons" type="tns:ArrayOfChangeHeatingSeasons" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfChangeHeatingSeasons">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HeatingSeason" nillable="true" type="tns:ChangeHeatingSeasons" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ChangeHeatingSeasons">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="StartDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EndDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateGroupCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Version" type="xs:int" />
+  <xs:element name="ChangeHeatingSeasonsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Errors" type="tns:ArrayOfErrorMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfErrorMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ErrorMessage" nillable="true" type="tns:ErrorMessage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ErrorMessage">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetHeatingSeasonsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="HeatingSeasons" type="tns:ArrayOfGetHeatingSeasons" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfGetHeatingSeasons">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HeatingSeason" nillable="true" type="tns:GetHeatingSeasons" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetHeatingSeasons">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="EndDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="StartDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateGroupCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetCalculationTimesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="CalculationTimes" type="tns:ArrayOfGetCalculationTimes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfGetCalculationTimes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CalculationTime" nillable="true" type="tns:GetCalculationTimes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetCalculationTimes">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Period" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CalculationStartAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CalculationFinishedAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AddCityGatesAllocationDistributionRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="CityGates" type="tns:ArrayOfAddCityGateAllocationDistribution" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfAddCityGateAllocationDistribution">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CityGate" nillable="true" type="tns:AddCityGateAllocationDistribution" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddCityGateAllocationDistribution">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Suppliers" type="tns:ArrayOfAddCityGateAllocationDistributionSupplier" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAddCityGateAllocationDistributionSupplier">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Supplier" nillable="true" type="tns:AddCityGateAllocationDistributionSupplier" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddCityGateAllocationDistributionSupplier">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="SupplierCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Quantities" type="tns:ArrayOfAddCityGateAllocationDistributionSupplierQuantity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAddCityGateAllocationDistributionSupplierQuantity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" nillable="true" type="tns:AddCityGateAllocationDistributionSupplierQuantity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddCityGateAllocationDistributionSupplierQuantity">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="GasDay" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Value" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Unit" type="tns:QuantityUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="QuantityUnit">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Nm3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AddCityGatesAllocationDistributionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Errors" type="tns:ArrayOfErrorMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddCityGatesForecastDistributionRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="CityGates" type="tns:ArrayOfAddCityGateForecastDistribution" />
+        <xs:element minOccurs="1" maxOccurs="1" name="Options" nillable="true" type="tns:AddCityGatesForecastDistributionOptions" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfAddCityGateForecastDistribution">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CityGate" nillable="true" type="tns:AddCityGateForecastDistribution" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddCityGateForecastDistribution">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Suppliers" type="tns:ArrayOfAddCityGateForecastDistributionSupplier" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAddCityGateForecastDistributionSupplier">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Supplier" nillable="true" type="tns:AddCityGateForecastDistributionSupplier" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddCityGateForecastDistributionSupplier">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="SupplierCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Quantities" type="tns:ArrayOfAddCityGateForecastDistributionSupplierQuantity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAddCityGateForecastDistributionSupplierQuantity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" nillable="true" type="tns:AddCityGateForecastDistributionSupplierQuantity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddCityGateForecastDistributionSupplierQuantity">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Hour" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Value" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Unit" type="tns:QuantityUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AddCityGatesForecastDistributionOptions">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="CalculateHourlyValuesFromAggregates" />
+          <xs:enumeration value="Default" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="AddCityGatesForecastDistributionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Errors" type="tns:ArrayOfErrorMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddMeasurementsMismatchesRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="MeasurementsMismatches" type="tns:ArrayOfAddMeasurementMismatches" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfAddMeasurementMismatches">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MeasurementMismatches" nillable="true" type="tns:AddMeasurementMismatches" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddMeasurementMismatches">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateGroupCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="GasDay" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AgreedMismatches" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Unit" type="tns:QuantityUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AddMeasurementsMismatchesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Errors" type="tns:ArrayOfErrorMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddCityGatesOfftakeDistributionRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="CityGates" type="tns:ArrayOfAddCityGateOfftakeDistribution" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfAddCityGateOfftakeDistribution">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CityGate" nillable="true" type="tns:AddCityGateOfftakeDistribution" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddCityGateOfftakeDistribution">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Suppliers" type="tns:ArrayOfAddCityGateOfftakeDistributionSupplier" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAddCityGateOfftakeDistributionSupplier">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Supplier" nillable="true" type="tns:AddCityGateOfftakeDistributionSupplier" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddCityGateOfftakeDistributionSupplier">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="SupplierCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Quantities" type="tns:ArrayOfAddCityGateOfftakeDistributionSupplierQuantity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAddCityGateOfftakeDistributionSupplierQuantity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" nillable="true" type="tns:AddCityGateOfftakeDistributionSupplierQuantity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddCityGateOfftakeDistributionSupplierQuantity">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Hour" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Value" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Unit" type="tns:QuantityUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AddCityGatesOfftakeDistributionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Errors" type="tns:ArrayOfErrorMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddCityGatesQuantitiesRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="CityGates" type="tns:ArrayOfAddCityGateQuantitiesCityGates" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfAddCityGateQuantitiesCityGates">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CityGate" nillable="true" type="tns:AddCityGateQuantitiesCityGates" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddCityGateQuantitiesCityGates">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Quantities" type="tns:ArrayOfAddCityGateQuantities" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAddCityGateQuantities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" nillable="true" type="tns:AddCityGateQuantities" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddCityGateQuantities">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Hour" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Value" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Unit" type="tns:QuantityUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AddCityGatesQuantitiesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Errors" type="tns:ArrayOfErrorMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddOfftakePointsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="OfftakePoints" type="tns:ArrayOfAddOfftakePoint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfAddOfftakePoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OfftakePoint" nillable="true" type="tns:AddOfftakePoint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddOfftakePoint">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="OfftakePointCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Status" type="tns:OfftakePointStatus" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LoadType" nillable="true" type="tns:LoadType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SupplierCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MeasurementDeviceMultiplier" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="YearlyOfftake" nillable="true" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ValidFrom" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="OfftakePointStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NoOfftake" />
+      <xs:enumeration value="NotDailyMeasured" />
+      <xs:enumeration value="DailyMeasured" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LoadType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Cooking" />
+      <xs:enumeration value="HotWater" />
+      <xs:enumeration value="HeatingSingleHome" />
+      <xs:enumeration value="HeatingAppartmentBlock" />
+      <xs:enumeration value="Commercial" />
+      <xs:enumeration value="Technical" />
+      <xs:enumeration value="HeatingWithoutCookingAndHotWater" />
+      <xs:enumeration value="Unknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AddOfftakePointsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Errors" type="tns:ArrayOfErrorMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddOfftakePointsEisRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="OfftakePoints" type="tns:ArrayOfAddOfftakePointEis" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfAddOfftakePointEis">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OfftakePoint" nillable="true" type="tns:AddOfftakePointEis" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddOfftakePointEis">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="OfftakePointCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Status" type="tns:OfftakePointStatus" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LoadType" nillable="true" type="tns:LoadType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SupplierCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MeasurementDeviceMultiplier" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="YearlyOfftake" nillable="true" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ValidFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsProtectedConsumer" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsHouseholdConsumer" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OfftakeKind" type="tns:OfftakeKindType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="InterruptibleSupplyContract" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AlternativeEnergySource" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ProtectedUserConsumePart" type="xs:unsignedByte" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CurrentOfftakePointStatus" type="tns:CurrentOfftakePointStatusType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ConsumptionGroups" type="tns:ArrayOfConsumptionGroupParameters" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="OfftakeKindType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="HouseholdIndividual" />
+      <xs:enumeration value="HouseholdCommon" />
+      <xs:enumeration value="SocialServiceType3" />
+      <xs:enumeration value="SocialServiceType4" />
+      <xs:enumeration value="SocialServiceType5" />
+      <xs:enumeration value="SocialServiceType6" />
+      <xs:enumeration value="SocialServiceType7" />
+      <xs:enumeration value="KindergartenSchool" />
+      <xs:enumeration value="HeatDistribution" />
+      <xs:enumeration value="BusinessConsumption" />
+      <xs:enumeration value="IndustryConsumption" />
+      <xs:enumeration value="PowerPlant" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CurrentOfftakePointStatusType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="CallUnconfirmed" />
+      <xs:enumeration value="CallConfirmed" />
+      <xs:enumeration value="Disconnected" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfConsumptionGroupParameters">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ConsumptionGroupParameters" nillable="true" type="tns:ConsumptionGroupParameters" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConsumptionGroupParameters">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="GroupPart" type="xs:unsignedByte" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubGroup1" type="xs:unsignedByte" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubGroup2" type="xs:unsignedByte" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubGroup3" type="xs:unsignedByte" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubGroup4" type="xs:unsignedByte" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubGroup5" type="xs:unsignedByte" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubGroup6" type="xs:unsignedByte" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ConsumptionGroup" type="tns:ConsumptionGroupType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ConsumptionGroupType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="A" />
+      <xs:enumeration value="B" />
+      <xs:enumeration value="C" />
+      <xs:enumeration value="D" />
+      <xs:enumeration value="E" />
+      <xs:enumeration value="F" />
+      <xs:enumeration value="G" />
+      <xs:enumeration value="H" />
+      <xs:enumeration value="I" />
+      <xs:enumeration value="J" />
+      <xs:enumeration value="K" />
+      <xs:enumeration value="L" />
+      <xs:enumeration value="M" />
+      <xs:enumeration value="N" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AddOfftakePointsEisResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Errors" type="tns:ArrayOfErrorMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOfftakePointsConfigurationEisRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="All" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOfftakePointsConfigurationEisResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="OfftakePoints" type="tns:ArrayOfAddOfftakePointEis1" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfAddOfftakePointEis1">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OfftakePoints" nillable="true" type="tns:AddOfftakePointEis" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AddOfftakePointsMeasurmentsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="OfftakePoints" type="tns:ArrayOfAddOfftakePointMeasurements" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfAddOfftakePointMeasurements">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Offtakepoint" nillable="true" type="tns:AddOfftakePointMeasurements" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddOfftakePointMeasurements">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="OfftakePointCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Measurements" type="tns:ArrayOfAddOfftakePointMeasurement" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAddOfftakePointMeasurement">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Measurement" nillable="true" type="tns:AddOfftakePointMeasurement" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddOfftakePointMeasurement">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ReadingTime" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ReadingValue" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Nm3ConversionFactor" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NewReadingValue" nillable="true" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NewNm3ConversionFactor" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AddOfftakePointsMeasurmentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Errors" type="tns:ArrayOfErrorMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddOfftakePointsReadingsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Readings" type="tns:ArrayOfAddOfftakePointReading" />
+        <xs:element minOccurs="1" maxOccurs="1" name="Options" nillable="true" type="tns:AddOfftakePointsReadingsOptions" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfAddOfftakePointReading">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Reading" nillable="true" type="tns:AddOfftakePointReading" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddOfftakePointReading">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="OfftakePointCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ReadingDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ReadingValue" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Nm3ConversionFactor" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NewReadingValue" nillable="true" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NewNm3ConversionFactor" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AddOfftakePointsReadingsOptions">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="SkipOutOfBoundsCheck" />
+          <xs:enumeration value="Default" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="AddOfftakePointsReadingsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Errors" type="tns:ArrayOfErrorMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AdjustOfftakePointsMeasurementsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Adjustments" type="tns:ArrayOfAdjustOfftakePointMeasurements" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfAdjustOfftakePointMeasurements">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Adjustment" nillable="true" type="tns:AdjustOfftakePointMeasurements" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AdjustOfftakePointMeasurements">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="OfftakePointCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AmountInNm3" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Reason" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EntryDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AdjustOfftakePointsMeasurementsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Errors" type="tns:ArrayOfErrorMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AnnullOfftakePointsReadingsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Annulments" type="tns:ArrayOfAnnullOfftakePointReading" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfAnnullOfftakePointReading">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Annulment" nillable="true" type="tns:AnnullOfftakePointReading" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AnnullOfftakePointReading">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="OfftakePointCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ReadingDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AnnullOfftakePointsReadingsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Errors" type="tns:ArrayOfErrorMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeOfftakePointsSupplierRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="OfftakePoints" type="tns:ArrayOfChangeOfftakePointSupplier" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfChangeOfftakePointSupplier">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OfftakePoint" nillable="true" type="tns:ChangeOfftakePointSupplier" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ChangeOfftakePointSupplier">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="OfftakePointCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SupplierCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ValidFrom" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ChangeOfftakePointsSupplierResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Errors" type="tns:ArrayOfErrorMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCityGateAllocationsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Query" type="tns:GetCityGateAllocationsQuery" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetCityGateAllocationsQuery">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="PeriodStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DsoCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetCityGateAllocationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Allocations" type="tns:ArrayOfGetCityGateAllocation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfGetCityGateAllocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Allocation" nillable="true" type="tns:GetCityGateAllocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetCityGateAllocation">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="GasDay" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateGroupCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SupplierCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DailyMeasuredQuantity" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NotDailyMeasuredQuantity" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Unit" type="tns:QuantityUnit" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AdditionalQuantity" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetCityGateForecastsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Query" type="tns:GetCityGateForecastsQuery" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetCityGateForecastsQuery">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="PeriodStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DsoCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetCityGateForecastsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Forecasts" type="tns:ArrayOfGetCityGateForecast" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfGetCityGateForecast">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Forecast" nillable="true" type="tns:GetCityGateForecast" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetCityGateForecast">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Hour" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateGroupCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SupplierCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DailyMeasuredQuantity" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NotDailyMeasuredQuantity" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Unit" type="tns:QuantityUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetCityGatesBalanceRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Query" type="tns:GetCityGateBalanceQuery" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetCityGateBalanceQuery">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="PeriodStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DsoCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetCityGatesBalanceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="CityGatesBalance" type="tns:ArrayOfGetCityGateBalance" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfGetCityGateBalance">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CityGateBalance" nillable="true" type="tns:GetCityGateBalance" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetCityGateBalance">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="GasDay" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateGroupCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DailyMeasuredQuantity" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NotDailyMeasuredQuantity" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MeasurementsMismatch" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateQuantity" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Unit" type="tns:QuantityUnit" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AdditionalQuantity" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetCityGatesQuantitiesRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Query" type="tns:GetCityGatesQuantitiesQuery" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetCityGatesQuantitiesQuery">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="PeriodStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DsoCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetCityGatesQuantitiesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="CityGatesQuantities" type="tns:ArrayOfGetCityGateQuantities" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfGetCityGateQuantities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CityGateQuantity" nillable="true" type="tns:GetCityGateQuantities" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetCityGateQuantities">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Hour" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Quantity" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Unit" type="tns:QuantityUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetMeasuredOfftakeHourlyMismatchesRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Query" type="tns:GetMeasuredOfftakeHourlyMismatchesQuery" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetMeasuredOfftakeHourlyMismatchesQuery">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="PeriodStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DsoCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetMeasuredOfftakeHourlyMismatchesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="MeasuredOfftakeHourlyMismatches" type="tns:ArrayOfGetMeasuredOfftakeHourlyMismatches" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfGetMeasuredOfftakeHourlyMismatches">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MeasuredOfftakeHourlyMismatch" nillable="true" type="tns:GetMeasuredOfftakeHourlyMismatches" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetMeasuredOfftakeHourlyMismatches">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateGroupCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Hour" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Quantity" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Unit" type="tns:QuantityUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetOfftakePointsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Query" type="tns:GetOfftakePointsQuery" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetOfftakePointsQuery">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCodes" type="tns:ArrayOfString" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OfftakePointsCodes" type="tns:ArrayOfString" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DsoCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Code" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetOfftakePointsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="OfftakePoints" type="tns:ArrayOfGetOfftakePoint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfGetOfftakePoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OfftakePoint" nillable="true" type="tns:GetOfftakePoint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetOfftakePoint">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="OfftakePointCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Status" type="tns:OfftakePointStatus" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LoadType" nillable="true" type="tns:LoadType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MeasurementDeviceMultiplier" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SupplierCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="YearlyOfftake" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetOfftakePointsAllocationsMonthlyRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Query" type="tns:GetOfftakePointsAllocationsMonthlyQuery" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetOfftakePointsAllocationsMonthlyQuery">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="PeriodStart" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Options" nillable="true" type="tns:AllocationMonthlyQueryOptions" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AllocationMonthlyQueryOptions">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="IncludeNotDailyMeasured" />
+          <xs:enumeration value="IncludeDailyMeasured" />
+          <xs:enumeration value="Default" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="GetOfftakePointsAllocationsMonthlyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Allocations" type="tns:ArrayOfGetOfftakePointAllocationMonthly" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfGetOfftakePointAllocationMonthly">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Allocation" nillable="true" type="tns:GetOfftakePointAllocationMonthly" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetOfftakePointAllocationMonthly">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="PeriodStart" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OfftakePointCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Quantity" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Unit" type="tns:QuantityUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetOfftakePointsAllocationsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Query" type="tns:GetOfftakePointsAllocationsQuery" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetOfftakePointsAllocationsQuery">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="PeriodStart" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Options" nillable="true" type="tns:AllocationQueryOptions" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AllocationQueryOptions">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="IncludeNotDailyMeasured" />
+          <xs:enumeration value="IncludeDailyMeasured" />
+          <xs:enumeration value="IncludeNotDailyMeasuredForecastsOnly" />
+          <xs:enumeration value="Default" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="GetOfftakePointsAllocationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Allocations" type="tns:ArrayOfGetOfftakePointAllocation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfGetOfftakePointAllocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Allocation" nillable="true" type="tns:GetOfftakePointAllocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetOfftakePointAllocation">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="GasDay" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OfftakePointCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Quantity" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Unit" type="tns:QuantityUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetOfftakePointsMeasurementsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Query" type="tns:GetOfftakePointsMeasurementsQuery" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetOfftakePointsMeasurementsQuery">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ReadingTimeFrom" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ReadingTimeTo" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetOfftakePointsMeasurementsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Measurements" type="tns:ArrayOfGetOfftakePointMeasurement" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfGetOfftakePointMeasurement">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Measurements" nillable="true" type="tns:GetOfftakePointMeasurement" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetOfftakePointMeasurement">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="OfftakePointCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ReadingTime" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EntryTime" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ReadingValue" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ConversionFactor" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ConversionUnit" type="tns:QuantityUnit" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ReadingDeviceChanged" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetOfftakePointsReadingsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Query" type="tns:GetOfftakePointsReadingsQuery" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetOfftakePointsReadingsQuery">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ReadingDateFrom" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ReadingDateTo" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetOfftakePointsReadingsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Readings" type="tns:ArrayOfGetOfftakePointReading" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfGetOfftakePointReading">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Reading" nillable="true" type="tns:GetOfftakePointReading" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetOfftakePointReading">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="OfftakePointCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ReadingDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EntryDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ReadingValue" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ConversionFactor" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ConversionUnit" type="tns:QuantityUnit" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ReadingDeviceChanged" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetTemperaturesRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Query" type="tns:GetTemperaturesQuery" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetTemperaturesQuery">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="From" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="To" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Regions" type="tns:ArrayOfForecastRegion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfForecastRegion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Region" type="tns:ForecastRegion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ForecastRegion">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OsrednjaSlovenija" />
+      <xs:enumeration value="Stajerska" />
+      <xs:enumeration value="Gorenjska" />
+      <xs:enumeration value="Primorska" />
+      <xs:enumeration value="Koroska" />
+      <xs:enumeration value="Dolenjska" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="GetTemperaturesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Temperatures" type="tns:ArrayOfGetTemperature" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfGetTemperature">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Temperature" nillable="true" type="tns:GetTemperature" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetTemperature">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="GasDay" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Region" type="tns:ForecastRegion" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ForecastedMinTemperature" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ForecastedMaxTemperature" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ForecastedAverageTemperature" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ForecastsModifiedAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MeasuredTemperature07" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MeasuredTemperature14" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MeasuredTemperature21" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MeasuredAvarageTemperature" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MeasurementsModifiedAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="WeightedTemperature" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="WeightedTemperatureCalculatedAt" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ModifyOfftakePointsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="OfftakePoints" type="tns:ArrayOfModifyOfftakePoint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfModifyOfftakePoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OfftakePoint" nillable="true" type="tns:ModifyOfftakePoint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ModifyOfftakePoint">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="OfftakePointCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Status" nillable="true" type="tns:OfftakePointStatus" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LoadType" nillable="true" type="tns:LoadType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MeasurementDeviceMultiplier" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="YearlyOfftake" nillable="true" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ValidFrom" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ModifyOfftakePointsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Errors" type="tns:ArrayOfErrorMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModifyOfftakePointsEisRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="OfftakePoints" type="tns:ArrayOfModifyOfftakePointEis" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfModifyOfftakePointEis">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OfftakePoint" nillable="true" type="tns:ModifyOfftakePointEis" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ModifyOfftakePointEis">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="OfftakePointCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CityGateCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Status" nillable="true" type="tns:OfftakePointStatus" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LoadType" nillable="true" type="tns:LoadType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MeasurementDeviceMultiplier" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="YearlyOfftake" nillable="true" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ValidFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsProtectedConsumer" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsHouseholdConsumer" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OfftakePurpose" type="tns:OfftakePurposeType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="InterruptibleSupplyContract" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AlternativeEnergySource" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ProtectedUserConsume" type="xs:unsignedByte" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CurrentOfftakePointStatus" type="tns:CurrentOfftakePointStatusType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="OfftakePurposeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Other" />
+      <xs:enumeration value="Business" />
+      <xs:enumeration value="Industry" />
+      <xs:enumeration value="PowerPlant" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ModifyOfftakePointsEisResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Errors" type="tns:ArrayOfErrorMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

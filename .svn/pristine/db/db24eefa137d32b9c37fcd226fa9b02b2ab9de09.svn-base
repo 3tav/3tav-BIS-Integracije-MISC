@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="CreationTime">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:dateTime"></xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="SerialNumber" type="xsd:long" />
+	<xsd:element name="Organization">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="1024"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="MessageImprint">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="DigestAlgorithm" />
+				<xsd:element ref="DigestValue" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="DataReference">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="4096"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="ServiceType">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="4096"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="RequestEntityIdentifier">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="255"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="DraftID">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:int" />
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="UserFor">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="50"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="GroupFor">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="20"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="DocSize">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:int" />
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="FldName">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="32"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+    <xsd:element name="GroupName">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="20"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+	<xsd:element name="FldId">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:int" />
+		</xsd:simpleType>
+	</xsd:element>
+
+	<xsd:element name="VerDescription">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="1024"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="VerifyData">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="DataIdentification_1" minOccurs="0"
+					maxOccurs="1" />
+				<xsd:element ref="Data" minOccurs="0" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ServicePolicyInformation">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="PolicyIdentifier" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Version" type="xsd:int" />
+	<xsd:element name="ExportData">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="DataIdentification_1" minOccurs="0"
+					maxOccurs="1" />
+				<xsd:element ref="Data" minOccurs="0" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="CreationLocation">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="4096"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="ClassificationName">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="50"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="Type">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="50"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+
+	<xsd:element name="ExternalID" type="xsd:string" />
+	<xsd:element name="DigestAlgorithm" type="xsd:anyURI">
+	</xsd:element>
+	<xsd:element name="StatusData">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="DataIdentification_1" minOccurs="0"
+					maxOccurs="1" />
+				<xsd:element ref="Data" minOccurs="0" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ServiceParameter">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="ParameterName" />
+				<xsd:element ref="ParameterValue" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="RawData">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string"></xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="Data">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="RawData" minOccurs="0" maxOccurs="1" />
+				<xsd:element ref="MessageImprint" minOccurs="0"
+					maxOccurs="unbounded" />
+				<xsd:element ref="DataReference" minOccurs="0"
+					maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ParameterName">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="255"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="DigestValue" type="xsd:string" />
+	<xsd:element name="Nonce">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:length value="20"></xsd:length>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="ParameterValue">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="4096"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="ServiceConfiguration">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="ServiceParameter" minOccurs="1"
+					maxOccurs="255" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="FileName">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="4096"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="RequestInformation">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Version" />
+				<xsd:element ref="ServiceType" />
+				<xsd:element ref="Nonce" minOccurs="0" maxOccurs="1" />
+				<xsd:element ref="SerialNumber" minOccurs="0" maxOccurs="1" />
+				<xsd:element ref="RequestTime" />
+				<xsd:element ref="RequestEntityIdentifier" />
+				<xsd:element ref="ServerEntityIdentifier" />
+				<xsd:element ref="ServicePolicyInformation" minOccurs="0"
+					maxOccurs="1" />
+				<xsd:element ref="ServiceConfiguration" minOccurs="0"
+					maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="MetaData">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Title" minOccurs="1" maxOccurs="1" />
+				<xsd:element ref="CreationTime" maxOccurs="1" minOccurs="1" />
+				<xsd:element ref="CreationLocation" minOccurs="1" maxOccurs="1" />
+				<xsd:element ref="FileName" minOccurs="0" maxOccurs="1" />
+				<xsd:element ref="MIMEType" minOccurs="0" maxOccurs="1" />
+				<xsd:element ref="Organization" minOccurs="0" maxOccurs="1" />
+				<xsd:element ref="Parameters" minOccurs="0" maxOccurs="1"></xsd:element>
+				<xsd:element ref="ClassificationName" minOccurs="0" maxOccurs="1"></xsd:element>
+				<xsd:element ref="Type" minOccurs="0" maxOccurs="1"></xsd:element>
+                <xsd:element ref="GroupName" minOccurs="0" maxOccurs="1"></xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ServerEntityIdentifier">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="255"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="PolicyIdentifier">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="1024"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="InternalID" type="xsd:int" />
+	<xsd:element name="Title">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="1024"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="DataIdentification">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="ExternalID" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="DataIdentification_1">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element minOccurs="0" ref="InternalID" />
+				<xsd:element ref="ExternalID" minOccurs="0" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="MIMEType">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="64"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="DeleteData">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="DataIdentification_1" minOccurs="0"
+					maxOccurs="1" />
+				<xsd:element ref="Data" minOccurs="0" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="RequestTime">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string"></xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="Parameters">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Param" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="Param">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="ParameterName" minOccurs="1"
+					maxOccurs="1">
+				</xsd:element>
+				<xsd:element ref="ParameterValue" minOccurs="1"
+					maxOccurs="1">
+				</xsd:element>
+				<xsd:element name="StaticParam" type="xsd:string"
+					minOccurs="0"></xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="LTAPFile">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="InternalID" />
+				<xsd:element ref="RawData" minOccurs="0" />
+				<xsd:element ref="MessageImprint" maxOccurs="unbounded"/>
+				<xsd:element ref="MIMEType" />
+				<xsd:element ref="FileName" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

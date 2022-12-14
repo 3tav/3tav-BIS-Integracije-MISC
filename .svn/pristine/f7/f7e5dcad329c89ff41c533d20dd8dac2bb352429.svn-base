@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DC4141D1-81BC-4B5B-8177-AFC623BC7FDB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Komunikator3TavLib</RootNamespace>
+    <AssemblyName>Komunikator3TavLib</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Code\cEGP_BIS.cs" />
+    <Compile Include="App_Code\cEGP_Fun_General.cs" />
+    <Compile Include="App_Code\cEGP_Lists.cs" />
+    <Compile Include="App_Code\cEG_EBA.cs" />
+    <Compile Include="App_Code\cEG_PerunEG2.cs" />
+    <Compile Include="App_Code\cEG_PerunEG.cs" />
+    <Compile Include="App_Code\cInf_EvidencaMM.cs" />
+    <Compile Include="App_Code\cInf_StanjaStevca.cs" />
+    <Compile Include="App_Code\cInf_ZamenjavaDobavitelja.cs" />
+    <Compile Include="App_Code\wsAuthentication.cs" />
+    <Compile Include="Enum.cs" />
+    <Compile Include="IwsSporocanjeOdcitkov.cs" />
+    <Compile Include="OdcitkiPlin\OdcitkiPlin.cs" />
+    <Compile Include="OdcitkiPlin\OdcitkiPlinDTO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceReferences\PerunEG.cs" />
+    <Compile Include="ServiceReferences\EvidencaMM.cs" />
+    <Compile Include="ServiceReferences\StanjeStevca.cs" />
+    <Compile Include="ServiceReferences\ZamenjavaDobavitelja.cs" />
+    <Compile Include="Units\NET_Common.cs" />
+    <Compile Include="Units\NET_Ini.cs" />
+    <Compile Include="Units\NET_Sql.cs" />
+    <Compile Include="Units\NET_ws.cs" />
+    <Compile Include="Util.cs" />
+    <Compile Include="wsSporocanjeOdcitkov2.cs" />
+    <Compile Include="wsSporocanjeOdcitkov.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Perun3WsLib\Perun3WsLib.csproj">
+      <Project>{18ed36e2-5f31-46d4-866d-0c2d6a8fe11c}</Project>
+      <Name>Perun3WsLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

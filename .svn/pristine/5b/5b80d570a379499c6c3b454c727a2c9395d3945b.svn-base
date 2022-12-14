@@ -1,0 +1,85 @@
+﻿using System;
+using System.Web;
+using System.Web.UI;
+using System.Runtime.Serialization;
+
+
+public enum efrErrorCodes
+{
+    OK = 0,
+
+    NoDataFound = 100001,
+    MissingInputParameter = 100002,
+    IncorrectFormatInputParameter = 100003,
+    MP_InvalidOrNotActive = 100004,
+
+    UnknownError = 110000,
+    SQLError = 110001,
+    NotAuthorized = 110002,
+    WebServiceError = 110003
+}
+
+[DataContract]
+public class dcResult
+{
+    [DataMember]
+    public Int32 RTC { get; set; }
+    [DataMember]
+    public String CONTROL { get; set; }
+    [DataMember]
+    public String MSG { get; set; }
+}
+
+
+
+public class cdcResult
+{
+    public static dcResult Set(Int32 _RTC, String _CONTROL, String _MSG)
+    {
+        dcResult _Result = new dcResult();
+        _Result.RTC = _RTC;
+        _Result.CONTROL = _CONTROL;
+        _Result.MSG = _MSG;
+        return _Result;
+    }
+
+    public static dcResult Get_FromFunctionResult(sFunctionResult _fr)
+    {
+        dcResult wsResult = new dcResult();
+        if (!_fr.resBool)
+        {
+            //wsResult = Set((int)efrErrorCodes.SQLError, _fr.resInfo, _fr.resError);
+            wsResult = Set(_fr.resInteger, _fr.resInfo, _fr.resError);
+        }
+        else if (_fr.resInteger == 0)
+        {
+            wsResult = Set(0, _fr.resInfo, _fr.resError);
+        }
+        else
+        {
+            if (Enum.IsDefined(typeof(efrErrorCodes), _fr.resInteger))
+            {
+                wsResult = Set(_fr.resInteger, _fr.resInfo, _fr.resError);
+            }
+            else if (_fr.resInteger < (Int32)efrErrorCodes.NoDataFound)
+            {
+                wsResult = Set(_fr.resInteger, _fr.resInfo, _fr.resError);
+            }
+            else
+            {
+                String Control = "Neznana kontrola";
+                String Msg = "Neznana napaka";
+                if ((_fr.resInfo != null) && (_fr.resInfo != ""))
+                {
+                    Control = _fr.resInfo;
+                }
+                if ((_fr.resError != null) && (_fr.resError != ""))
+                {
+                    Msg = _fr.resError;
+                }
+                wsResult = Set((int)efrErrorCodes.UnknownError, Control, Msg);
+            }
+        }
+        return wsResult;
+    }
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <appSettings>
+    <add key="GemaLogicUsername" value="pmb3tav"/>
+    <add key="GemaLogicPassword" value="billingdata"/>
+    <add key="GemaLogicUrl" value="bukUhure7r"/>
+    <add key="GemaLogicGroupExternalIdent" value="PMB3TAV"/>
+    <add key="omIdentifikator" value="P"/>
+ 
+  </appSettings>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="GemaDataRetrieverBulkServiceSoapBinding" />
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://www.gemalogic.eu:80/gema/bulkdataretrieverservice"
+                binding="basicHttpBinding" bindingConfiguration="GemaDataRetrieverBulkServiceSoapBinding"
+                contract="GemaLogicServiceClient.DataRetrieverBulkEndpoint"
+                name="DataRetrieverBulkEndpointPort" />
+        </client>
+    </system.serviceModel>
+<startup><supportedRuntime version="v2.0.50727"/></startup></configuration>

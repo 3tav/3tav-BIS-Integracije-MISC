@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+	<xs:annotation>
+		<xs:documentation>Schema name: PrejemDokumenta</xs:documentation>
+	</xs:annotation>
+	<xs:element name="VrstaPotrditve">
+		<xs:annotation>
+			<xs:documentation>Funkcija dokumenta (4-sprejet s spremembo, 12-ni sprocesiran, 27-ni sprejet, 29-sprejet brez popravkov)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:NMTOKEN">
+				<xs:enumeration value="4"/>
+				<xs:enumeration value="12"/>
+				<xs:enumeration value="27"/>
+				<xs:enumeration value="29"/>
+				<xs:enumeration value="-99"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="VrstaPodatkaPodjetja">
+		<xs:annotation>
+			<xs:documentation>Koda, ki doloca tip podatka (AP-, API-EANkoda, GN-maticna st., IA-interna dobaviteljeva st., IT-interna kupceva st., PY-st.placnikove financne institucije, VA-davcna st., XA-registracijska st.) (E:El-1153)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:NMTOKEN">
+				<xs:enumeration value="AP"/>
+				<xs:enumeration value="API"/>
+				<xs:enumeration value="GN"/>
+				<xs:enumeration value="IA"/>
+				<xs:enumeration value="IT"/>
+				<xs:enumeration value="PY"/>
+				<xs:enumeration value="VA"/>
+				<xs:enumeration value="XA"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="VrstaPartnerja">
+		<xs:annotation>
+			<xs:documentation>Vrsta partnerja na narocilnici (BY-kupec, DP-prejemnik posiljke, OB-narocnik, SU-dobavitelj) (E:El-3035)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:NMTOKEN">
+				<xs:enumeration value="BY"/>
+				<xs:enumeration value="DP"/>
+				<xs:enumeration value="OB"/>
+				<xs:enumeration value="SU"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="VrstaKomunikacije">
+		<xs:annotation>
+			<xs:documentation>Vrsta komunikacije (EM-eposta, FX-faks, TE-telefon, TL-telex, XF-X.400) (E:El-3155)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:NMTOKEN">
+				<xs:enumeration value="EM"/>
+				<xs:enumeration value="FX"/>
+				<xs:enumeration value="TE"/>
+				<xs:enumeration value="TL"/>
+				<xs:enumeration value="XF"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="VrstaDokumenta">
+		<xs:annotation>
+			<xs:documentation>Vrsta dokumenta, za katerega potrjujemo prejem (DESADV-dobavnica, INVOIC-račun, ORDERS-naročilo, ORDRSP-potrditev naročila)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:NMTOKEN">
+				<xs:enumeration value="DESADV"/>
+				<xs:enumeration value="INVOIC"/>
+				<xs:enumeration value="ORDERS"/>
+				<xs:enumeration value="ORDRSP"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="VrstaDatuma">
+		<xs:annotation>
+			<xs:documentation>Identifikacija datumov (137-datum izdaje dokumenta, 310-datum prejema dokumenta)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:NMTOKEN">
+				<xs:enumeration value="137"/>
+				<xs:enumeration value="310"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Ulica4">
+		<xs:annotation>
+			<xs:documentation>Naziv ulice - 4.del (E:El-3042)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Ulica3">
+		<xs:annotation>
+			<xs:documentation>Naziv ulice - 3.del (E:El-3042)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Ulica2">
+		<xs:annotation>
+			<xs:documentation>Naziv ulice - 2.del (E:El-3042)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Ulica1">
+		<xs:annotation>
+			<xs:documentation>Naziv ulice - 1.del (E:El-3042)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Ulica">
+		<xs:annotation>
+			<xs:documentation>naziv ulice (E:Comp-C059)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Ulica1" minOccurs="0"/>
+				<xs:element ref="Ulica2" minOccurs="0"/>
+				<xs:element ref="Ulica3" minOccurs="0"/>
+				<xs:element ref="Ulica4" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TipOsebe">
+		<xs:annotation>
+			<xs:documentation>Tip kontaktne osebe (AD-racunovodstvo, AP-placilni sektor, AR-prejem faktur, GR-skladisce, PD-nabava) (E:El-3139)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:NMTOKEN">
+				<xs:enumeration value="AA"/>
+				<xs:enumeration value="AD"/>
+				<xs:enumeration value="AM"/>
+				<xs:enumeration value="AP"/>
+				<xs:enumeration value="AR"/>
+				<xs:enumeration value="BC"/>
+				<xs:enumeration value="CB"/>
+				<xs:enumeration value="CN"/>
+				<xs:enumeration value="CO"/>
+				<xs:enumeration value="CR"/>
+				<xs:enumeration value="DE"/>
+				<xs:enumeration value="DI"/>
+				<xs:enumeration value="DL"/>
+				<xs:enumeration value="ED"/>
+				<xs:enumeration value="GR"/>
+				<xs:enumeration value="HE"/>
+				<xs:enumeration value="HG"/>
+				<xs:enumeration value="IC"/>
+				<xs:enumeration value="LO"/>
+				<xs:enumeration value="NT"/>
+				<xs:enumeration value="OC"/>
+				<xs:enumeration value="ODP"/>
+				<xs:enumeration value="PD"/>
+				<xs:enumeration value="PM"/>
+				<xs:enumeration value="QC"/>
+				<xs:enumeration value="SA"/>
+				<xs:enumeration value="SD"/>
+				<xs:enumeration value="SR"/>
+				<xs:enumeration value="TD"/>
+				<xs:enumeration value="WH"/>
+				<xs:enumeration value="ZZZ"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="StevilkaPartnerja">
+		<xs:annotation>
+			<xs:documentation>Stevilka partnerja, dolocena od agencije (E:El-3039)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="StevilkaKomunikacije">
+		<xs:annotation>
+			<xs:documentation>Stevilka faksa, telefona (E:El-3148)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="512"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="StevilkaDokumenta" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Številka prejetega dokumenta</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ReferencniPodatkiPodjetja">
+		<xs:annotation>
+			<xs:documentation>Referencni podatki podjetja (Davki, EANkode,...) (E:Loop-Group_3; E:Seg-RFF; E:C506)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="VrstaPodatkaPodjetja" minOccurs="0"/>
+				<xs:element ref="PodatekPodjetja" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Povratnica">
+		<xs:annotation>
+			<xs:documentation>S tem dokumentom potrjujemo prejem nekega drugega dokumenta od partnerja</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="OdgovorNaSporocilo"/>
+				<xs:element ref="OdgovorNaDokument" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PostnaStevilka">
+		<xs:annotation>
+			<xs:documentation>Postna stevilka (E:El-3251)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="9"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PodatkiPodjetja">
+		<xs:annotation>
+			<xs:documentation>Podatki o podjetju (naslov, financni,..) (E:Loop-Group_2)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NazivNaslovPodjetja"/>
+				<xs:element ref="ReferencniPodatkiPodjetja" maxOccurs="unbounded"/>
+				<xs:element ref="KontaktiPodjetja" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PodatekPodjetja">
+		<xs:annotation>
+			<xs:documentation>Stevilka, ki doloca podatek npr. davcna st. (E:El-1154)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="OdgovorNaSporocilo">
+		<xs:annotation>
+			<xs:documentation>Odgovor na sporčilo partnerju</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PodatkiPodjetja" maxOccurs="unbounded" />
+				<xs:element ref="VrstaPotrditve" />
+				<xs:element ref="StevilkaSporocila" />
+				<xs:element ref="Opis" minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OdgovorNaDokument">
+		<xs:annotation>
+			<xs:documentation>Podatki o prejetem dokumentu</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Dokument"/>
+				<xs:element ref="DatumiDokumenta" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NazivPartnerja4">
+		<xs:annotation>
+			<xs:documentation>NazivPartnerja 4.del (E:El-3036)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="NazivPartnerja3">
+		<xs:annotation>
+			<xs:documentation>NazivPartnerja 3.del (E:El-3036)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="NazivPartnerja2">
+		<xs:annotation>
+			<xs:documentation>NazivPartnerja 2.del (E:El-3036)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="NazivPartnerja1">
+		<xs:annotation>
+			<xs:documentation>NazivPartnerja 1.del (E:El-3036)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="NazivPartnerja">
+		<xs:annotation>
+			<xs:documentation>Naziv Partnerja (E:Comp-C080)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NazivPartnerja1" minOccurs="0"/>
+				<xs:element ref="NazivPartnerja2" minOccurs="0"/>
+				<xs:element ref="NazivPartnerja3" minOccurs="0"/>
+				<xs:element ref="NazivPartnerja4" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NazivNaslovPodjetja">
+		<xs:annotation>
+			<xs:documentation>Naziv in naslov (E: Seg-NAD)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="VrstaPartnerja" minOccurs="0"/>
+				<xs:element ref="IdentifikacijaPartnerja" minOccurs="0"/>
+				<xs:element ref="NazivPartnerja" minOccurs="0"/>
+				<xs:element ref="Ulica" minOccurs="0"/>
+				<xs:element ref="Kraj" minOccurs="0"/>
+				<xs:element ref="NazivDrzave" minOccurs="0"/>
+				<xs:element ref="PostnaStevilka" minOccurs="0"/>
+				<xs:element ref="KodaDrzave" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NazivDrzave">
+		<xs:annotation>
+			<xs:documentation>Naziv drzave(E:El-3229)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="9"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Kraj">
+		<xs:annotation>
+			<xs:documentation>Naziv kraja (E:El-3164)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="KontaktnaOseba">
+		<xs:annotation>
+			<xs:documentation>Podatki o kontaktnih osebah (E:Seg-CTA)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TipOsebe" minOccurs="0"/>
+				<xs:element ref="ImeOsebe" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="KontaktiPodjetja">
+		<xs:annotation>
+			<xs:documentation>Podatki o kontaknih osebah podjetja (E:Loop-Group_5)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="KontaktnaOseba"/>
+				<xs:element ref="Komunikacije" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Komunikacije">
+		<xs:annotation>
+			<xs:documentation>Podatki o telefonih, faksih (E:Seg-COM; E:Comp-C076)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="StevilkaKomunikacije"/>
+				<xs:element ref="VrstaKomunikacije"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="KodaDrzave">
+		<xs:annotation>
+			<xs:documentation>ISO koda drzave (E:El-3207)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="2"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ImeOsebe">
+		<xs:annotation>
+			<xs:documentation>Ime kontaktne osebe ali oddelka (E:El- 3412)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="IdentifikacijaPartnerja">
+		<xs:annotation>
+			<xs:documentation>Identifikacijski podatki partnerja/podjetja (E:Comp-C082)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="StevilkaPartnerja" minOccurs="0"/>
+				<xs:element ref="Agencija" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Dokument">
+		<xs:annotation>
+			<xs:documentation>Podatki o dokumentu, ki smo ga prejeli</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="StevilkaDokumenta"/>
+				<xs:element ref="VrstaDokumenta" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DatumiDokumenta">
+		<xs:annotation>
+			<xs:documentation>Podatki o datumih dokumenta</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="VrstaDatuma"/>
+				<xs:element ref="DatumDokumenta" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DatumDokumenta" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Datum dokumenta</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Agencija">
+		<xs:annotation>
+			<xs:documentation>Koda agencije, ki stevilci partnerje (9-EAN, 91-dobvitelj, 92-narocnik) (E:El-3055)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:NMTOKEN">
+				<xs:enumeration value="9"/>
+				<xs:enumeration value="91"/>
+				<xs:enumeration value="92"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="StevilkaSporocila">
+		<xs:annotation>
+			<xs:documentation>Stevilka sporocila v ZZInet-u</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:long">
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Opis">
+		<xs:annotation>
+			<xs:documentation>Dodatni opis vrste potrditve/zavrnitve</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="2048"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+		
+</xs:schema>

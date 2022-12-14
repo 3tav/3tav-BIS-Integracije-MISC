@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:intf="http://ws.estoritve.zzi.si" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsi="http://ws-i.org/profiles/basic/1.1/xsd" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://ws.estoritve.zzi.si" targetNamespace="http://ws.estoritve.zzi.si" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ws.estoritve.zzi.si">
+      <xsd:element name="getELocationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getELocationReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="transformPack">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="transformFrom" nillable="true" type="xsd:string" />
+            <xsd:element name="transformTo" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="transformPackResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="transformPackReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="eHrambaReceiveDocument">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="docid" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="eHrambaReceiveDocumentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="eHrambaReceiveDocumentReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="sendDocument">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="isArchived" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="sendDocumentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="sendDocumentReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="changePassword">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="oldPassword" nillable="true" type="xsd:string" />
+            <xsd:element name="newPassword" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="changePasswordResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="changePasswordReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="isUserEDIEnabled">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="userName" nillable="true" type="xsd:string" />
+            <xsd:element name="password" nillable="true" type="xsd:string" />
+            <xsd:element name="TaxId" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="isUserEDIEnabledResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="isUserEDIEnabledReturn" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getDocumentListUnaccepted">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="taxNumber" nillable="true" type="xsd:string" />
+            <xsd:element name="filterXML" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getDocumentListUnacceptedResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getDocumentListUnacceptedReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getELocationByELocationId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="eLocationId" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getELocationByELocationIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getELocationByELocationIdReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="transformDocumentByType">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="eAddress" nillable="true" type="xsd:string" />
+            <xsd:element name="docB64Encoded" nillable="true" type="xsd:string" />
+            <xsd:element name="docType" nillable="true" type="xsd:string" />
+            <xsd:element name="docFormatIn" nillable="true" type="xsd:string" />
+            <xsd:element name="docFormatOut" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="transformDocumentByTypeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="transformDocumentByTypeReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="isCompanyEDIEnabledExt">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="taxIdFrom" nillable="true" type="xsd:string" />
+            <xsd:element name="dotName" nillable="true" type="xsd:string" />
+            <xsd:element name="taxIdTo" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="isCompanyEDIEnabledExtResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="isCompanyEDIEnabledExtReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="eHrambaGetDocumentList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="accountName" nillable="true" type="xsd:string" />
+            <xsd:element name="filterXML" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="eHrambaGetDocumentListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="eHrambaGetDocumentListReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getMyRolesByApp">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="applicationName" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getMyRolesByAppResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getMyRolesByAppReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="version">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="versionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="versionReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getStatusByMsgId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="msgId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getStatusByMsgIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getStatusByMsgIdReturn" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="receiveDocument">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="docid" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="receiveDocumentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="receiveDocumentReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="transformDocument">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="eAddress" nillable="true" type="xsd:string" />
+            <xsd:element name="docB64Encoded" nillable="true" type="xsd:string" />
+            <xsd:element name="docFormatOut" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="transformDocumentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="transformDocumentReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="eHrambaSetDocument">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="accountName" nillable="true" type="xsd:string" />
+            <xsd:element name="archiveData" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="eHrambaSetDocumentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="eHrambaSetDocumentReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getCompanyList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="filterAll" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getCompanyListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getCompanyListReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="echo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="s" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="echoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="echoReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getDocumentTypeAndFormat">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="docB64Encoded" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getDocumentTypeAndFormatResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getDocumentTypeAndFormatReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getDocumentList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="taxNumber" nillable="true" type="xsd:string" />
+            <xsd:element name="filterXML" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getDocumentListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getDocumentListReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="findELocations">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="filter" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="findELocationsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="findELocationsReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="receiveDocumentCommit">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="docid" nillable="true" type="xsd:int" />
+            <xsd:element name="isArchived" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="receiveDocumentCommitResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="receiveDocumentCommitReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getMyRoles">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getMyRolesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getMyRolesReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="isCompanyEDIEnabled">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="taxId" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="isCompanyEDIEnabledResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="isCompanyEDIEnabledReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="login">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="userName" nillable="true" type="xsd:string" />
+            <xsd:element name="password" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="loginResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="loginReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="eHrambaGetAccounts">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="eHrambaGetAccountsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="eHrambaGetAccountsReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getPhysicalAddress">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="eLocation" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getPhysicalAddressResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getPhysicalAddressReturn" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getELocation">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="guid" nillable="true" type="xsd:string" />
+            <xsd:element name="eLocationId" nillable="true" type="xsd:string" />
+            <xsd:element name="taxIdFrom" nillable="true" type="xsd:string" />
+            <xsd:element name="dotName" nillable="true" type="xsd:string" />
+            <xsd:element name="dofName" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="transformPackResponse">
+    <wsdl:part name="parameters" element="impl:transformPackResponse" />
+  </wsdl:message>
+  <wsdl:message name="echoResponse">
+    <wsdl:part name="parameters" element="impl:echoResponse" />
+  </wsdl:message>
+  <wsdl:message name="getDocumentTypeAndFormatRequest">
+    <wsdl:part name="parameters" element="impl:getDocumentTypeAndFormat" />
+  </wsdl:message>
+  <wsdl:message name="eHrambaSetDocumentRequest">
+    <wsdl:part name="parameters" element="impl:eHrambaSetDocument" />
+  </wsdl:message>
+  <wsdl:message name="isUserEDIEnabledResponse">
+    <wsdl:part name="parameters" element="impl:isUserEDIEnabledResponse" />
+  </wsdl:message>
+  <wsdl:message name="transformDocumentResponse">
+    <wsdl:part name="parameters" element="impl:transformDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="eHrambaGetDocumentListResponse">
+    <wsdl:part name="parameters" element="impl:eHrambaGetDocumentListResponse" />
+  </wsdl:message>
+  <wsdl:message name="versionRequest">
+    <wsdl:part name="parameters" element="impl:version" />
+  </wsdl:message>
+  <wsdl:message name="receiveDocumentRequest">
+    <wsdl:part name="parameters" element="impl:receiveDocument" />
+  </wsdl:message>
+  <wsdl:message name="getMyRolesResponse">
+    <wsdl:part name="parameters" element="impl:getMyRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="findELocationsRequest">
+    <wsdl:part name="parameters" element="impl:findELocations" />
+  </wsdl:message>
+  <wsdl:message name="eHrambaGetDocumentListRequest">
+    <wsdl:part name="parameters" element="impl:eHrambaGetDocumentList" />
+  </wsdl:message>
+  <wsdl:message name="isCompanyEDIEnabledExtResponse">
+    <wsdl:part name="parameters" element="impl:isCompanyEDIEnabledExtResponse" />
+  </wsdl:message>
+  <wsdl:message name="transformDocumentByTypeResponse">
+    <wsdl:part name="parameters" element="impl:transformDocumentByTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendDocumentResponse">
+    <wsdl:part name="parameters" element="impl:sendDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="changePasswordRequest">
+    <wsdl:part name="parameters" element="impl:changePassword" />
+  </wsdl:message>
+  <wsdl:message name="isCompanyEDIEnabledRequest">
+    <wsdl:part name="parameters" element="impl:isCompanyEDIEnabled" />
+  </wsdl:message>
+  <wsdl:message name="eHrambaGetAccountsResponse">
+    <wsdl:part name="parameters" element="impl:eHrambaGetAccountsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getDocumentListUnacceptedRequest">
+    <wsdl:part name="parameters" element="impl:getDocumentListUnaccepted" />
+  </wsdl:message>
+  <wsdl:message name="echoRequest">
+    <wsdl:part name="parameters" element="impl:echo" />
+  </wsdl:message>
+  <wsdl:message name="transformPackRequest">
+    <wsdl:part name="parameters" element="impl:transformPack" />
+  </wsdl:message>
+  <wsdl:message name="getPhysicalAddressRequest">
+    <wsdl:part name="parameters" element="impl:getPhysicalAddress" />
+  </wsdl:message>
+  <wsdl:message name="transformDocumentByTypeRequest">
+    <wsdl:part name="parameters" element="impl:transformDocumentByType" />
+  </wsdl:message>
+  <wsdl:message name="getELocationByELocationIdRequest">
+    <wsdl:part name="parameters" element="impl:getELocationByELocationId" />
+  </wsdl:message>
+  <wsdl:message name="getDocumentListResponse">
+    <wsdl:part name="parameters" element="impl:getDocumentListResponse" />
+  </wsdl:message>
+  <wsdl:message name="getMyRolesByAppResponse">
+    <wsdl:part name="parameters" element="impl:getMyRolesByAppResponse" />
+  </wsdl:message>
+  <wsdl:message name="getStatusByMsgIdResponse">
+    <wsdl:part name="parameters" element="impl:getStatusByMsgIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="versionResponse">
+    <wsdl:part name="parameters" element="impl:versionResponse" />
+  </wsdl:message>
+  <wsdl:message name="isUserEDIEnabledRequest">
+    <wsdl:part name="parameters" element="impl:isUserEDIEnabled" />
+  </wsdl:message>
+  <wsdl:message name="getMyRolesByAppRequest">
+    <wsdl:part name="parameters" element="impl:getMyRolesByApp" />
+  </wsdl:message>
+  <wsdl:message name="getDocumentListRequest">
+    <wsdl:part name="parameters" element="impl:getDocumentList" />
+  </wsdl:message>
+  <wsdl:message name="changePasswordResponse">
+    <wsdl:part name="parameters" element="impl:changePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendDocumentRequest">
+    <wsdl:part name="parameters" element="impl:sendDocument" />
+  </wsdl:message>
+  <wsdl:message name="getCompanyListRequest">
+    <wsdl:part name="parameters" element="impl:getCompanyList" />
+  </wsdl:message>
+  <wsdl:message name="loginResponse">
+    <wsdl:part name="parameters" element="impl:loginResponse" />
+  </wsdl:message>
+  <wsdl:message name="getPhysicalAddressResponse">
+    <wsdl:part name="parameters" element="impl:getPhysicalAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="receiveDocumentCommitResponse">
+    <wsdl:part name="parameters" element="impl:receiveDocumentCommitResponse" />
+  </wsdl:message>
+  <wsdl:message name="getMyRolesRequest">
+    <wsdl:part name="parameters" element="impl:getMyRoles" />
+  </wsdl:message>
+  <wsdl:message name="getDocumentListUnacceptedResponse">
+    <wsdl:part name="parameters" element="impl:getDocumentListUnacceptedResponse" />
+  </wsdl:message>
+  <wsdl:message name="receiveDocumentCommitRequest">
+    <wsdl:part name="parameters" element="impl:receiveDocumentCommit" />
+  </wsdl:message>
+  <wsdl:message name="getELocationByELocationIdResponse">
+    <wsdl:part name="parameters" element="impl:getELocationByELocationIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="isCompanyEDIEnabledExtRequest">
+    <wsdl:part name="parameters" element="impl:isCompanyEDIEnabledExt" />
+  </wsdl:message>
+  <wsdl:message name="loginRequest">
+    <wsdl:part name="parameters" element="impl:login" />
+  </wsdl:message>
+  <wsdl:message name="getCompanyListResponse">
+    <wsdl:part name="parameters" element="impl:getCompanyListResponse" />
+  </wsdl:message>
+  <wsdl:message name="getDocumentTypeAndFormatResponse">
+    <wsdl:part name="parameters" element="impl:getDocumentTypeAndFormatResponse" />
+  </wsdl:message>
+  <wsdl:message name="eHrambaSetDocumentResponse">
+    <wsdl:part name="parameters" element="impl:eHrambaSetDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="eHrambaReceiveDocumentResponse">
+    <wsdl:part name="parameters" element="impl:eHrambaReceiveDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="getELocationResponse">
+    <wsdl:part name="parameters" element="impl:getELocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="eHrambaGetAccountsRequest">
+    <wsdl:part name="parameters" element="impl:eHrambaGetAccounts" />
+  </wsdl:message>
+  <wsdl:message name="isCompanyEDIEnabledResponse">
+    <wsdl:part name="parameters" element="impl:isCompanyEDIEnabledResponse" />
+  </wsdl:message>
+  <wsdl:message name="getELocationRequest">
+    <wsdl:part name="parameters" element="impl:getELocation" />
+  </wsdl:message>
+  <wsdl:message name="eHrambaReceiveDocumentRequest">
+    <wsdl:part name="parameters" element="impl:eHrambaReceiveDocument" />
+  </wsdl:message>
+  <wsdl:message name="transformDocumentRequest">
+    <wsdl:part name="parameters" element="impl:transformDocument" />
+  </wsdl:message>
+  <wsdl:message name="getStatusByMsgIdRequest">
+    <wsdl:part name="parameters" element="impl:getStatusByMsgId" />
+  </wsdl:message>
+  <wsdl:message name="findELocationsResponse">
+    <wsdl:part name="parameters" element="impl:findELocationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="receiveDocumentResponse">
+    <wsdl:part name="parameters" element="impl:receiveDocumentResponse" />
+  </wsdl:message>
+  <wsdl:portType name="EStoritve">
+    <wsdl:operation name="getELocation">
+      <wsdl:input name="getELocationRequest" message="impl:getELocationRequest" />
+      <wsdl:output name="getELocationResponse" message="impl:getELocationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="transformPack">
+      <wsdl:input name="transformPackRequest" message="impl:transformPackRequest" />
+      <wsdl:output name="transformPackResponse" message="impl:transformPackResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="eHrambaReceiveDocument">
+      <wsdl:input name="eHrambaReceiveDocumentRequest" message="impl:eHrambaReceiveDocumentRequest" />
+      <wsdl:output name="eHrambaReceiveDocumentResponse" message="impl:eHrambaReceiveDocumentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sendDocument">
+      <wsdl:input name="sendDocumentRequest" message="impl:sendDocumentRequest" />
+      <wsdl:output name="sendDocumentResponse" message="impl:sendDocumentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="changePassword">
+      <wsdl:input name="changePasswordRequest" message="impl:changePasswordRequest" />
+      <wsdl:output name="changePasswordResponse" message="impl:changePasswordResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="isUserEDIEnabled">
+      <wsdl:input name="isUserEDIEnabledRequest" message="impl:isUserEDIEnabledRequest" />
+      <wsdl:output name="isUserEDIEnabledResponse" message="impl:isUserEDIEnabledResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentListUnaccepted">
+      <wsdl:input name="getDocumentListUnacceptedRequest" message="impl:getDocumentListUnacceptedRequest" />
+      <wsdl:output name="getDocumentListUnacceptedResponse" message="impl:getDocumentListUnacceptedResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getELocationByELocationId">
+      <wsdl:input name="getELocationByELocationIdRequest" message="impl:getELocationByELocationIdRequest" />
+      <wsdl:output name="getELocationByELocationIdResponse" message="impl:getELocationByELocationIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="transformDocumentByType">
+      <wsdl:input name="transformDocumentByTypeRequest" message="impl:transformDocumentByTypeRequest" />
+      <wsdl:output name="transformDocumentByTypeResponse" message="impl:transformDocumentByTypeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="isCompanyEDIEnabledExt">
+      <wsdl:input name="isCompanyEDIEnabledExtRequest" message="impl:isCompanyEDIEnabledExtRequest" />
+      <wsdl:output name="isCompanyEDIEnabledExtResponse" message="impl:isCompanyEDIEnabledExtResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="eHrambaGetDocumentList">
+      <wsdl:input name="eHrambaGetDocumentListRequest" message="impl:eHrambaGetDocumentListRequest" />
+      <wsdl:output name="eHrambaGetDocumentListResponse" message="impl:eHrambaGetDocumentListResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getMyRolesByApp">
+      <wsdl:input name="getMyRolesByAppRequest" message="impl:getMyRolesByAppRequest" />
+      <wsdl:output name="getMyRolesByAppResponse" message="impl:getMyRolesByAppResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="version">
+      <wsdl:input name="versionRequest" message="impl:versionRequest" />
+      <wsdl:output name="versionResponse" message="impl:versionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getStatusByMsgId">
+      <wsdl:input name="getStatusByMsgIdRequest" message="impl:getStatusByMsgIdRequest" />
+      <wsdl:output name="getStatusByMsgIdResponse" message="impl:getStatusByMsgIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="receiveDocument">
+      <wsdl:input name="receiveDocumentRequest" message="impl:receiveDocumentRequest" />
+      <wsdl:output name="receiveDocumentResponse" message="impl:receiveDocumentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="transformDocument">
+      <wsdl:input name="transformDocumentRequest" message="impl:transformDocumentRequest" />
+      <wsdl:output name="transformDocumentResponse" message="impl:transformDocumentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="eHrambaSetDocument">
+      <wsdl:input name="eHrambaSetDocumentRequest" message="impl:eHrambaSetDocumentRequest" />
+      <wsdl:output name="eHrambaSetDocumentResponse" message="impl:eHrambaSetDocumentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getCompanyList">
+      <wsdl:input name="getCompanyListRequest" message="impl:getCompanyListRequest" />
+      <wsdl:output name="getCompanyListResponse" message="impl:getCompanyListResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="echo">
+      <wsdl:input name="echoRequest" message="impl:echoRequest" />
+      <wsdl:output name="echoResponse" message="impl:echoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentTypeAndFormat">
+      <wsdl:input name="getDocumentTypeAndFormatRequest" message="impl:getDocumentTypeAndFormatRequest" />
+      <wsdl:output name="getDocumentTypeAndFormatResponse" message="impl:getDocumentTypeAndFormatResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentList">
+      <wsdl:input name="getDocumentListRequest" message="impl:getDocumentListRequest" />
+      <wsdl:output name="getDocumentListResponse" message="impl:getDocumentListResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="findELocations">
+      <wsdl:input name="findELocationsRequest" message="impl:findELocationsRequest" />
+      <wsdl:output name="findELocationsResponse" message="impl:findELocationsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="receiveDocumentCommit">
+      <wsdl:input name="receiveDocumentCommitRequest" message="impl:receiveDocumentCommitRequest" />
+      <wsdl:output name="receiveDocumentCommitResponse" message="impl:receiveDocumentCommitResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getMyRoles">
+      <wsdl:input name="getMyRolesRequest" message="impl:getMyRolesRequest" />
+      <wsdl:output name="getMyRolesResponse" message="impl:getMyRolesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="isCompanyEDIEnabled">
+      <wsdl:input name="isCompanyEDIEnabledRequest" message="impl:isCompanyEDIEnabledRequest" />
+      <wsdl:output name="isCompanyEDIEnabledResponse" message="impl:isCompanyEDIEnabledResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <wsdl:input name="loginRequest" message="impl:loginRequest" />
+      <wsdl:output name="loginResponse" message="impl:loginResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="eHrambaGetAccounts">
+      <wsdl:input name="eHrambaGetAccountsRequest" message="impl:eHrambaGetAccountsRequest" />
+      <wsdl:output name="eHrambaGetAccountsResponse" message="impl:eHrambaGetAccountsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getPhysicalAddress">
+      <wsdl:input name="getPhysicalAddressRequest" message="impl:getPhysicalAddressRequest" />
+      <wsdl:output name="getPhysicalAddressResponse" message="impl:getPhysicalAddressResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EStoritveSoapBinding" type="impl:EStoritve">
+    <wsaw:UsingAddressing wsdl:required="false" />
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getELocation">
+      <wsdlsoap:operation soapAction="getELocation" />
+      <wsdl:input name="getELocationRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getELocationResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transformPack">
+      <wsdlsoap:operation soapAction="transformPack" />
+      <wsdl:input name="transformPackRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="transformPackResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="eHrambaReceiveDocument">
+      <wsdlsoap:operation soapAction="eHrambaReceiveDocument" />
+      <wsdl:input name="eHrambaReceiveDocumentRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="eHrambaReceiveDocumentResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendDocument">
+      <wsdlsoap:operation soapAction="sendDocument" />
+      <wsdl:input name="sendDocumentRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="sendDocumentResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changePassword">
+      <wsdlsoap:operation soapAction="changePassword" />
+      <wsdl:input name="changePasswordRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="changePasswordResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isUserEDIEnabled">
+      <wsdlsoap:operation soapAction="isUserEDIEnabled" />
+      <wsdl:input name="isUserEDIEnabledRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="isUserEDIEnabledResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentListUnaccepted">
+      <wsdlsoap:operation soapAction="getDocumentListUnaccepted" />
+      <wsdl:input name="getDocumentListUnacceptedRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDocumentListUnacceptedResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getELocationByELocationId">
+      <wsdlsoap:operation soapAction="getELocationByELocationId" />
+      <wsdl:input name="getELocationByELocationIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getELocationByELocationIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transformDocumentByType">
+      <wsdlsoap:operation soapAction="transformDocumentByType" />
+      <wsdl:input name="transformDocumentByTypeRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="transformDocumentByTypeResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isCompanyEDIEnabledExt">
+      <wsdlsoap:operation soapAction="isCompanyEDIEnabledExt" />
+      <wsdl:input name="isCompanyEDIEnabledExtRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="isCompanyEDIEnabledExtResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="eHrambaGetDocumentList">
+      <wsdlsoap:operation soapAction="eHrambaGetDocumentList" />
+      <wsdl:input name="eHrambaGetDocumentListRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="eHrambaGetDocumentListResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMyRolesByApp">
+      <wsdlsoap:operation soapAction="getMyRolesByApp" />
+      <wsdl:input name="getMyRolesByAppRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getMyRolesByAppResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="version">
+      <wsdlsoap:operation soapAction="version" />
+      <wsdl:input name="versionRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="versionResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStatusByMsgId">
+      <wsdlsoap:operation soapAction="getStatusByMsgId" />
+      <wsdl:input name="getStatusByMsgIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getStatusByMsgIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="receiveDocument">
+      <wsdlsoap:operation soapAction="receiveDocument" />
+      <wsdl:input name="receiveDocumentRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="receiveDocumentResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transformDocument">
+      <wsdlsoap:operation soapAction="transformDocument" />
+      <wsdl:input name="transformDocumentRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="transformDocumentResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="eHrambaSetDocument">
+      <wsdlsoap:operation soapAction="eHrambaSetDocument" />
+      <wsdl:input name="eHrambaSetDocumentRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="eHrambaSetDocumentResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCompanyList">
+      <wsdlsoap:operation soapAction="getCompanyList" />
+      <wsdl:input name="getCompanyListRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getCompanyListResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echo">
+      <wsdlsoap:operation soapAction="echo" />
+      <wsdl:input name="echoRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="echoResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentTypeAndFormat">
+      <wsdlsoap:operation soapAction="getDocumentTypeAndFormat" />
+      <wsdl:input name="getDocumentTypeAndFormatRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDocumentTypeAndFormatResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentList">
+      <wsdlsoap:operation soapAction="getDocumentList" />
+      <wsdl:input name="getDocumentListRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDocumentListResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findELocations">
+      <wsdlsoap:operation soapAction="findELocations" />
+      <wsdl:input name="findELocationsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findELocationsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="receiveDocumentCommit">
+      <wsdlsoap:operation soapAction="receiveDocumentCommit" />
+      <wsdl:input name="receiveDocumentCommitRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="receiveDocumentCommitResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMyRoles">
+      <wsdlsoap:operation soapAction="getMyRoles" />
+      <wsdl:input name="getMyRolesRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getMyRolesResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isCompanyEDIEnabled">
+      <wsdlsoap:operation soapAction="isCompanyEDIEnabled" />
+      <wsdl:input name="isCompanyEDIEnabledRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="isCompanyEDIEnabledResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <wsdlsoap:operation soapAction="login" />
+      <wsdl:input name="loginRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="loginResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="eHrambaGetAccounts">
+      <wsdlsoap:operation soapAction="eHrambaGetAccounts" />
+      <wsdl:input name="eHrambaGetAccountsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="eHrambaGetAccountsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPhysicalAddress">
+      <wsdlsoap:operation soapAction="getPhysicalAddress" />
+      <wsdl:input name="getPhysicalAddressRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getPhysicalAddressResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EStoritveService">
+    <wsdl:port name="EStoritve" binding="impl:EStoritveSoapBinding">
+      <wsdlsoap:address location="http://was7test.zzi.si:80/zziestoritve/services/EStoritve" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

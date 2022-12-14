@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9265fe78-0ab3-47e6-a62e-cc64d3dc5c8d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://pp.plinovodi.si/ws/PPService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PPService.wsdl" MetadataType="Wsdl" ID="b847fca2-b0a9-4528-8701-fb5dce4e153a" SourceId="1" SourceUrl="https://pp.plinovodi.si/ws/PPService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="PPService.xsd" MetadataType="Schema" ID="63a50b22-f2dd-4e42-b354-f7bf3d94897c" SourceId="1" SourceUrl="https://pp.plinovodi.si/ws/PPService.svc?xsd=xsd0" />
+    <MetadataFile FileName="PPService.disco" MetadataType="Disco" ID="521f2f8a-25df-4b90-b3b0-a3476af55a0e" SourceId="1" SourceUrl="https://pp.plinovodi.si/ws/PPService.svc?disco" />
+    <MetadataFile FileName="PPService1.wsdl" MetadataType="Wsdl" ID="567e8be5-bbc8-45df-8346-e09fa6d9f43c" SourceId="1" SourceUrl="https://pp.plinovodi.si/ws/PPService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="PripravljalecPrognozLib.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <applicationSettings>
+        <PripravljalecPrognozLib.Properties.Settings>
+            <setting name="PripravljalecPrognozLib_PripravljalecPrognozService_PPService"
+                serializeAs="String">
+                <value>https://localhost:44301/PPService.svc</value>
+            </setting>
+        </PripravljalecPrognozLib.Properties.Settings>
+    </applicationSettings>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_PPService">
+                    <security mode="Transport">
+                        <transport clientCredentialType="Certificate" />
+                    </security>
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="https://pp.plinovodi.si/ws/PPService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_PPService"
+                contract="PPServiceWCFClient.PPService" name="BasicHttpBinding_PPService" />
+        </client>
+    </system.serviceModel>
+</configuration>

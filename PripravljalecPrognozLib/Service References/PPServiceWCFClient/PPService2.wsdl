@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:i0="http://schemas.plinovodi.si/2017/09" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PPService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpBinding_PPService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="true" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:import namespace="http://schemas.plinovodi.si/2017/09" location="https://pp-test.plinovodi.si/ws/PPService.svc?wsdl=wsdl0" />
+  <wsdl:types />
+  <wsdl:binding name="BasicHttpBinding_PPService" type="i0:PPService">
+    <wsp:PolicyReference URI="#BasicHttpBinding_PPService_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ChangeHeatingSeasons">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/ChangeHeatingSeasons" style="document" />
+      <wsdl:input name="ChangeHeatingSeasonsRequest">
+        <soap:header message="i0:ChangeHeatingSeasonsRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ChangeHeatingSeasonsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHeatingSeasons">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/GetHeatingSeasons" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetHeatingSeasonsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCalculationTimes">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/GetCalculationTimes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetCalculationTimesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCityGatesAllocationDistribution">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/AddCityGatesAllocationDistribution" style="document" />
+      <wsdl:input name="AddCityGatesAllocationDistributionRequest">
+        <soap:header message="i0:AddCityGatesAllocationDistributionRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddCityGatesAllocationDistributionResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCityGatesForecastDistribution">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/AddCityGatesForecastDistribution" style="document" />
+      <wsdl:input name="AddCityGatesForecastDistributionRequest">
+        <soap:header message="i0:AddCityGatesForecastDistributionRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddCityGatesForecastDistributionResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMeasurementsMismatches">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/AddMeasurementsMismatches" style="document" />
+      <wsdl:input name="AddMeasurementsMismatchesRequest">
+        <soap:header message="i0:AddMeasurementsMismatchesRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddMeasurementsMismatchesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCityGatesQuantities">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/AddCityGatesQuantities" style="document" />
+      <wsdl:input name="AddCityGatesQuantitiesRequest">
+        <soap:header message="i0:AddCityGatesQuantitiesRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddCityGatesQuantitiesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddOfftakePoints">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/AddOfftakePoints" style="document" />
+      <wsdl:input name="AddOfftakePointsRequest">
+        <soap:header message="i0:AddOfftakePointsRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddOfftakePointsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddOfftakePointsEis">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/AddOfftakePointsEis" style="document" />
+      <wsdl:input name="AddOfftakePointsEisRequest">
+        <soap:header message="i0:AddOfftakePointsEisRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddOfftakePointsEisResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOfftakePointsConfigurationEis">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/GetOfftakePointsConfigurationEis" style="document" />
+      <wsdl:input name="GetOfftakePointsConfigurationEisRequest">
+        <soap:header message="i0:GetOfftakePointsConfigurationEisRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetOfftakePointsConfigurationEisResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddOfftakePointsMeasurments">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/AddOfftakePointsMeasurments" style="document" />
+      <wsdl:input name="AddOfftakePointsMeasurmentsRequest">
+        <soap:header message="i0:AddOfftakePointsMeasurmentsRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddOfftakePointsMeasurmentsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddOfftakePointsReadings">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/AddOfftakePointsReadings" style="document" />
+      <wsdl:input name="AddOfftakePointsReadingsRequest">
+        <soap:header message="i0:AddOfftakePointsReadingsRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddOfftakePointsReadingsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdjustOfftakePointsMeasurements">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/AdjustOfftakePointsMeasurements" style="document" />
+      <wsdl:input name="AdjustOfftakePointsMeasurementsRequest">
+        <soap:header message="i0:AdjustOfftakePointsMeasurementsRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AdjustOfftakePointsMeasurementsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AnnulOfftakePointsReadings">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/AnnulOfftakePointsReadings" style="document" />
+      <wsdl:input name="AnnullOfftakePointsReadingsRequest">
+        <soap:header message="i0:AnnullOfftakePointsReadingsRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AnnullOfftakePointsReadingsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeOfftakePointsSupplier">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/ChangeOfftakePointsSupplier" style="document" />
+      <wsdl:input name="ChangeOfftakePointsSupplierRequest">
+        <soap:header message="i0:ChangeOfftakePointsSupplierRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ChangeOfftakePointsSupplierResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityGateAllocations">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/GetCityGateAllocations" style="document" />
+      <wsdl:input name="GetCityGateAllocationsRequest">
+        <soap:header message="i0:GetCityGateAllocationsRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetCityGateAllocationsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityGateForecasts">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/GetCityGateForecasts" style="document" />
+      <wsdl:input name="GetCityGateForecastsRequest">
+        <soap:header message="i0:GetCityGateForecastsRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetCityGateForecastsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityGatesBalance">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/GetCityGatesBalance" style="document" />
+      <wsdl:input name="GetCityGatesBalanceRequest">
+        <soap:header message="i0:GetCityGatesBalanceRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetCityGatesBalanceResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityGatesQuantities">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/GetCityGatesQuantities" style="document" />
+      <wsdl:input name="GetCityGatesQuantitiesRequest">
+        <soap:header message="i0:GetCityGatesQuantitiesRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetCityGatesQuantitiesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMeasuredOfftakeHourlyMismatches">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/GetMeasuredOfftakeHourlyMismatches" style="document" />
+      <wsdl:input name="GetMeasuredOfftakeHourlyMismatchesRequest">
+        <soap:header message="i0:GetMeasuredOfftakeHourlyMismatchesRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMeasuredOfftakeHourlyMismatchesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOfftakePoints">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/GetOfftakePoints" style="document" />
+      <wsdl:input name="GetOfftakePointsRequest">
+        <soap:header message="i0:GetOfftakePointsRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetOfftakePointsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOfftakePointsAllocationsMonthly">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/GetOfftakePointsAllocationsMonthly" style="document" />
+      <wsdl:input name="GetOfftakePointsAllocationsMonthlyRequest">
+        <soap:header message="i0:GetOfftakePointsAllocationsMonthlyRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetOfftakePointsAllocationsMonthlyResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOfftakePointsAllocations">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/GetOfftakePointsAllocations" style="document" />
+      <wsdl:input name="GetOfftakePointsAllocationsRequest">
+        <soap:header message="i0:GetOfftakePointsAllocationsRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetOfftakePointsAllocationsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOfftakePointsMeasurements">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/GetOfftakePointsMeasurements" style="document" />
+      <wsdl:input name="GetOfftakePointsMeasurementsRequest">
+        <soap:header message="i0:GetOfftakePointsMeasurementsRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetOfftakePointsMeasurementsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOfftakePointsReadings">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/GetOfftakePointsReadings" style="document" />
+      <wsdl:input name="GetOfftakePointsReadingsRequest">
+        <soap:header message="i0:GetOfftakePointsReadingsRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetOfftakePointsReadingsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemperatures">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/GetTemperatures" style="document" />
+      <wsdl:input name="GetTemperaturesRequest">
+        <soap:header message="i0:GetTemperaturesRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetTemperaturesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyOfftakePoints">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/ModifyOfftakePoints" style="document" />
+      <wsdl:input name="ModifyOfftakePointsRequest">
+        <soap:header message="i0:ModifyOfftakePointsRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ModifyOfftakePointsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyOfftakePointsEis">
+      <soap:operation soapAction="http://schemas.plinovodi.si/2017/09/PPService/ModifyOfftakePointsEis" style="document" />
+      <wsdl:input name="ModifyOfftakePointsEisRequest">
+        <soap:header message="i0:ModifyOfftakePointsEisRequest_Headers" part="Version" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ModifyOfftakePointsEisResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PPService">
+    <wsdl:port name="BasicHttpBinding_PPService" binding="tns:BasicHttpBinding_PPService">
+      <soap:address location="https://pp-test.plinovodi.si/ws/PPService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
