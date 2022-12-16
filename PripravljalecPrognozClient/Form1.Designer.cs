@@ -39,6 +39,7 @@
             this.button_GM = new System.Windows.Forms.Button();
             this.buttonGetAloc = new System.Windows.Forms.Button();
             this.b_annull = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -151,11 +152,22 @@
             this.b_annull.UseVisualStyleBackColor = true;
             this.b_annull.Click += new System.EventHandler(this.b_annull_Click);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(32, 253);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(126, 23);
+            this.button5.TabIndex = 11;
+            this.button5.Text = "AddOfftakePoints EIS";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(564, 304);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.b_annull);
             this.Controls.Add(this.buttonGetAloc);
             this.Controls.Add(this.button_GM);
@@ -188,6 +200,7 @@
         private System.Windows.Forms.Button button_GM;
         private System.Windows.Forms.Button buttonGetAloc;
         private System.Windows.Forms.Button b_annull;
+        private System.Windows.Forms.Button button5;
     }
 }
 

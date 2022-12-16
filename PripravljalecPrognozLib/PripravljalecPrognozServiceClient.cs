@@ -505,9 +505,10 @@ namespace PripravljalecPrognozLib
 
         public void AddOfftakePointsEIS()
         {
-            var method = Methods.AddOfftakePoints;
+            var method = Methods.AddOfftakePointsEIS;
+            _dal = new PripravljalecPrognozDAL();
             var errorMsg = new StringBuilder();
-            var offTakePoints = Helpers.MapOfftakePointsEIS(_dal.GetAddOfftakePoints(Methods.AddOfftakePoints));
+            var offTakePoints = Helpers.MapOfftakePointsEIS(_dal.GetAddOfftakePointsEIS(Methods.AddOfftakePoints));
             if (offTakePoints.Count == 0)
             {
                 _dal.Log(_url, method, null, null, 0, "Nothing to do", null, 0, 0, 0);

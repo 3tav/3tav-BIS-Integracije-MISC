@@ -49,8 +49,18 @@ namespace PripravljalecPrognozLib
                     Status = Helpers.GetOfftakePointStatus(o.Status),
                     SupplierCode = o.SupplierCode,
                     ValidFrom = o.ValidFrom,
-                    YearlyOfftake = o.YearlyOfftake
-                });
+                    YearlyOfftake = o.YearlyOfftake,
+                    // nova polja
+                    IsProtectedConsumer = o.IsProtectedConsumer,
+                    IsHouseholdConsumer = o.IsHouseholdConsumer,
+                    OfftakeKind = o.OfftakeKind,
+                    InterruptibleSupplyContract = o.InterruptibleSupplyContract,
+                    AlternativeEnergySource = o.AlternativeEnergySource,
+                    ProtectedUserConsumePart = o.ProtectedUserConsumePart,
+                    IsActive = o.IsActive,
+                    CurrentOfftakePointStatus = o.CurrentOfftakePointStatus,
+                    ConsumptionGroups = o.ConsumptionGroups
+                }); ;
             }
             return offTakePoints;
         }

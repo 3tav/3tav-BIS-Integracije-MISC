@@ -122,6 +122,73 @@ namespace PripravljalecPrognozLib
             }
             return otps;
         }
+
+        public List<PPOfftakePoint> GetAddOfftakePointsEIS(string method)
+        {
+            var otps = new List<PPOfftakePoint>();
+            using (var conn = new SqlConnection(_connString))
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    //cmd.CommandText = @"SELECT OfftakePointCode, CityGateCode, Method,
+		                  //                      MeasurementDeviceMultiplier, LoadType, Status,
+		                  //                      SupplierCode, YearlyOfftake, ValidFrom,
+		                  //                      id_odjemnega_mesta
+                    //                    FROM v_PripPrognoz_OfftakePoints
+                    //                    WHERE method = @method";
+
+
+                    cmd.CommandText = @"SELECT top 10 OfftakePointCode, CityGateCode, Method, 
+                                                MeasurementDeviceMultiplier, LoadType, Status, 
+                                                SupplierCode, YearlyOfftake, ValidFrom, 
+                                                id_odjemnega_mesta, 
+                                                isProtectedConsumer, isHouseholdConsumer, OfftakeKindType,
+                                                interruptibleSupplyContract, alternativeEnergySource, protectedUserConsume,
+                                                isActive, CurrentOfftakePointStatus                                                
+                                        FROM PripPrognoz_OfftakePoints_UT
+                                        WHERE method = @method";
+
+                    cmd.Parameters.AddWithValue("@method", method);
+                    cmd.CommandTimeout = 0;
+
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        {
+                            var o = new PPOfftakePoint();
+
+
+                            o.OfftakePointCode = rdr.GetString(0);
+                            o.CityGateCode = rdr.GetString(1);
+                            o.MeasurementDeviceMultiplier = (rdr.IsDBNull(3) ? (decimal?)null : rdr.GetDecimal(3));
+                            o.LoadType = rdr.GetString(4);
+                            o.Status = rdr.GetString(5);
+                            o.SupplierCode = rdr.GetString(6);
+                            o.YearlyOfftake = (rdr.IsDBNull(7) ? (int?)null : rdr.GetInt32(7));
+                            o.ValidFrom = (rdr.IsDBNull(8) ? (DateTime?)null : rdr.GetDateTime(8));
+                            o.IdOdjemnegaMesta = rdr.GetInt32(9);
+
+                            // nova polja EIS
+                            o.IsProtectedConsumer = (rdr.GetByte(10) != 0);
+                            o.IsHouseholdConsumer = (rdr.GetByte(11) != 0);
+                            o.OfftakeKind = (PPServiceWCFClient.OfftakeKindType)rdr.GetByte(12);
+                            o.InterruptibleSupplyContract = (rdr.GetInt32(13) != 0);
+                            o.AlternativeEnergySource = (rdr.GetInt32(14) != 0);
+                            o.ProtectedUserConsumePart = (Byte)rdr.GetInt32(15);
+                            o.IsActive = (rdr.GetInt32(16) != 0);
+                            o.CurrentOfftakePointStatus = (PPServiceWCFClient.CurrentOfftakePointStatusType)rdr.GetByte(17);
+                            // array
+                            o.ConsumptionGroups = new PPServiceWCFClient.ConsumptionGroupParameters[0];
+                            otps.Add(o);
+ 
+                        }
+                    }
+                }
+            }
+            return otps;
+        }
+
         public List<PPOfftakePoint> GetChangeSupplierOfftakePoints(string method)
         {
             var otps = new List<PPOfftakePoint>();
@@ -354,10 +421,24 @@ namespace PripravljalecPrognozLib
 		public string Status;		
 		public string LoadType;		
         public string SupplierCode;
-		public System.Nullable<decimal> MeasurementDeviceMultiplier;
-		public System.Nullable<int> YearlyOfftake;
-		public System.Nullable<System.DateTime> ValidFrom;
+		public Nullable<decimal> MeasurementDeviceMultiplier;
+		public Nullable<int> YearlyOfftake;
+		public Nullable<System.DateTime> ValidFrom;
         public int IdOdjemnegaMesta;
+
+        // nova polja EIS
+        public bool IsProtectedConsumer;
+        public bool IsHouseholdConsumer;
+        public PPServiceWCFClient.OfftakeKindType OfftakeKind;
+        public bool InterruptibleSupplyContract;
+        public bool AlternativeEnergySource;
+        public byte ProtectedUserConsumePart;
+        public bool IsActive;
+        public PPServiceWCFClient.CurrentOfftakePointStatusType CurrentOfftakePointStatus;
+        public PPServiceWCFClient.ConsumptionGroupParameters[] ConsumptionGroups;
+
+
+
     }
 
     public class PPOfftakePointModify
@@ -461,7 +542,8 @@ namespace PripravljalecPrognozLib
         public const string GetCityGatesBalance = "GetCityGatesBalance ";
         public const string GetCityGateForecasts = "GetCityGateForecasts  ";
         public const string GetTemperatures = "GetTemperatures ";
-        public const string TestMethod = "TEST";           
+        public const string TestMethod = "TEST";
+        public const string AddOfftakePointsEIS = "AddOfftakePointsEIS";
     }
 
     public enum ServiceResult

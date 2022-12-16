@@ -71,8 +71,11 @@ namespace PripravljalecPrognozClient
                 case Methods.TestMethod:
                     MessageBox.Show("TEST OK");
                     break;
+                case Methods.AddOfftakePointsEIS:
+                    _svc.AddOfftakePointsEIS();
+                    break;
                 default:
-                    this.label3.Text = "Ni mplementirano v Dispatch " + method;
+                    this.label3.Text = "Ni implementirano v Dispatch " + method;
                     break;
             }
             this.label3.Text = "Dispatch: OK - " + method;
@@ -191,5 +194,19 @@ namespace PripravljalecPrognozClient
             MessageBox.Show("Uspeh", "Obvestilo");
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DispatchMethod(Methods.AddOfftakePointsEIS, "");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Napaka pri klicu servisa");
+                return;
+            }
+
+            MessageBox.Show("Uspeh", "Obvestilo");
+        }
     }
 }
