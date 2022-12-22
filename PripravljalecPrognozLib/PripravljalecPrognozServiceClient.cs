@@ -547,5 +547,98 @@ namespace PripravljalecPrognozLib
                 _dal.Log(_url, method, null, null, (int)ServiceResult.Error, ex.Message, null, 0, steviloVsi, 0);
             }
         }
+
+        public void ModifyOfftakePointsEIS()
+        {
+            var method = Methods.ModifyOfftakePoints;
+            var errorMsg = new StringBuilder();
+            var offTakePoints = Helpers.MapOfftakePointsModifyEIS(_dal.GetAddOfftakePointsEIS(Methods.ModifyOfftakePoints));
+            if (offTakePoints.Count == 0)
+            {
+                _dal.Log(_url, method, null, null, 0, "Nothing to do", null, 0, 0, 0);
+                return;
+            }
+
+            int steviloVsi = offTakePoints.Count;
+            int steviloOk = steviloVsi;
+            int steviloNapak = 0;
+            var result = ServiceResult.OK;
+
+            try
+            {
+                System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                var errors = _svc.ModifyOfftakePointsEis(_version, offTakePoints);
+                if (errors != null)
+                {
+                    steviloNapak = errors.Length;
+                    steviloOk = steviloVsi - steviloNapak;
+                    foreach (var e in errors)
+                    {
+                        errorMsg.Append(string.Format("{0}; ", e.Message));
+                        if (_logErrorDetailed)
+                            _dal.Log(_url, method, null, null, (int)ServiceResult.Error, e.Message, Helpers.GetErrorOznaka(e.Message), 0, 1, 0);
+                    }
+                }
+
+                if (steviloOk == 0)
+                    result = ServiceResult.Error;
+
+                _dal.Log(_url, method, null, null, (int)result, errorMsg.ToString(), null, steviloOk, steviloNapak, 0);
+
+            }
+            catch (Exception ex)
+            {
+                _dal.Log(_url, method, null, null, (int)ServiceResult.Error, ex.Message, null, 0, steviloVsi, 0);
+            }
+        }
+
+        public void GetOfftakePointsEIS()
+        {
+            int steviloVsi = 0;
+            var result = ServiceResult.OK;
+            var method = Methods.GetOfftakePoints;
+            var methodNapaka = Methods.GetOfftakePointsMeasurements;
+            try
+            {
+                var query = new PPServiceWCFClient.GetOfftakePointsQuery();
+                //query.CityGateCodes =     
+
+                if (this._DebugMode)
+                {
+                    _dal.Log(_url, method, null, null, (int)result, "Debug", null, steviloVsi, 0, 0);
+                    return;
+                };
+
+                //System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                var otps = _svc.GetOfftakePointsConfigurationEis(_version, true);
+
+                steviloVsi = 0;
+                if (otps != null)
+                {
+                    steviloVsi = otps.Count;
+                }
+
+                methodNapaka = "GetOfftakePointsDataTable";
+                var dt = PripravljalecPrognozSchema.GetOfftakePointsDataTable();
+                foreach (var o in otps)
+                {
+                    dt.Rows.Add(PripravljalecPrognozSchema.GetOfftakePointsDataRow(dt, o.OfftakePointCode, o.CityGateCode, o.MeasurementDeviceMultiplier, o.LoadType.ToString(), o.Status.ToString(), o.SupplierCode, o.YearlyOfftake));
+                }
+
+                methodNapaka = "GetOfftakePointsInsert";
+                _dal.GetOfftakePointsInsert(dt);
+                _dal.Log(_url, method, null, null, (int)result, null, null, steviloVsi, 0, 0);
+                methodNapaka = "GetOfftakePointsPotrdi";
+                _dal.Potrdi("dbo.PripPrognoz_PotrdiPrenos_OfftakePoints");
+
+
+            }
+            catch (Exception ex)
+            {
+                _dal.Log(_url, methodNapaka, null, null, (int)ServiceResult.Error, ex.Message, null, 0, steviloVsi, 0);
+                throw new Exception(ex.Message);
+
+            }
+        }
     }   
 }

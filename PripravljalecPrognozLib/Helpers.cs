@@ -40,27 +40,27 @@ namespace PripravljalecPrognozLib
 
             foreach (var o in otps)
             {
-                offTakePoints.Add(new PPServiceWCFClient.AddOfftakePointEis()
-                {
-                    CityGateCode = o.CityGateCode,
-                    LoadType = Helpers.GetLoadType(o.LoadType),
-                    MeasurementDeviceMultiplier = o.MeasurementDeviceMultiplier,
-                    OfftakePointCode = o.OfftakePointCode,
-                    Status = Helpers.GetOfftakePointStatus(o.Status),
-                    SupplierCode = o.SupplierCode,
-                    ValidFrom = o.ValidFrom,
-                    YearlyOfftake = o.YearlyOfftake,
-                    // nova polja
-                    IsProtectedConsumer = o.IsProtectedConsumer,
-                    IsHouseholdConsumer = o.IsHouseholdConsumer,
-                    OfftakeKind = o.OfftakeKind,
-                    InterruptibleSupplyContract = o.InterruptibleSupplyContract,
-                    AlternativeEnergySource = o.AlternativeEnergySource,
-                    ProtectedUserConsumePart = o.ProtectedUserConsumePart,
-                    IsActive = o.IsActive,
-                    CurrentOfftakePointStatus = o.CurrentOfftakePointStatus,
-                    ConsumptionGroups = o.ConsumptionGroups
-                }); ;
+                var otp = new PPServiceWCFClient.AddOfftakePointEis();
+
+                otp.CityGateCode = o.CityGateCode;
+                otp.LoadType = Helpers.GetLoadType(o.LoadType);
+                otp.MeasurementDeviceMultiplier = o.MeasurementDeviceMultiplier;
+                otp.OfftakePointCode = o.OfftakePointCode;
+                otp.Status = Helpers.GetOfftakePointStatus(o.Status);
+                otp.SupplierCode = o.SupplierCode;
+                otp.ValidFrom = o.ValidFrom;
+                otp.YearlyOfftake = o.YearlyOfftake;
+                // nova polja
+                otp.IsProtectedConsumer = o.IsProtectedConsumer;
+                otp.IsHouseholdConsumer = o.IsHouseholdConsumer;
+                otp.OfftakeKind = o.OfftakeKind;
+                otp.InterruptibleSupplyContract = o.InterruptibleSupplyContract;
+                otp.AlternativeEnergySource = o.AlternativeEnergySource;
+                otp.ProtectedUserConsumePart = o.ProtectedUserConsumePart;
+                otp.IsActive = o.IsActive;
+                otp.CurrentOfftakePointStatus = o.CurrentOfftakePointStatus;
+                otp.ConsumptionGroups = o.ConsumptionGroups;                
+                offTakePoints.Add(otp);                                                    
             }
             return offTakePoints;
         }
@@ -87,6 +87,37 @@ namespace PripravljalecPrognozLib
             }
             return offTakePoints;
         }
+
+        public static PPServiceWCFClient.ArrayOfModifyOfftakePointEis MapOfftakePointsModifyEIS(List<PPOfftakePoint> otps)
+        {
+            var offTakePoints = new PPServiceWCFClient.ArrayOfModifyOfftakePointEis();
+            if (otps == null)
+                return offTakePoints;
+
+            foreach (var o in otps)
+            {
+                offTakePoints.Add(new PPServiceWCFClient.ModifyOfftakePointEis()
+                {
+                    CityGateCode = o.CityGateCode,
+                    LoadType = Helpers.GetLoadType(o.LoadType),
+                    MeasurementDeviceMultiplier = o.MeasurementDeviceMultiplier,
+                    OfftakePointCode = o.OfftakePointCode,
+                    Status = Helpers.GetOfftakePointStatus(o.Status),                    
+                    ValidFrom = o.ValidFrom,
+                    YearlyOfftake = o.YearlyOfftake,
+                    IsProtectedConsumer = o.IsProtectedConsumer,
+                    IsHouseholdConsumer = o.IsHouseholdConsumer,                    
+                    InterruptibleSupplyContract = o.InterruptibleSupplyContract,
+                    AlternativeEnergySource = o.AlternativeEnergySource,                    
+                    IsActive = o.IsActive,
+                    CurrentOfftakePointStatus = o.CurrentOfftakePointStatus,
+                    ProtectedUserConsume = o.ProtectedUserConsumePart
+                    //OfftakePurpose = o.p
+                });
+            }
+            return offTakePoints;
+        }
+
         public static PPServiceWCFClient.ArrayOfChangeOfftakePointSupplier MapOfftakePointsChangeSupplier(List<PPOfftakePoint> otps)
         {
             var offTakePoints = new PPServiceWCFClient.ArrayOfChangeOfftakePointSupplier();

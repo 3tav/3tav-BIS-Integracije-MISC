@@ -126,6 +126,10 @@ namespace PripravljalecPrognozLib
         public List<PPOfftakePoint> GetAddOfftakePointsEIS(string method)
         {
             var otps = new List<PPOfftakePoint>();
+
+            // v cache 
+            var gp = GetOfftakePointsConsumptionGroupParameters();
+
             using (var conn = new SqlConnection(_connString))
             {
                 conn.Open();
@@ -147,7 +151,7 @@ namespace PripravljalecPrognozLib
                                                 interruptibleSupplyContract, alternativeEnergySource, protectedUserConsume,
                                                 isActive, CurrentOfftakePointStatus                                                
                                         FROM PripPrognoz_OfftakePoints_UT
-                                        WHERE method = @method";
+                                        WHERE method = @method and OfftakePointCode in (select OfftakePointCode from PripPrognoz_OfftakePointsConsumptionGroupParameters)";
 
                     cmd.Parameters.AddWithValue("@method", method);
                     cmd.CommandTimeout = 0;
@@ -180,12 +184,32 @@ namespace PripravljalecPrognozLib
                             o.CurrentOfftakePointStatus = (PPServiceWCFClient.CurrentOfftakePointStatusType)rdr.GetByte(17);
                             // array
                             o.ConsumptionGroups = new PPServiceWCFClient.ConsumptionGroupParameters[0];
+
+                            var g = gp.Find(s => s.OfftakePointCode == o.OfftakePointCode);
+                            if (g != null) {
+                                o.ConsumptionGroups = new PPServiceWCFClient.ConsumptionGroupParameters[1];
+                                o.ConsumptionGroups[0] = new PPServiceWCFClient.ConsumptionGroupParameters();
+                                o.ConsumptionGroups[0].ConsumptionGroup = g.ConsumptionGroup;
+                                o.ConsumptionGroups[0].GroupPart = g.GroupPart;
+                                o.ConsumptionGroups[0].SubGroup1 = g.SubGroup1;
+                                o.ConsumptionGroups[0].SubGroup2 = g.SubGroup2;
+                                o.ConsumptionGroups[0].SubGroup3 = g.SubGroup3;
+                                o.ConsumptionGroups[0].SubGroup4 = g.SubGroup4;
+                                o.ConsumptionGroups[0].SubGroup5 = g.SubGroup5;
+                                o.ConsumptionGroups[0].SubGroup6 = g.SubGroup6;
+                            }
+
                             otps.Add(o);
  
                         }
                     }
+
+                    
                 }
             }
+
+           
+
             return otps;
         }
 
@@ -412,6 +436,68 @@ namespace PripravljalecPrognozLib
                 bc.WriteToServer(table);
             }
         }
+
+        public DataTable GetOfftakePointsConsumptionGroupParametersDT()
+        {
+            DataTable dt = new DataTable();
+            var sql = @"select OfftakePointCode, id_odjemnega_mesta, ConsumptionGroupType, 
+		                        groupPartField, subGroup1Field, subGroup2Field, 
+		                        subGroup3Field, subGroup4Field, subGroup5Field, 
+		                        subGroup6Field 
+                        from PripPrognoz_OfftakePointsConsumptionGroupParameters";
+            using (var conn = new SqlConnection(_connString))
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand(sql, conn))
+                {                    
+                    using (var da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+
+            return dt;
+        }
+
+        public List<PPConsumptionGroupParameters> GetOfftakePointsConsumptionGroupParameters()
+        {
+            
+            var gp = new List<PPConsumptionGroupParameters>();
+            var sql = @"select OfftakePointCode, id_odjemnega_mesta, ConsumptionGroupType, 
+		                        groupPartField, subGroup1Field, subGroup2Field, 
+		                        subGroup3Field, subGroup4Field, subGroup5Field, 
+		                        subGroup6Field 
+                        from PripPrognoz_OfftakePointsConsumptionGroupParameters";
+            using (var conn = new SqlConnection(_connString))
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand(sql, conn))
+                {
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        {
+                            var p = new PPConsumptionGroupParameters();
+                            p.OfftakePointCode = rdr.GetString(0);
+                            p.GroupPart = Convert.ToByte(rdr.GetInt32(3));
+                            p.SubGroup1 = Convert.ToByte(rdr.GetInt32(4));
+                            p.SubGroup2 = Convert.ToByte(rdr.GetInt32(5));
+                            p.SubGroup3 = Convert.ToByte(rdr.GetInt32(6));
+                            p.SubGroup4 = Convert.ToByte(rdr.GetInt32(7));
+                            p.SubGroup5 = Convert.ToByte(rdr.GetInt32(8));
+                            p.SubGroup6 = Convert.ToByte(rdr.GetInt32(9));
+                            if (Enum.TryParse(rdr.GetString(2).ToUpper(), out PPServiceWCFClient.ConsumptionGroupType ct)) {
+                                p.ConsumptionGroup = ct;
+                            }
+                            gp.Add(p);
+                        }
+                    }                                                            
+                }
+            }
+
+            return gp;
+        }
     }
 
     public class PPOfftakePoint
@@ -522,6 +608,21 @@ namespace PripravljalecPrognozLib
         public System.Nullable<decimal> NewNm3ConversionFactor;
 
     }
+
+    public class PPConsumptionGroupParameters
+    {
+        public string OfftakePointCode;
+        
+        public byte GroupPart;
+        public byte SubGroup1;
+        public byte SubGroup2;
+        public byte SubGroup3;
+        public byte SubGroup4;
+        public byte SubGroup5;
+        public byte SubGroup6;
+        public PPServiceWCFClient.ConsumptionGroupType ConsumptionGroup;
+    }
+
 
     public static class Methods
     {
